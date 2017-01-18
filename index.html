@@ -318,8 +318,71 @@
       
         
           
-            <p>这篇文章主要介绍这个博客的建站过程。</p>
-<h3 id="建站过程"><a href="#建站过程" class="headerlink" title="建站过程"></a>建站过程</h3><p>这个博客采用Hexo框架……</p>
+            <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>一直很想建一个属于自己的个人博客，在经过一番筛选之后，我选择了Hexo+Github Pages这个组合来搭建我的博客。选用这个的好处是因为Github是每个程序员必备的，而Github提供了一个可供展示自己静态网站的稳定空间，我们可以利用这个建立自己博客。而Hexo正如它的首页所说，是一个快速、简洁而且高效的博客框架。</p>
+<h2 id="建站过程"><a href="#建站过程" class="headerlink" title="建站过程"></a>建站过程</h2><p>下面介绍了本博客的建站过程，想得到更多详细的信息，请查看hexo的官网：<a href="https://hexo.io/docs/index.html" target="_blank" rel="external">https://hexo.io/docs/index.html</a></p>
+<p>另外本人使用系统为macOS</p>
+<h3 id="建站环境配置"><a href="#建站环境配置" class="headerlink" title="建站环境配置"></a>建站环境配置</h3><p>安装Hexo的过程非常简单，你只需要在电脑中拥有：</p>
+<ul>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a></li>
+<li><a href="https://git-scm.com/" target="_blank" rel="external">Git</a></li>
+</ul>
+<p><em>Node.js是一个基于Chrome V8引擎的javascript运行环境，其提供的npm是目前最大的开源包管理系统；Git则是一个现在非常流行分布式项目管理版本控制系统，我们熟知的Github就是基于git的最大的开源项目托管平台（这两个应该都非常熟悉了）</em></p>
+<p>你可以通过npm完成hexo的安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure>
+<p>以上是官方的提供的安装方法，博主在安装的时候出现了npm权限问题(<code>EACCES</code> error)，具体解决办法可以参考：<a href="https://docs.npmjs.com/getting-started/fixing-npm-permissions" target="_blank" rel="external">https://docs.npmjs.com/getting-started/fixing-npm-permissions</a>。（熟悉npm和linux系统命令的同学应该不会出现这种问题吧0.0）</p>
+<h3 id="安装Hexo及常用命令"><a href="#安装Hexo及常用命令" class="headerlink" title="安装Hexo及常用命令"></a>安装Hexo及常用命令</h3><p>安装完hexo后，采用以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init zhxblog</div><div class="line">$ cd zhxblog</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
+<p>建立的文件夹就是你的博客，其文件结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── _config.yml</div><div class="line">├── package.json</div><div class="line">├── scaffolds</div><div class="line">├── source</div><div class="line">|   ├── _drafts</div><div class="line">|   └── _posts</div><div class="line">└── themes</div></pre></td></tr></table></figure>
+<p>Config.yml是配置文件，source是存放用户资源的，你的博文就式放在这里，而themes是主题文件。</p>
+<p>配置的话可以看<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">官网</a>，这里主要讲一下常用命令：</p>
+<ul>
+<li>新建一篇文章</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;title&gt;</div></pre></td></tr></table></figure>
+<p>会在source的_posts文件夹中生成你的默认文件</p>
+<ul>
+<li>生成静态文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<ul>
+<li>启动服务器在本地查看</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server //默认网址为http://localhost:4000/</div></pre></td></tr></table></figure>
+<ul>
+<li>部署网站</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>如果在Github上部署需要配置一下你的_config.yml文件，找到<code>deploy</code>选项，以下是我的配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/zhx111/zhx111.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+<p>这样，发布一篇博客的流程就非常简单简单了，首先新建一篇文章，在source文件夹中撰写自己的博客，完成之后generate生成静态文件之后，再部署就行了。怎么样，是不是非常的简单呢？</p>
+<ul>
+<li>主题</li>
+</ul>
+<p>Hexo有着各种各样的主题，在Hexo中安装主题非常简单，只要在 <code>themes</code> 文件夹内，增加一个主题，并修改 <code>_config.yml</code> 内的 <code>theme</code> 设定，即可切换主题。</p>
+<p>关于Hexo的好看主题，在知乎答案：<a href="https://www.zhihu.com/question/24422335" target="_blank" rel="external">有哪些好看的 Hexo 主题？</a>中，有一些好看的主题推荐。博主使用的是next主题，个人感觉还是比较简洁好看的。</p>
+<h3 id="Github-Pages配置"><a href="#Github-Pages配置" class="headerlink" title="Github Pages配置"></a>Github Pages配置</h3><p>注册Github非常简单，关于github pages可以参考其官网：<a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>.</p>
+<h4 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h4><p>我们通过ssh将本地的git项目和远程的github建立联系。</p>
+<h4 id="创建ssh"><a href="#创建ssh" class="headerlink" title="创建ssh"></a>创建ssh</h4><p>首先我们需要检查你电脑上现有的ssh key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cd ~/. ssh //检查本机的ssh密钥</div></pre></td></tr></table></figure>
+<p>如果存在，先将已有的ssh备份，或者将新建的ssh生成到另外的目录下</p>
+<p>如果不存在，通过默认的参数直接生成ssh：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ssh-keygen -t rsa -C xxxxx@gmail.com（注册github时的email）</div></pre></td></tr></table></figure>
+<p>一直回车，中途会提醒你输入密码，直接回车提交项目则不用密码。</p>
+<p>打开本地~\ssh\id_rsa.pub文件。此文件里面内容为刚才生成的密钥。</p>
+<h4 id="添加ssh到Github"><a href="#添加ssh到Github" class="headerlink" title="添加ssh到Github"></a>添加ssh到Github</h4><p>在Settings的SSH and GPG keys将id_rsa.pub中的内容添加进去即可。</p>
+<p>通过命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure>
+<p>如果得到如下反馈，则表示成功连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hi zhx111! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure>
+<h4 id="设置用户信息"><a href="#设置用户信息" class="headerlink" title="设置用户信息"></a>设置用户信息</h4><p>需要设置一下你的个人信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;zhx111&quot;//用户名</div><div class="line">$ git config --global user.email  &quot;***@gmail.com&quot;//填写自己的邮箱</div></pre></td></tr></table></figure>
+<h4 id="创建Github-Pages"><a href="#创建Github-Pages" class="headerlink" title="创建Github Pages"></a>创建Github Pages</h4><p>创建github pages非常简单，只要在github中创建一个特定名称的仓库，github会自动将其作为你的github pages并提供一个静态页面空间。还可以绑定域名，不过博主并没有这么做。</p>
+<p>创建的方法可以看官网教程：<a href="https://pages.github.com/" target="_blank" rel="external">教程</a></p>
+<p>配置完之后，通过Hexo的部署命令(deploy)即可上传你的文章了。</p>
+<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>看到这是不是也心动想建立自己的博客了？请马上行动吧。在以后博主可能会更新一些使用的高级技巧，包括在博客中添加评论等，敬请期待。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://jiji262.github.io/2016/04/15/2016-04-15-hexo-github-pages-blog/" target="_blank" rel="external">手把手教你使用Hexo + Github Pages搭建个人独立博客</a></p>
+<p><a href="http://www.jianshu.com/p/05289a4bc8b2" target="_blank" rel="external">如何搭建一个独立博客——简明Github Pages与Hexo教程</a></p>
 
           
         
