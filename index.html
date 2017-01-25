@@ -98,7 +98,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"hide"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -190,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -238,12 +248,140 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/24/git指南/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhx111">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhx's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhx's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/24/git指南/" itemprop="url">
+                  git指南
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-24T20:59:06+08:00">
+                2017-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/24/git指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/24/git指南/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/24/React文档阅读笔记-1/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="zhx111">
     <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -291,8 +429,40 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/阅读笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">阅读笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/24/React文档阅读笔记-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/24/React文档阅读笔记-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -317,88 +487,21 @@
 
       
         
-          
-            <h2 id="React文档阅读笔记（1）"><a href="#React文档阅读笔记（1）" class="headerlink" title="React文档阅读笔记（1）"></a>React文档阅读笔记（1）</h2><p>这系列为<a href="https://facebook.github.io/react/docs/hello-world.html" target="_blank" rel="external">React</a>官网的文档阅读笔记，希望能给自己和看的同学带来一些帮助。</p>
-<h3 id="深入-JSX"><a href="#深入-JSX" class="headerlink" title="深入 JSX"></a>深入 JSX</h3><p>实际上，JSX是<code>React.createElement(component, props, ...children)</code>这个函数的<a href="https://zh.wikipedia.org/wiki/%E8%AF%AD%E6%B3%95%E7%B3%96" target="_blank" rel="external">语法糖</a>。</p>
+          <h2 id="React文档阅读笔记（1）"><a href="#React文档阅读笔记（1）" class="headerlink" title="React文档阅读笔记（1）"></a>React文档阅读笔记（1）</h2><p>这系列为<a href="https://facebook.github.io/react/docs/hello-world.html">React</a>官网的文档阅读笔记，希望能给自己和看的同学带来一些帮助。</p>
+<h3 id="深入-JSX"><a href="#深入-JSX" class="headerlink" title="深入 JSX"></a>深入 JSX</h3><p>实际上，JSX是<code>React.createElement(component, props, ...children)</code>这个函数的<a href="https://zh.wikipedia.org/wiki/%E8%AF%AD%E6%B3%95%E7%B3%96">语法糖</a>。</p>
 <h3 id="关于React-Element类型的几点说明"><a href="#关于React-Element类型的几点说明" class="headerlink" title="关于React Element类型的几点说明"></a>关于React Element类型的几点说明</h3><ol>
 <li>必须要引入React库和你所需要的Element</li>
 </ol>
 <p>如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> CustomButton <span class="keyword">from</span> <span class="string">'./CustomButton'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">WarningButton</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// return React.createElement(CustomButton, &#123;color: 'red'&#125;, null);</span></div><div class="line">  <span class="keyword">return</span> &lt;CustomButton color="red" /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>其中的两个import都是必须的</p>
-<ol>
-<li>使用点标记（dot-notation）</li>
-</ol>
-<p>如果<code>MyComponents.DatePicker</code>是一个Component的话，可以直接用于JSX，如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponents.DatePicker color=<span class="string">"blue"</span> /&gt;</div></pre></td></tr></table></figure>
-<ol>
-<li>用户自定义的组件（component）必须要大写</li>
-<li>JSX的类型不能是一个不确定的表达式</li>
-</ol>
-<p>如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Story</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="comment">// Wrong! JSX type can't be an expression.</span></div><div class="line">  <span class="keyword">return</span> &lt;components[props.storyType] story=&#123;props.story&#125; /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>修改为：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Story</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="comment">// Correct! JSX type can be a capitalized variable.</span></div><div class="line">  <span class="keyword">const</span> SpecificStory = components[props.storyType];</div><div class="line">  <span class="keyword">return</span> &lt;SpecificStory story=&#123;props.story&#125; /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="JSX中的属性（props）"><a href="#JSX中的属性（props）" class="headerlink" title="JSX中的属性（props）"></a>JSX中的属性（props）</h3><p>有几种方法去定义props：</p>
-<ol>
-<li>js表达式</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent foo=&#123;<span class="number">1</span> + <span class="number">2</span> + <span class="number">3</span> + <span class="number">4</span>&#125; /&gt;</div></pre></td></tr></table></figure>
-<p>注意：if和for不是表达式，但你可以这样用：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">NumberDescriber</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> description;</div><div class="line">  <span class="keyword">if</span> (props.number % <span class="number">2</span> == <span class="number">0</span>) &#123;</div><div class="line">    description = &lt;strong&gt;even&lt;/strong&gt;;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    description = &lt;i&gt;odd&lt;/i&gt;;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> &lt;div&gt;&#123;props.number&#125; is an &#123;description&#125; number&lt;/div&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>字符串</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent message=<span class="string">"hello world"</span> /&gt;</div><div class="line"></div><div class="line">&lt;MyComponent message=&#123;'hello world'&#125; /&gt;</div></pre></td></tr></table></figure>
-<ol>
-<li>如果不给props赋值那么它的初值为<code>true</code></li>
-</ol>
-<p>官网表示不推荐这种用法，因为会和ES6的<a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015" target="_blank" rel="external">object shorhand</a>混淆</p>
-<ol>
-<li>延展属性（Spread Attributes）</li>
-</ol>
-<p>如果你已经有props这个对象了，并且想传给JSX。那么可以用<code>…</code>三个点操作符来传递整个props对象（很难理解对吧，看例子）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">App1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &lt;Greeting firstName="Ben" lastName="Hector" /&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function App2() &#123;</div><div class="line">  const props = &#123;firstName: 'Ben', lastName: 'Hector'&#125;;</div><div class="line">  return &lt;Greeting &#123;...props&#125; /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上下两种形式是等价的。</p>
-<h3 id="JSX的子节点"><a href="#JSX的子节点" class="headerlink" title="JSX的子节点"></a>JSX的子节点</h3><p>在JSX开闭节点之间的，就是一种特殊的属性：<code>props.children</code>，有几种不同的方式生成子节点：</p>
-<ol>
-<li>字符串</li>
-</ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;MyComponent&gt;Hello world!&lt;/MyComponent&gt;</div><div class="line"></div><div class="line">&lt;div&gt;This is valid HTML &amp;amp; JSX at the same time.&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
-<p>JSX会忽略包含内容中开头和结尾的空格，还有其中的空行</p>
-<ol>
-<li>嵌套的JSX子节点</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">MyContainer</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">MyFirstComponent</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">MySecondComponent</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">MyContainer</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><strong>注意：</strong>React的components不能返回多个React Elements，所以如果你想要一个component能够返回多个Element，可以用一个<code>div</code>包裹它们。</p>
-<ol>
-<li>javascript表达式</li>
-</ol>
-<p>通过{}即可在子节点中使用javascript表达式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Item</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;props.message&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">TodoList</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> todos = [<span class="string">'finish doc'</span>, <span class="string">'submit pr'</span>, <span class="string">'nag dan to review'</span>];</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">      &#123;todos.map((message) =&gt; <span class="tag">&lt;<span class="name">Item</span> <span class="attr">key</span>=<span class="string">&#123;message&#125;</span> <span class="attr">message</span>=<span class="string">&#123;message&#125;</span> /&gt;</span>)&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>javascript表达式可以轻易的和别的类型结合，比如字符串。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hello</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Hello &#123;props.addressee&#125;!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>函数作为子节点</li>
-</ol>
-<p>看如下的例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Calls the children callback numTimes to produce a repeated component</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Repeat</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> items = [];</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; props.numTimes; i++) &#123;</div><div class="line">    items.push(props.children(i));</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;items&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ListOfTenThings</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Repeat</span> <span class="attr">numTimes</span>=<span class="string">&#123;10&#125;</span>&gt;</span></span></div><div class="line">      &#123;(index) =&gt; <span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>This is item &#123;index&#125; in the list<span class="tag">&lt;/<span class="name">div</span>&gt;</span>&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">Repeat</span>&gt;</span></div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>可以看到Repeat的子节点传递的是一个<a href="https://github.com/ruanyf/es6tutorial/blob/876a7b4bb17344bfdccf971d36ec37be39a6ef63/docs/function.md#箭头函数" target="_blank" rel="external">箭头函数</a>。</p>
-<ol>
-<li>关于Boolean、Null、Undefined</li>
-</ol>
-<p>false、true、undefined、null都是合法的children值，但是它们不会被渲染。</p>
-<p>需要在某些条件下渲染React elements的时候，它们能派上用场，如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &#123;showHeader &amp;&amp; <span class="xml"><span class="tag">&lt;<span class="name">Header</span> /&gt;</span>&#125;</span></div><div class="line">  <span class="tag">&lt;<span class="name">Content</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>上面代码仅在showHeader为true时，渲染<code>&lt;Header /&gt;</code>。因为false &amp;&amp; expression 中，后面的表达式不会执行。</p>
-<p><strong>注意：</strong>我们需要警惕那些看似“假”的值，比如0，也就是说，下面代码在props.messages为空的时候，并不会忽略后面的表达式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &#123;props.messages.length &amp;&amp;</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">MessageList</span> <span class="attr">messages</span>=<span class="string">&#123;props.messages&#125;</span> /&gt;</span></span></div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>可以修改为：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &#123;props.messages.length &gt; <span class="number">0</span> &amp;&amp;</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">MessageList</span> <span class="attr">messages</span>=<span class="string">&#123;props.messages&#125;</span> /&gt;</span></span></div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>最后，如果需要在JSX中使用这些值，需要转为string：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  My JavaScript variable is &#123;<span class="built_in">String</span>(myVariable)&#125;.</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/24/React文档阅读笔记-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -440,7 +543,7 @@
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="zhx111">
     <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -491,6 +594,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/19/Markdown常用语法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/19/Markdown常用语法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -514,89 +627,19 @@
 
       
         
-          
-            <h3 id="什么是Markdown"><a href="#什么是Markdown" class="headerlink" title="什么是Markdown"></a>什么是Markdown</h3><p>来自维基百科：</p>
+          <h3 id="什么是Markdown"><a href="#什么是Markdown" class="headerlink" title="什么是Markdown"></a>什么是Markdown</h3><p>来自维基百科：</p>
 <blockquote>
-<p><strong>Markdown</strong> 是一种<a href="https://zh.wikipedia.org/wiki/%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80" target="_blank" rel="external">轻量级标记语言</a>，创始人为<a href="https://zh.wikipedia.org/wiki/%E7%B4%84%E7%BF%B0%C2%B7%E6%A0%BC%E9%AD%AF%E4%BC%AF" target="_blank" rel="external">约翰·格鲁伯</a>（John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的<a href="https://zh.wikipedia.org/wiki/XHTML" target="_blank" rel="external">XHTML</a>(或者<a href="https://zh.wikipedia.org/wiki/HTML" target="_blank" rel="external">HTML</a>)文档”。<a href="https://zh.wikipedia.org/wiki/Markdown#cite_note-md-4" target="_blank" rel="external">[4]</a>这种语言吸收了很多在<a href="https://zh.wikipedia.org/wiki/%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6" target="_blank" rel="external">电子邮件</a>中已有的纯文本标记的特性。</p>
+<p><strong>Markdown</strong> 是一种<a href="https://zh.wikipedia.org/wiki/%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80">轻量级标记语言</a>，创始人为<a href="https://zh.wikipedia.org/wiki/%E7%B4%84%E7%BF%B0%C2%B7%E6%A0%BC%E9%AD%AF%E4%BC%AF">约翰·格鲁伯</a>（John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的<a href="https://zh.wikipedia.org/wiki/XHTML">XHTML</a>(或者<a href="https://zh.wikipedia.org/wiki/HTML">HTML</a>)文档”。<a href="https://zh.wikipedia.org/wiki/Markdown#cite_note-md-4">[4]</a>这种语言吸收了很多在<a href="https://zh.wikipedia.org/wiki/%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6">电子邮件</a>中已有的纯文本标记的特性。</p>
 <p><em>Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).</em></p>
 </blockquote>
 <p>简单的说，markdown是一种语法，可以让你在写文章的时候就把格式也确定下来，而像我们常用的word就是先写内容，再进行格式的编辑。</p>
-<h3 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h3><p>markdown在各种地方运用的越来越广泛，Github的README.md，包括本博客的每篇文章，都是采用markdown语法写的。</p>
-<p>markdown的语法很简单，接下来，本文将介绍一些常用的markdown语法。</p>
-<h3 id="常用Markdown语法"><a href="#常用Markdown语法" class="headerlink" title="常用Markdown语法"></a>常用Markdown语法</h3><h4 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*斜体*   **粗体**</div><div class="line">_斜体_   __粗体__</div></pre></td></tr></table></figure>
-<p><em>斜体</em>   <strong>粗体</strong></p>
-<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[Github 全球最大同性交友网站](https://github.com/ &quot;Title&quot;)</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/" title="Title" target="_blank" rel="external">Github 全球最大同性交友网站</a></p>
-<p>另一种链接的写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[标题][id]. 在文档的面定义id链接就行:</div><div class="line"></div><div class="line">   [id]: http://example.com/  &quot;Title&quot;</div></pre></td></tr></table></figure>
-<p><a href="http://example.com/" target="_blank" rel="external">标题</a></p>
-<p>其中“Title”是可选项</p>
-<h4 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![alt text](/path/img.jpg)</div></pre></td></tr></table></figure>
-<p>另一种写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">![alt text][id]</div><div class="line"></div><div class="line">    [id]: /url/to/img.jpg &quot;Title&quot;</div></pre></td></tr></table></figure>
-<h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 一级标题</div><div class="line">## 二级标题</div><div class="line">### 三级标题</div><div class="line">……</div></pre></td></tr></table></figure>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p><strong>有序列表</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. 一级列表</div><div class="line">2. 二级列表</div><div class="line">3. 三级列表</div></pre></td></tr></table></figure>
-<ol>
-<li>一级列表</li>
-<li>二级列表</li>
-<li>三级列表</li>
-</ol>
-<p><strong>无序列表</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">* 一级列表</div><div class="line">* 二级列表</div><div class="line">* 三级列表</div><div class="line">	* 嵌套列表</div><div class="line">//或者</div><div class="line">- 一级列表</div><div class="line">- 二级列表</div><div class="line">- 三级列表</div><div class="line">	- 嵌套列表</div></pre></td></tr></table></figure>
-<ul>
-<li>一级列表</li>
-<li>二级列表</li>
-<li>三级列表<ul>
-<li>嵌套列表</li>
-</ul>
-</li>
-<li>四级……</li>
-</ul>
-<p>你可以嵌套在一起：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- 一级无序</div><div class="line">  - 嵌套无序</div><div class="line">- 二级无序</div><div class="line">  1. 嵌套一级有序</div><div class="line">  2. 嵌套二级有序</div><div class="line">     - 嵌套无序</div><div class="line">  3. 嵌套三级有序</div><div class="line">- 三级无序</div></pre></td></tr></table></figure>
-<ul>
-<li>一级无序<ul>
-<li>嵌套无序</li>
-</ul>
-</li>
-<li>二级无序<ol>
-<li>嵌套一级有序</li>
-<li>嵌套二级有序<ul>
-<li>嵌套无序</li>
-</ul>
-</li>
-<li>嵌套三级有序</li>
-</ol>
-</li>
-<li>三级无序</li>
-</ul>
-<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; 引用内容：右尖括号</div><div class="line">&gt; 后面的内容可以表示引用</div><div class="line">&gt; &gt; 同时，它可以嵌套</div><div class="line">&gt; &gt;</div><div class="line">&gt; * 你能在引用中嵌套列表</div><div class="line">&gt; * 等等</div></pre></td></tr></table></figure>
-<blockquote>
-<p>引用内容：右尖括号<br>后面的内容可以表示引用</p>
-<blockquote>
-<p>同时，它可以嵌套</p>
-<ul>
-<li>你能在引用中嵌套列表</li>
-<li>等等</li>
-</ul>
-</blockquote>
-</blockquote>
-<h3 id="代码引用"><a href="#代码引用" class="headerlink" title="代码引用"></a>代码引用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">`code context`// ` 内的内容为代码内容</div><div class="line">//大段代码可以用三个`符号包围</div><div class="line">​</div></pre></td></tr></table></figure>
-<p>print(“Hello,world”)<br>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">`code context `</div><div class="line"></div><div class="line">```Javascript</div><div class="line">print(&quot;Hello,world&quot;)</div></pre></td></tr></table></figure></p>
-<h3 id="分隔符"><a href="#分隔符" class="headerlink" title="分隔符"></a>分隔符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line"></div><div class="line">* * *</div><div class="line"></div><div class="line">- - - -</div></pre></td></tr></table></figure>
-<p>这三种方式都可以创建处一个水平的分隔符</p>
-<h3 id="反斜杠"><a href="#反斜杠" class="headerlink" title="反斜杠"></a>反斜杠</h3><p>反斜杠可以转义一些有意义的字符</p>
-<p>例如：如果你想要用星号加在文字旁边的方式来做出强调效果（但不用标签），你可以在星号的前面加上反斜杠：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\*literal asterisks\*</div></pre></td></tr></table></figure>
-<p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">\   反斜线</div><div class="line">`   反引号</div><div class="line">*   星号</div><div class="line">_   底线</div><div class="line">&#123;&#125;  花括号</div><div class="line">[]  方括号</div><div class="line">()  括弧</div><div class="line">#   井字号</div><div class="line">+   加号</div><div class="line">-   减号</div><div class="line">.   英文句点</div><div class="line">!   惊叹号</div></pre></td></tr></table></figure>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>博主在mac上使用的md编辑软件是Typora，它所见即所得的显示方式和简洁的界面用的让人十分舒服，推荐给大家。</p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://en.wikipedia.org/wiki/Markdown" target="_blank" rel="external">维基百科</a></p>
-<p><a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">Markdown 语法说明</a></p>
-<p><a href="http://kirkstrobeck.github.io/whatismarkdown.com/" target="_blank" rel="external">what is markdown?</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/19/Markdown常用语法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -638,7 +681,7 @@
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="zhx111">
     <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -689,6 +732,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/08/用Hexo-Github-pages搭建自己的博客/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/08/用Hexo-Github-pages搭建自己的博客/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -712,74 +765,16 @@
 
       
         
-          
-            <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>一直很想建一个属于自己的个人博客，在经过一番筛选之后，我选择了Hexo+Github Pages这个组合来搭建我的博客。选用这个的好处是因为Github是每个程序员必备的，而Github提供了一个可供展示自己静态网站的稳定空间，我们可以利用这个建立自己博客。而Hexo正如它的首页所说，是一个快速、简洁而且高效的博客框架。</p>
-<h2 id="建站过程"><a href="#建站过程" class="headerlink" title="建站过程"></a>建站过程</h2><p>下面介绍了本博客的建站过程，想得到更多详细的信息，请查看hexo的官网：<a href="https://hexo.io/docs/index.html" target="_blank" rel="external">https://hexo.io/docs/index.html</a></p>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>一直很想建一个属于自己的个人博客，在经过一番筛选之后，我选择了Hexo+Github Pages这个组合来搭建我的博客。选用这个的好处是因为Github是每个程序员必备的，而Github提供了一个可供展示自己静态网站的稳定空间，我们可以利用这个建立自己博客。而Hexo正如它的首页所说，是一个快速、简洁而且高效的博客框架。</p>
+<h2 id="建站过程"><a href="#建站过程" class="headerlink" title="建站过程"></a>建站过程</h2><p>下面介绍了本博客的建站过程，想得到更多详细的信息，请查看hexo的官网：<a href="https://hexo.io/docs/index.html">https://hexo.io/docs/index.html</a></p>
 <p>另外本人使用系统为macOS</p>
-<h3 id="建站环境配置"><a href="#建站环境配置" class="headerlink" title="建站环境配置"></a>建站环境配置</h3><p>安装Hexo的过程非常简单，你只需要在电脑中拥有：</p>
-<ul>
-<li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a></li>
-<li><a href="https://git-scm.com/" target="_blank" rel="external">Git</a></li>
-</ul>
-<p><em>Node.js是一个基于Chrome V8引擎的javascript运行环境，其提供的npm是目前最大的开源包管理系统；Git则是一个现在非常流行分布式项目管理版本控制系统，我们熟知的Github就是基于git的最大的开源项目托管平台（这两个应该都非常熟悉了）</em></p>
-<p>你可以通过npm完成hexo的安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure>
-<p>以上是官方的提供的安装方法，博主在安装的时候出现了npm权限问题(<code>EACCES</code> error)，具体解决办法可以参考：<a href="https://docs.npmjs.com/getting-started/fixing-npm-permissions" target="_blank" rel="external">https://docs.npmjs.com/getting-started/fixing-npm-permissions</a>。（熟悉npm和linux系统命令的同学应该不会出现这种问题吧0.0）</p>
-<h3 id="安装Hexo及常用命令"><a href="#安装Hexo及常用命令" class="headerlink" title="安装Hexo及常用命令"></a>安装Hexo及常用命令</h3><p>安装完hexo后，采用以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init zhxblog</div><div class="line">$ cd zhxblog</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
-<p>建立的文件夹就是你的博客，其文件结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── _config.yml</div><div class="line">├── package.json</div><div class="line">├── scaffolds</div><div class="line">├── source</div><div class="line">|   ├── _drafts</div><div class="line">|   └── _posts</div><div class="line">└── themes</div></pre></td></tr></table></figure>
-<p>Config.yml是配置文件，source是存放用户资源的，你的博文就式放在这里，而themes是主题文件。</p>
-<p>配置的话可以看<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">官网</a>，这里主要讲一下常用命令：</p>
-<ul>
-<li>新建一篇文章</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;title&gt;</div></pre></td></tr></table></figure>
-<p>会在source的_posts文件夹中生成你的默认文件</p>
-<ul>
-<li>生成静态文件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<ul>
-<li>启动服务器在本地查看</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server //默认网址为http://localhost:4000/</div></pre></td></tr></table></figure>
-<ul>
-<li>部署网站</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>如果在Github上部署需要配置一下你的_config.yml文件，找到<code>deploy</code>选项，以下是我的配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/zhx111/zhx111.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-<p>这样，发布一篇博客的流程就非常简单简单了，首先新建一篇文章，在source文件夹中撰写自己的博客，完成之后generate生成静态文件之后，再部署就行了。怎么样，是不是非常的简单呢？</p>
-<ul>
-<li>主题</li>
-</ul>
-<p>Hexo有着各种各样的主题，在Hexo中安装主题非常简单，只要在 <code>themes</code> 文件夹内，增加一个主题，并修改 <code>_config.yml</code> 内的 <code>theme</code> 设定，即可切换主题。</p>
-<p>关于Hexo的好看主题，在知乎答案：<a href="https://www.zhihu.com/question/24422335" target="_blank" rel="external">有哪些好看的 Hexo 主题？</a>中，有一些好看的主题推荐。博主使用的是next主题，个人感觉还是比较简洁好看的。</p>
-<h3 id="Github-Pages配置"><a href="#Github-Pages配置" class="headerlink" title="Github Pages配置"></a>Github Pages配置</h3><p>注册Github非常简单，关于github pages可以参考其官网：<a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>.</p>
-<h4 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h4><p>我们通过ssh将本地的git项目和远程的github建立联系。</p>
-<h4 id="创建ssh"><a href="#创建ssh" class="headerlink" title="创建ssh"></a>创建ssh</h4><p>首先我们需要检查你电脑上现有的ssh key：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cd ~/. ssh //检查本机的ssh密钥</div></pre></td></tr></table></figure>
-<p>如果存在，先将已有的ssh备份，或者将新建的ssh生成到另外的目录下</p>
-<p>如果不存在，通过默认的参数直接生成ssh：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ssh-keygen -t rsa -C xxxxx@gmail.com（注册github时的email）</div></pre></td></tr></table></figure>
-<p>一直回车，中途会提醒你输入密码，直接回车提交项目则不用密码。</p>
-<p>打开本地~\ssh\id_rsa.pub文件。此文件里面内容为刚才生成的密钥。</p>
-<h4 id="添加ssh到Github"><a href="#添加ssh到Github" class="headerlink" title="添加ssh到Github"></a>添加ssh到Github</h4><p>在Settings的SSH and GPG keys将id_rsa.pub中的内容添加进去即可。</p>
-<p>通过命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure>
-<p>如果得到如下反馈，则表示成功连接：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hi zhx111! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure>
-<h4 id="设置用户信息"><a href="#设置用户信息" class="headerlink" title="设置用户信息"></a>设置用户信息</h4><p>需要设置一下你的个人信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;zhx111&quot;//用户名</div><div class="line">$ git config --global user.email  &quot;***@gmail.com&quot;//填写自己的邮箱</div></pre></td></tr></table></figure>
-<h4 id="创建Github-Pages"><a href="#创建Github-Pages" class="headerlink" title="创建Github Pages"></a>创建Github Pages</h4><p>创建github pages非常简单，只要在github中创建一个特定名称的仓库，github会自动将其作为你的github pages并提供一个静态页面空间。还可以绑定域名，不过博主并没有这么做。</p>
-<p>创建的方法可以看官网教程：<a href="https://pages.github.com/" target="_blank" rel="external">教程</a></p>
-<p>配置完之后，通过Hexo的部署命令(deploy)即可上传你的文章了。</p>
-<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>看到这是不是也心动想建立自己的博客了？请马上行动吧。在以后博主可能会更新一些使用的高级技巧，包括在博客中添加评论等，敬请期待。</p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://jiji262.github.io/2016/04/15/2016-04-15-hexo-github-pages-blog/" target="_blank" rel="external">手把手教你使用Hexo + Github Pages搭建个人独立博客</a></p>
-<p><a href="http://www.jianshu.com/p/05289a4bc8b2" target="_blank" rel="external">如何搭建一个独立博客——简明Github Pages与Hexo教程</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/08/用Hexo-Github-pages搭建自己的博客/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -821,7 +816,7 @@
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="zhx111">
     <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -872,6 +867,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/08/开博感言/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/08/开博感言/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -895,41 +900,18 @@
 
       
         
-          
-            <p>写在前面：</p>
+          <p>写在前面：</p>
 <p>这是我博客的第一篇文章，并不想多写什么，只想谈谈自己的感悟，所以这篇文章没有什么干货。</p>
 <hr>
 <p>​        这是我第一次搭建起属于自己的博客，当我有了这样一个平台，可以记录自己平时遇到的各种问题，可以写下学习过程中的所思所想，甚至是可以不着边际地畅所欲言，自然会有一种莫名的兴奋。</p>
 <p>​        但是兴奋过后，我也开始有一点慌张。好久没有写过文章的我会不会因文笔不佳被人嘲笑，刚刚跨专业进入技术行业的我会不会因为记录和分享的博文过于简单而被人看轻（尤其是技术圈往往有一种鄙视链的存在，例如XXX是最好的语言，哈哈），但是这个博客既然开了就不能荒废，而第一篇文章，就讲讲关于我自己、关于开这个博客目的，还有关于未来的规划，各位看官见笑了。   </p>
-<h3 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h3><p>​        让一个人在三言两语中总结清楚他自己还是挺难的一件事，乐观的人常常高估自己，悲观的人则往往会贬低自己。而我呢，总的来说是一个悲观中带着点乐观的人。大学录取被退档，去了一个马马虎虎的学校和学着一个不太喜欢的专业，这段经历还是给我打击挺大的，也迷茫了蛮久。终于在大三的时候决定跨专业考研，经过几个月的努力，来到了南京大学的软件工程专业。所以现在的我是一名软件工程的研究生，勉勉强强半只脚跨进了这个行业。</p>
-<p>​        现在的我，只能说大概了解计算机专业的基础知识，对一两门编程语言慢慢开始熟悉，我知道软件这个行业的知识真的是星辰大海般深远，还是需要慢慢去学习。既然是技术博客，别的方面就不多说了，目前感兴趣的方向是前端，我认为为用户设计出极具艺术的交互界面是一件非常有成就感的事。希望往后的几个月能逐渐成长起来。</p>
-<h3 id="开博目的"><a href="#开博目的" class="headerlink" title="开博目的"></a>开博目的</h3><p>​        关于为什么要写博客，大家可以看看阮一峰老师的这篇文章<a href="http://www.ruanyifeng.com/blog/2006/12/why_i_keep_blogging.html" target="_blank" rel="external">为什么要写博客？</a>。下面谈谈我自己的理解。</p>
-<ul>
-<li>写博客能够记录下你学习的过程，将新学的一个知识写下来的过程会让你更好的掌握它，也有助于形成你自己的体系结构；</li>
-<li>写博客可以提升你表达观点的能力，在现在社会中，能清楚表达自己观点的人是非常可贵的；</li>
-<li>最后，写博客是一件非常酷的事。在浩瀚的互联网上有那么一个角落，记录了你的生活，你的印记，实在是一件鹅妹子嘤的事啊。</li>
-</ul>
-<h3 id="未来规划"><a href="#未来规划" class="headerlink" title="未来规划"></a>未来规划</h3><p>​        这个博客将来的内容我想主要包括这几个类型：</p>
-<ul>
-<li>一是学习某个语言或者技术的总结积累（包括外文文章翻译）<ul>
-<li>javascript</li>
-<li>css</li>
-<li>react</li>
-<li>……</li>
-</ul>
-</li>
-<li>二是构建一个项目的过程<ul>
-<li>博客</li>
-<li>……</li>
-</ul>
-</li>
-<li>三是一些读书笔记</li>
-<li>四是一些生活随感、杂记</li>
-</ul>
-<p>​        希望写博客这件事能够坚持下来，先给自己定一个小目标，每周两篇博客，以后也要努力了。</p>
-<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>​        到这里我的这篇博文就到了尾声啦，怎么样，你是不是也很心动想要自己搭建一个博客啊。其实，建一个博客很简单，利用一个叫Hexo的框架和Github上的免费页面就能很快地搭建一个属于自己的博客。大家可以参考我的下一篇文章：用Hexo和Github Pages搭建自己的博客。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/08/开博感言/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -990,7 +972,7 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="http://img.135q.com/2015-05/05/14307837440001.jpg"
                alt="zhx111" />
           <p class="site-author-name" itemprop="name">zhx111</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -1000,12 +982,19 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
           
 
           
@@ -1152,28 +1141,37 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhx111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
-	
 
 
 
 
-
-  
-
-
-
-
-
-  
-
-  
 
 
 
