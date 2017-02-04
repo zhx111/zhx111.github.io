@@ -84,13 +84,28 @@
 
 
 
+<meta name="description" content="前言：
+git已经成为主流的项目版本控制系统，网上关于git的教程也非常的多，这里博主推荐两个，一个是廖雪峰老师的Git教程；一个是：Pro git。本文只是列举了部分git常用的指令，便于博主平时的学习和记忆，更多的详细信息请大家看上面的两个教程。
+新建git项目1$ git init
+在项目所在目录下执行该命令就能得到一个初始的git项目，运行完之后你会得到一个名为.git的目录。
+如果你要从">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git指南">
+<meta property="og:title" content="git简明指南">
 <meta property="og:url" content="http://yoursite.com/2017/01/24/git指南/index.html">
 <meta property="og:site_name" content="Zhx's blog">
-<meta property="og:updated_time" content="2017-01-24T12:59:07.000Z">
+<meta property="og:description" content="前言：
+git已经成为主流的项目版本控制系统，网上关于git的教程也非常的多，这里博主推荐两个，一个是廖雪峰老师的Git教程；一个是：Pro git。本文只是列举了部分git常用的指令，便于博主平时的学习和记忆，更多的详细信息请大家看上面的两个教程。
+新建git项目1$ git init
+在项目所在目录下执行该命令就能得到一个初始的git项目，运行完之后你会得到一个名为.git的目录。
+如果你要从">
+<meta property="og:updated_time" content="2017-02-04T13:07:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git指南">
+<meta name="twitter:title" content="git简明指南">
+<meta name="twitter:description" content="前言：
+git已经成为主流的项目版本控制系统，网上关于git的教程也非常的多，这里博主推荐两个，一个是廖雪峰老师的Git教程；一个是：Pro git。本文只是列举了部分git常用的指令，便于博主平时的学习和记忆，更多的详细信息请大家看上面的两个教程。
+新建git项目1$ git init
+在项目所在目录下执行该命令就能得到一个初始的git项目，运行完之后你会得到一个名为.git的目录。
+如果你要从">
 
 
 
@@ -124,7 +139,7 @@
 
 
 
-  <title> git指南 | Zhx's blog </title>
+  <title> git简明指南 | Zhx's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -271,7 +286,7 @@
             
             
               
-                git指南
+                git简明指南
               
             
           </h1>
@@ -332,7 +347,46 @@
       
 
       
-        
+        <p>前言：</p>
+<p>git已经成为主流的项目版本控制系统，网上关于git的教程也非常的多，这里博主推荐两个，一个是廖雪峰老师的<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">Git教程</a>；一个是：<a href="http://iissnan.com/progit/" target="_blank" rel="external">Pro git</a>。本文只是列举了部分git常用的指令，便于博主平时的学习和记忆，更多的详细信息请大家看上面的两个教程。</p>
+<h3 id="新建git项目"><a href="#新建git项目" class="headerlink" title="新建git项目"></a>新建git项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git init</div></pre></td></tr></table></figure>
+<p>在项目所在目录下执行该命令就能得到一个初始的git项目，运行完之后你会得到一个名为<code>.git</code>的目录。</p>
+<p>如果你要从现有的仓库克隆一份镜像出来，可以使用<code>git clone</code>命令，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone git://github.com/zhx111/xxx.git</div></pre></td></tr></table></figure>
+<p>在github中项目页中，有个clone or download按钮中通常会提供克隆地址。</p>
+<a id="more"></a>
+<h3 id="记录更新到仓库"><a href="#记录更新到仓库" class="headerlink" title="记录更新到仓库"></a>记录更新到仓库</h3><p>在执行完上面的命令之后，我们已经有了一个可供操作的git仓库了。那么如何让修改的内容被git所跟踪呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add xxx.txt</div></pre></td></tr></table></figure>
+<p>通过以上命令，git就将你这个文件加入了一个暂存区域，此时可以通过<code>$ git status</code>来查看文件的状态。需要注意的是，如果你在add命令之后又修改了该文件内容，则需要再add一下。</p>
+<h3 id="提交更新"><a href="#提交更新" class="headerlink" title="提交更新"></a>提交更新</h3><p>当你add修改文件之后，需要commit提交：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;add a new file&quot;</div></pre></td></tr></table></figure>
+<p>commit会将你add的所有文件提交到仓库中，<code>-m</code>后的命令为这次提交的注释，虽然不是必须的，但最好一定要写，这样对别人或者是以后看代码的自己都有很大的好处。</p>
+<p>如果你觉得一个一个add后在提交太麻烦的话，可以使用<code>$ git commit -a -m &quot;xxx&quot;</code>，<code>-a</code>选项会让git把所有跟踪过的文件都提交。</p>
+<h3 id="移除文件"><a href="#移除文件" class="headerlink" title="移除文件"></a>移除文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git rm</div></pre></td></tr></table></figure>
+<p>该命令可以移除git中的文件，如果只是普通的删除，就会出现：“Changes not staged for commit” 。</p>
+<p>如果要修改已经add过的文件，则需要强制删除选项<code>-f</code></p>
+<p>如果想从git仓库中删除，但是想保存在当前工作目录下，则可以用<code>$ git rm --cached</code>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git rm --cached readme.txt</div><div class="line"></div><div class="line">//删除所有 log/ 目录下扩展名为 .log 的文件</div><div class="line">$ git rm --cached log/\*.log</div></pre></td></tr></table></figure>
+<h3 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h3><p><code>$ git status</code></p>
+<p>查看仓库当前的状况</p>
+<p><code>$ git diff</code></p>
+<p>查看修改的不同，注意git只能查看文本文件的修改而不能查看二进制文件的修改。</p>
+<p><code>$ git log</code></p>
+<p>可以查看git提交历史</p>
+<h3 id="撤销操作"><a href="#撤销操作" class="headerlink" title="撤销操作"></a>撤销操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset HEAD &lt;file&gt;...</div></pre></td></tr></table></figure>
+<p>这条命令可以让我们取消已经暂存(add)的文件。</p>
+<p>通过<code>—hard</code>参数，加上<code>$ git log</code>我们可以回退到指定版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//回退到上一个版本</div><div class="line">$ git reset --hard HEAD^</div><div class="line"></div><div class="line">//回退到指定版本，其中的版本号在git log命令中可以看到</div><div class="line">$ git reset --hard 3628164</div></pre></td></tr></table></figure>
+<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><h4 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h4><p><code>$ git remote</code>命令可以查看当前配置的远程仓库，通过<code>-v</code>,可以显示对应的克隆地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git remote add [shortname] [url]</div><div class="line">//$ git remote add zhx git://github.com/zhx111/ticgit.git</div></pre></td></tr></table></figure>
+<p>可以添加一个新的远程仓库。</p>
+<h4 id="抓取数据"><a href="#抓取数据" class="headerlink" title="抓取数据"></a>抓取数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull</div></pre></td></tr></table></figure>
+<p>可以使用 <code>git pull</code> 命令自动抓取数据下来，然后将远端分支自动合并到本地仓库中当前分支，实际上，默认情况下 <code>git clone</code> 命令本质上就是自动创建了本地的 master 分支用于跟踪远程仓库中的 master 分支。</p>
+<h4 id="推送数据"><a href="#推送数据" class="headerlink" title="推送数据"></a>推送数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//git push [remote-name] [branch-name]</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
+<p>该命令将当前master分支推送到了远端。加上了<code>-u</code>参数，Git不但会把本地的<code>master</code>分支内容推送给远程新的<code>master</code>分支，还会把本地的<code>master</code>分支和远程的<code>master</code>分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<p>注意，只有具有ssh权限的账户才可以推送上去。</p>
+<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><p>分支管理的内容以后再更新～</p>
+
       
     </div>
 
@@ -393,7 +447,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/01/24/git指南/"
-           data-title="git指南" data-url="http://yoursite.com/2017/01/24/git指南/">
+           data-title="git简明指南" data-url="http://yoursite.com/2017/01/24/git指南/">
       </div>
     
   </div>
@@ -417,8 +471,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://img.135q.com/2015-05/05/14307837440001.jpg"
@@ -485,6 +548,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建git项目"><span class="nav-number">1.</span> <span class="nav-text">新建git项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录更新到仓库"><span class="nav-number">2.</span> <span class="nav-text">记录更新到仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交更新"><span class="nav-number">3.</span> <span class="nav-text">提交更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除文件"><span class="nav-number">4.</span> <span class="nav-text">移除文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看信息"><span class="nav-number">5.</span> <span class="nav-text">查看信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销操作"><span class="nav-number">6.</span> <span class="nav-text">撤销操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程仓库"><span class="nav-number">7.</span> <span class="nav-text">远程仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加"><span class="nav-number">7.1.</span> <span class="nav-text">添加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抓取数据"><span class="nav-number">7.2.</span> <span class="nav-text">抓取数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推送数据"><span class="nav-number">7.3.</span> <span class="nav-text">推送数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支管理"><span class="nav-number">8.</span> <span class="nav-text">分支管理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
