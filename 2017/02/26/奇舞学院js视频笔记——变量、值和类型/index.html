@@ -112,7 +112,7 @@ Infinity、Number.MAX_VALUE、Number.MIN_VALUE
 浮点数精度问题
 二进制、八进制、十进制、十六进制
 +0和-">
-<meta property="og:updated_time" content="2017-02-28T07:53:30.000Z">
+<meta property="og:updated_time" content="2017-03-05T13:48:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="奇舞学院js视频笔记——变量、值和类型">
 <meta name="twitter:description" content="看了奇舞学院的视频之后，觉得讲的非常好，所以将听课时候听课时的笔记发上了，同时给大家推荐一下：https://t.75team.com/
@@ -513,7 +513,8 @@ Infinity、Number.MAX_VALUE、Number.MIN_VALUE
 <p>在数组prototype上添加属性后，for…in会遍历出添加的属性，因为数组一开始只有索引是可枚举的属性。</p>
 <p>ES5新特性：</p>
 <p>Object.defineProperty(Array.prototype,’remove’,{…});</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//getter/setter 与数据双向绑定</span></div></pre></td></tr></table></figure>
+<p>数据绑定视图</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//getter/setter 与数据双向绑定</span></div><div class="line"><span class="keyword">const</span> view = &#123;</div><div class="line">  <span class="attr">nameEl</span>:<span class="built_in">document</span>.getElementById(<span class="string">'name'</span>),</div><div class="line">  <span class="attr">ageEl</span>:<span class="built_in">document</span>.getElementById(<span class="string">'age'</span>),</div><div class="line">  <span class="attr">submitBtn</span>:<span class="built_in">document</span>.getElementById(<span class="string">'confirm'</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">User.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params">view</span>)</span>&#123;</div><div class="line">  view.nameEl.addEventListener(<span class="string">'change'</span>,evt=&gt;&#123;</div><div class="line">    <span class="keyword">this</span>.name = evt.targe.value;</div><div class="line">  &#125;);</div><div class="line">  view.ageEl.addEventListener(<span class="string">'change'</span>,evt=&gt;&#123;</div><div class="line">    <span class="keyword">this</span>.age = evt.target.value;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty(User.prototype,<span class="string">'name'</span>,&#123;</div><div class="line">  <span class="attr">set</span>:<span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">    view.nameEl.value = name;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">get</span>:funtion()&#123;</div><div class="line">    <span class="keyword">return</span> view.nameEl.value;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty(User.prototype,<span class="string">'age'</span>,&#123;</div><div class="line">  <span class="attr">set</span>:<span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> ageOptions = <span class="built_in">Array</span>.from(view.ageEl.options).map(<span class="function"><span class="params">item</span>=&gt;</span>item.innerHTML);</div><div class="line">    <span class="keyword">if</span>(ageOptions.indexOf(name) === <span class="string">'-1'</span>)&#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'无效的年龄格式'</span>)；</div><div class="line">    &#125;，</div><div class="line">    get:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">return</span> view.ageEl.value;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> User(<span class="string">'akira'</span>,<span class="string">'80后'</span>)；</div><div class="line">user.bind(view);</div></pre></td></tr></table></figure>
 <h1 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h1><ul>
 <li>ES6新类型</li>
 <li>生成唯一标识</li>
@@ -644,7 +645,7 @@ Infinity、Number.MAX_VALUE、Number.MIN_VALUE
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -662,7 +663,7 @@ Infinity、Number.MAX_VALUE、Number.MIN_VALUE
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
