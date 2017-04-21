@@ -248,6 +248,177 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/18/奇舞学院js视频笔记——DOM-BOM/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhx111">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhx's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhx's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/18/奇舞学院js视频笔记——DOM-BOM/" itemprop="url">
+                  奇舞学院js视频笔记——DOM,BOM
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-18T11:07:29+08:00">
+                2017-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/18/奇舞学院js视频笔记——DOM-BOM/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/18/奇舞学院js视频笔记——DOM-BOM/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>这是第5课的笔记，主要讲了关于如何处理dom和bom</p>
+<p>视频地址：<a href="https://t.75team.com/video">https://t.75team.com/video</a></p>
+<h1 id="javaScript-第五课"><a href="#javaScript-第五课" class="headerlink" title="javaScript 第五课"></a>javaScript 第五课</h1><p>第五课 DOM、BOM</p>
+<p>ES6强制函数需要输入参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mandatory</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Missing parameter"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x=mandatory(</span>),<span class="title">y</span>=1)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x+y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">add();</div></pre></td></tr></table></figure>
+<h2 id="HTML-文档树"><a href="#HTML-文档树" class="headerlink" title="HTML 文档树"></a>HTML 文档树</h2><h3 id="JavaScript的运行时机"><a href="#JavaScript的运行时机" class="headerlink" title="JavaScript的运行时机"></a>JavaScript的运行时机</h3><p>同步解析</p>
+<p>如果dom中有异步加载的内容的话（如img标签），js只有在该内容加载完之后才能得到比如宽度等参数。</p>
+<p>后端先把图片的宽度传给前端，避免出现图片加载之前的抖动问题</p>
+<h3 id="基本的DOM操作"><a href="#基本的DOM操作" class="headerlink" title="基本的DOM操作"></a>基本的DOM操作</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model">https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model</a></p>
+<h3 id="DOM事件"><a href="#DOM事件" class="headerlink" title="DOM事件"></a>DOM事件</h3><ul>
+<li>事件流（捕获，冒泡）</li>
+<li>默认行为</li>
+</ul>
+<p>event.preventDefault()阻止默认的点击行为（比如a标签跳转）</p>
+<ul>
+<li>事件代理</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/18/奇舞学院js视频笔记——DOM-BOM/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/16/奇舞学院js视频笔记——函数/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -359,9 +530,8 @@
 
       
         
-          
-            <p>这是第4课的笔记，主要讲了关于如何写好js的一些东西，我觉得非常的有启发性，分享给大家。</p>
-<p>视频地址：<a href="https://t.75team.com/video" target="_blank" rel="external">https://t.75team.com/video</a></p>
+          <p>这是第4课的笔记，主要讲了关于如何写好js的一些东西，我觉得非常的有启发性，分享给大家。</p>
+<p>视频地址：<a href="https://t.75team.com/video">https://t.75team.com/video</a></p>
 <h1 id="javaScript-第四课"><a href="#javaScript-第四课" class="headerlink" title="javaScript 第四课"></a>javaScript 第四课</h1><p>第四课 函数</p>
 <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
 <li>函数声明、函数表达式</li>
@@ -379,116 +549,13 @@
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log([<span class="keyword">typeof</span> add,<span class="keyword">typeof</span> sub]);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x+y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> sub = <span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x-y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log([add(<span class="number">1</span>,<span class="number">2</span>),sub(<span class="number">1</span>,<span class="number">2</span>)]);</div><div class="line"></div><div class="line"><span class="comment">//结果可以在浏览器中自己看</span></div></pre></td></tr></table></figure>
 <p>函数声明会提升，而变量声明在变量提升后没有赋值。</p>
-<h3 id="箭头函数表达式"><a href="#箭头函数表达式" class="headerlink" title="箭头函数表达式"></a>箭头函数表达式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> double = <span class="function"><span class="params">x</span> =&gt;</span> x*<span class="number">2</span>;</div><div class="line"><span class="keyword">let</span> add = <span class="function">(<span class="params">x,y</span>)=&gt;</span>&#123;</div><div class="line">  <span class="keyword">return</span> x+y;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>在函数表达式和回调函数中常见</p>
-<h4 id="匿名函数与arguments-callee"><a href="#匿名函数与arguments-callee" class="headerlink" title="匿名函数与arguments.callee"></a>匿名函数与arguments.callee</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">countDown</span>(<span class="params">count,interval,callback</span>)</span>&#123;</div><div class="line">	<span class="keyword">if</span>(count &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">  callback(count);</div><div class="line">  </div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(--count &gt; <span class="number">0</span>)&#123;</div><div class="line">      setTimeout(<span class="built_in">arguments</span>.callee,interval)</div><div class="line">    &#125;</div><div class="line">    callback(count);</div><div class="line">  &#125;,interval)</div><div class="line">&#125;</div><div class="line">countDown(<span class="number">10</span>,<span class="number">1000</span>,t=&gt;<span class="built_in">console</span>.log(t));</div></pre></td></tr></table></figure>
-<p>arguments.callee代表的是当前被调用的函数</p>
-<h4 id="推荐使用具名函数"><a href="#推荐使用具名函数" class="headerlink" title="推荐使用具名函数"></a>推荐使用具名函数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">countDown</span>(<span class="params">count,interval,callback</span>)</span>&#123;</div><div class="line">	<span class="keyword">if</span>(count &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">  callback(count);</div><div class="line">  </div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(--count &gt; <span class="number">0</span>)&#123;</div><div class="line">      setTimeout(update,interval)</div><div class="line">    &#125;</div><div class="line">    callback(count);</div><div class="line">  &#125;,interval)</div><div class="line">&#125;</div><div class="line">countDown(<span class="number">10</span>,<span class="number">1000</span>,t=&gt;<span class="built_in">console</span>.log(t));</div></pre></td></tr></table></figure>
-<h3 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h3><ul>
-<li>具名的参数，function.length</li>
-<li>可变参数与arguments</li>
-<li>ES6 rest 参数</li>
-<li>参数默认值</li>
-</ul>
-<h4 id="function-length"><a href="#function-length" class="headerlink" title="function.length"></a>function.length</h4><p>校验参数的函数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__matchArgs__</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(args.length!==fn.length)&#123;</div><div class="line">     <span class="keyword">throw</span> <span class="built_in">RangeError</span>(<span class="string">'Arguments not match!'</span>); </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>,args);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> add = __matchArgs__(<span class="function">(<span class="params">a,b,c</span>)=&gt;</span>a+b+c);</div></pre></td></tr></table></figure>
-<p>如果函数传递的参数和声明时的参数个数不匹配则抛出错误</p>
-<h4 id="可变参数与arguments"><a href="#可变参数与arguments" class="headerlink" title="可变参数与arguments"></a>可变参数与arguments</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="comment">//var args = [].slice.call(arguments);</span></div><div class="line">  <span class="keyword">let</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>);</div><div class="line">  <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">a,b</span>)=&gt;</span>a+b);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>));<span class="comment">//10</span></div><div class="line"></div><div class="line"><span class="comment">//JavaScript 函数设计中经常会让参数允许有不同的类型</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setStyle</span>(<span class="params">el,property,value</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> el === <span class="string">'string'</span>)&#123;</div><div class="line">    el = <span class="built_in">document</span>.querySelector(el);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> property === <span class="string">'object'</span>)&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> property)&#123;</div><div class="line">      setStyle(el,key,property[key])</div><div class="line">    &#125;</div><div class="line">  &#125;<span class="keyword">else</span>&#123;</div><div class="line">    el.style[property] =value;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">setStyle(<span class="string">'div'</span>,<span class="string">'color'</span>,<span class="string">'red'</span>);</div><div class="line"></div><div class="line">setStyle(<span class="string">'div'</span>,&#123;<span class="string">'fontSize'</span>:<span class="string">'32px'</span>,<span class="string">'backgroundColor'</span>:<span class="string">'white'</span>&#125;)</div></pre></td></tr></table></figure>
-<h4 id="rest-参数"><a href="#rest-参数" class="headerlink" title="rest 参数"></a>rest 参数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> add = <span class="function">(<span class="params">...args</span>) =&gt;</span> args.reduce(<span class="function">(<span class="params">a,b</span>)=&gt;</span>a+b);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>));</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(add.length) <span class="comment">//0</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">des,src</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(!src || <span class="keyword">typeof</span> src !== <span class="string">'object'</span>)&#123;</div><div class="line">    <span class="keyword">return</span> des;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> src)&#123;</div><div class="line">    <span class="keyword">let</span> obj = src[key];</div><div class="line">    <span class="keyword">if</span>(obj &amp;&amp; <span class="keyword">typeof</span> obj === <span class="string">'object'</span>)&#123;</div><div class="line">      des[key] = des[key] || &#123;&#125;;</div><div class="line">      deepCopy(des[key],obj);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">      des[key] = src[key];</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> des;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">des,...objs</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> [des,...objs].reduce(<span class="function">(<span class="params">a,b</span>)=&gt;</span>deepCopy(a,b));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(merge(&#123;<span class="attr">x</span>:<span class="number">1</span>&#125;,&#123;<span class="attr">y</span>:<span class="number">2</span>&#125;,&#123;<span class="attr">z</span>:<span class="number">3</span>&#125;));</div></pre></td></tr></table></figure>
-<h4 id="ES5-模拟rest参数"><a href="#ES5-模拟rest参数" class="headerlink" title="ES5 模拟rest参数"></a>ES5 模拟rest参数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//函数变换</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__rest__</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> len = fn.length;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>,<span class="number">0</span>,len<span class="number">-1</span>);</div><div class="line">    <span class="keyword">var</span> rest = [].slice.call(<span class="built_in">arguments</span>,len<span class="number">-1</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>,args.concat([rest]));</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> add = __rest__(<span class="function"><span class="keyword">function</span>(<span class="params">args</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> args.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">   <span class="keyword">return</span> a+b; </div><div class="line">  &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h4 id="参数默认值"><a href="#参数默认值" class="headerlink" title="参数默认值"></a>参数默认值</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMessage</span>(<span class="params">message</span>)</span>&#123;</div><div class="line">  message = message || <span class="string">'default message'</span>;</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</div><div class="line">  el.innerHTML = message;</div><div class="line">  </div><div class="line">  <span class="built_in">document</span>.body.appendChild(el);</div><div class="line">&#125;</div><div class="line"></div><div class="line">addMessage();</div><div class="line">addMessage(<span class="string">'hello world'</span>);</div><div class="line"></div><div class="line"><span class="comment">//ES6</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMessage2</span>(<span class="params">message=<span class="string">'default message'</span></span>)</span>&#123;</div><div class="line"> <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</div><div class="line">  el.innerHTML = message;</div><div class="line">  <span class="built_in">document</span>.body.appendChild(el);</div><div class="line">&#125;</div><div class="line"></div><div class="line">addMessage2();</div><div class="line">addMessage2(<span class="string">'hello world'</span>);</div></pre></td></tr></table></figure>
-<p>如果有默认值，并且使用了严格模式’use strict’，是不允许的。</p>
-<p>因为如果在默认值中使用了函数，函数为非严格模式。javascript解析的时候很难检查。</p>
-<h3 id="作用域、闭包、this"><a href="#作用域、闭包、this" class="headerlink" title="作用域、闭包、this"></a>作用域、闭包、this</h3><ul>
-<li>重要：ES5用函数来构建作用域</li>
-<li>IIFE：立即执行函数</li>
-<li>什么是“闭包”</li>
-<li>Javascript的“this”</li>
-</ul>
-<h4 id="闭包作用域"><a href="#闭包作用域" class="headerlink" title="闭包作用域"></a>闭包作用域</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</div><div class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(i)&#125;,<span class="number">100</span>*i)</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</div><div class="line">  setTimeout((<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(i)&#125;).bind(<span class="literal">null</span>,i),<span class="number">100</span>*i)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>ES6可以用let</p>
-<h4 id="闭包与私有数据"><a href="#闭包与私有数据" class="headerlink" title="闭包与私有数据"></a>闭包与私有数据</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> MyClass = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="keyword">var</span> privateData = <span class="string">'privateData'</span>;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Class</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.publicData = <span class="string">'publicData'</span>;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  Class.prototype.getData =<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> privateData;&#125;</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> Class;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="keyword">var</span> myObj = <span class="keyword">new</span> MyClass();</div><div class="line"></div><div class="line"><span class="comment">//myObj.privateData取不到私有数据，myObj.getData()可以取到私有数据</span></div></pre></td></tr></table></figure>
-<h4 id="“this”问题"><a href="#“this”问题" class="headerlink" title="“this”问题"></a>“this”问题</h4><p><strong>Javascript的this是由函数求值时的调用者决定的！！</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point2D</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x=x;</div><div class="line">  <span class="keyword">this</span>.y=y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Point2D.prototype.showLength = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> length = <span class="built_in">Math</span>.sqrt(<span class="built_in">Math</span>.pow(<span class="keyword">this</span>.x,<span class="number">2</span>)+<span class="built_in">Math</span>.pow(<span class="keyword">this</span>.y,<span class="number">2</span>));</div><div class="line">  <span class="built_in">console</span>.log(length);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Point2D.prototype.showLengthAsync = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="comment">//手工设置setTimeout中的作用域</span></div><div class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">  </div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    self.showLength();</div><div class="line">  &#125;,<span class="number">1000</span>);</div><div class="line">  <span class="comment">//ES6写法</span></div><div class="line">  setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">    <span class="keyword">this</span>.showLength(;)</div><div class="line">  &#125;,<span class="number">1000</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> x=<span class="number">30</span>,y=<span class="number">40</span>;</div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Point2D</div><div class="line">(<span class="number">3</span>,<span class="number">4</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> f = point2D.prototype.showLength;</div><div class="line"></div><div class="line">f();<span class="comment">//50</span></div><div class="line">setTimeout(p.showLength,<span class="number">500</span>);<span class="comment">//50</span></div><div class="line">p.showLengthAsync();<span class="comment">//5</span></div></pre></td></tr></table></figure>
-<h3 id="apply、call、bind"><a href="#apply、call、bind" class="headerlink" title="apply、call、bind"></a>apply、call、bind</h3><ul>
-<li>通过apply、call制定this调用函数</li>
-<li>ES5的bind</li>
-<li>bind的重要意义和语法</li>
-</ul>
-<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point2D</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x=x;</div><div class="line">  <span class="keyword">this</span>.y=y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Point2D.prototype.getLength = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(<span class="built_in">Math</span>.pow(<span class="keyword">this</span>.x,<span class="number">2</span>)+<span class="built_in">Math</span>.pow(<span class="keyword">this</span>.y,<span class="number">2</span>));</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> p = <span class="keyword">new</span> Point2D(<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> obj = &#123;<span class="attr">x</span>:<span class="number">3</span>,<span class="attr">y</span>:<span class="number">4</span>&#125;;</div><div class="line">  <span class="built_in">console</span>.log(p.getLength.call(obj));<span class="comment">//5</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h4><p>和call的区别是参数接收的是数组</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//实现一个函数的变化，对于任何函数，将其参数颠倒</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__reverseArgs__</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>);</div><div class="line">    <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>,args.reverse());</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="built_in">Array</span>.from(<span class="built_in">arguments</span>));</div><div class="line">  </div><div class="line">  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> foo2 = __reverseArgs__(foo);</div><div class="line">  foo2(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</div><div class="line"></div><div class="line">[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</div></pre></td></tr></table></figure>
-<h4 id="call与bind"><a href="#call与bind" class="headerlink" title="call与bind"></a>call与bind</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setBodyState</span>(<span class="params">state</span>)</span>&#123;</div><div class="line">  <span class="built_in">document</span>.body.className = state;</div><div class="line">&#125;</div><div class="line"></div><div class="line">setBodyState.call(<span class="literal">null</span>,<span class="string">'state1'</span>);</div><div class="line"></div><div class="line">setTimeout(setBodyState.bind(<span class="literal">null</span>,<span class="string">'state2'</span>),<span class="number">1500</span>);</div></pre></td></tr></table></figure>
-<p>call是立即执行的，而bind不会立即执行，bind实际上是得到一个function。</p>
-<h3 id="异步与回调函数"><a href="#异步与回调函数" class="headerlink" title="异步与回调函数"></a>异步与回调函数</h3><p>javascript的异步</p>
-<ul>
-<li>Timer</li>
-<li>事件</li>
-<li>获取数据API</li>
-<li>Promise</li>
-<li>其他异步模型</li>
-</ul>
-<h4 id="用Timer异步执行"><a href="#用Timer异步执行" class="headerlink" title="用Timer异步执行"></a>用Timer异步执行</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ball = <span class="built_in">document</span>.getElementById(<span class="string">'ball'</span>);</div><div class="line"></div><div class="line">ball.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> startTime = <span class="built_in">Date</span>.now();</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> tId = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> t = <span class="number">10</span> - <span class="built_in">Math</span>.round((<span class="built_in">Date</span>.now()-startTime)/<span class="number">1000</span>)</div><div class="line">    ball.innerHTML = <span class="built_in">Math</span>.max(t,<span class="number">0</span>);</div><div class="line">    <span class="keyword">if</span>(t&lt;=<span class="number">0</span>) clearInterval(tID);</div><div class="line">  &#125;,<span class="number">1000</span>);</div><div class="line">  </div><div class="line">  ball.className = <span class="string">'warn'</span>;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h4 id="动画专用"><a href="#动画专用" class="headerlink" title="动画专用"></a>动画专用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> brick = <span class="built_in">document</span>.getElementById(<span class="string">'brick'</span>);</div><div class="line"></div><div class="line">brick.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> startTime = <span class="built_in">Date</span>.now();</div><div class="line">  <span class="keyword">let</span> cycle = <span class="number">2000</span>;</div><div class="line">  </div><div class="line">  requestAnimationFrame(<span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> p = (<span class="built_in">Date</span>.now()-startTime)/cycle;</div><div class="line">    brick.style.transform = <span class="string">'rotate('</span>+<span class="number">360</span>*p+<span class="string">'deg)'</span>;</div><div class="line">    requestAnimationFrame(update);</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wait</span>(<span class="params">time</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</div><div class="line">    setTimeout(resolve,time);</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">wait(<span class="number">5000</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'step4'</span>);</div><div class="line">  <span class="keyword">return</span> wait(<span class="number">1000</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'step5'</span>);</div><div class="line">  <span class="keyword">return</span> wait(<span class="number">1500</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'step6'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//async ES7</span></div><div class="line">(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">await</span> wait(<span class="number">5000</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'step 4'</span>);</div><div class="line">  <span class="keyword">await</span> wait(<span class="number">1000</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'step 5'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h4 id="其他异步模型"><a href="#其他异步模型" class="headerlink" title="其他异步模型"></a>其他异步模型</h4><ul>
-<li>异步串行模型through2——gulp使用</li>
-<li>异步串行模型connect——express、koa使用</li>
-<li>ES6 generators</li>
-<li>ES2015 async／await</li>
-<li>……</li>
-</ul>
-<h3 id="函数的动态构建"><a href="#函数的动态构建" class="headerlink" title="函数的动态构建"></a>函数的动态构建</h3><ul>
-<li>function构造器与函数模版</li>
-<li>过程抽象和高阶函数</li>
-</ul>
-<h4 id="用Function处理不规范的JSON"><a href="#用Function处理不规范的JSON" class="headerlink" title="用Function处理不规范的JSON"></a>用Function处理不规范的JSON</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> brokenJSON = <span class="string">`&#123;</span></div><div class="line">  a:1,</div><div class="line">b:2,</div><div class="line">c:'message'</div><div class="line">&#125;`</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseData</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'return'</span>+data))();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.parse(brokenJSON));</div><div class="line">&#125;<span class="keyword">catch</span>(ex)&#123;</div><div class="line">  <span class="built_in">console</span>.log(ex.message);</div><div class="line">  <span class="built_in">console</span>.log(parseData(brokenJSON));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>//正常情况下很少用，一个是性能，一个是安全方面。</p>
-<h3 id="过程抽象与函数式编程"><a href="#过程抽象与函数式编程" class="headerlink" title="过程抽象与函数式编程"></a>过程抽象与函数式编程</h3><ul>
-<li>过程抽象的定义</li>
-<li>纯函数</li>
-<li>等价函数</li>
-<li>举例说明</li>
-<li>过程抽象与函数式编程</li>
-</ul>
-<h4 id="过程抽象与数据抽象的区别"><a href="#过程抽象与数据抽象的区别" class="headerlink" title="过程抽象与数据抽象的区别"></a>过程抽象与数据抽象的区别</h4><p>数据抽象：</p>
-<p>define：f -&gt; dataFromF = f(data)</p>
-<p>define: g -&gt; result = g(dataFromF)</p>
-<p>过程抽象：</p>
-<p>define：f -&gt; dataFromF = f(data)</p>
-<p>define: g -&gt; k=g(f),result = k(data)</p>
-<p>过程抽象实际上是将f和g结合，抽象出k=g(f)最后得到数据</p>
-<h4 id="纯函数"><a href="#纯函数" class="headerlink" title="纯函数"></a>纯函数</h4><p>什么是纯函数？</p>
-<ul>
-<li>一个函数如果输入参数确定，如果输出结果是唯一确定的，那么它就是纯函数</li>
-</ul>
-<p>纯函数的好处？</p>
-<ul>
-<li>无状态、无副作用、无关时序</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//判断纯函数</span></div><div class="line"><span class="comment">//是</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x + y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//不是，每次结果不一样</span></div><div class="line"><span class="keyword">let</span> count = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addCount</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  count++;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//不是纯函数，因为依赖了外部环境document</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setBgColor</span>(<span class="params">color</span>)</span>&#123;</div><div class="line">  <span class="built_in">document</span>.body.backgroundColor = color;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//纯函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__reduce__</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> fuction(...args)&#123;</div><div class="line">    <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">a,b</span>)=&gt;</span>&#123;fn(a,b)&#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="过程抽象提升函数纯度"><a href="#过程抽象提升函数纯度" class="headerlink" title="过程抽象提升函数纯度"></a>过程抽象提升函数纯度</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setColor</span>(<span class="params">el,color</span>)</span>&#123;</div><div class="line">  el.style.color = color;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">function() setColor(els,color)&#123;</div><div class="line"> Array.from(els).map(el=&gt;setColor(el,color)); </div><div class="line">&#125;</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__multi</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">arrayLike,...args</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(arrayLike).map(<span class="function"><span class="params">item</span>=&gt;</span>fn(item,...args));</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> setColors = __multi__(setColor);</div><div class="line"></div><div class="line">setColors(<span class="built_in">document</span>.querySelectorAll(<span class="string">'li'</span>),<span class="string">'red'</span>);</div></pre></td></tr></table></figure>
-<h4 id="等价函数"><a href="#等价函数" class="headerlink" title="等价函数"></a>等价函数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__equal__</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="comment">//do something</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">    <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>,args);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面就是一个等价函数</p>
-<h4 id="拦截和监控"><a href="#拦截和监控" class="headerlink" title="拦截和监控"></a>拦截和监控</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__watch__</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(f.before)&#123;</div><div class="line">      f.before(<span class="keyword">this</span>,...args);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">let</span> ret = fn.apply(<span class="keyword">this</span>,...args);</div><div class="line">    <span class="keyword">if</span>(f.after)&#123;</div><div class="line">      f.after(<span class="keyword">this</span>,ret,...args);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ = __watch__($);</div><div class="line"></div><div class="line">$.after = <span class="function"><span class="keyword">function</span>(<span class="params">thisObj,retVal</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(retVal.css)&#123;</div><div class="line">    retVal.css = __watch__(retVal.css);</div><div class="line">    retVal.css.before = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'不推荐使用.css建议使用.addClass'</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> el = $(<span class="string">'#datalist&gt;li'</span>);</div><div class="line"></div><div class="line">el.css(<span class="string">'color'</span>,<span class="string">'red'</span>);</div></pre></td></tr></table></figure>
-<p>上述函数是说如果一个用户使用了jquery的css方法，会在控制台打印一行不建议使用的文字。</p>
-<p>使用watch函数包装一个函数后，不会影响该函数的任何执行情况，只会在执行前或者执行后执行某个方法（比如上例中的不建议使用JQuery的方法）</p>
-<h4 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__watch__</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> blocked = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">if</span>(f.before)&#123;</div><div class="line">     blocked =  f.before(<span class="keyword">this</span>,...args) === <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(!blocked)&#123;</div><div class="line">      <span class="keyword">let</span> ret = fn.apply(<span class="keyword">this</span>,...args);</div><div class="line">    <span class="keyword">if</span>(f.after)&#123;</div><div class="line">      f.after(<span class="keyword">this</span>,ret,...args);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ = __watch__($);</div><div class="line"></div><div class="line">$.after = <span class="function"><span class="keyword">function</span>(<span class="params">thisObj,retVal</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(retVal.css)&#123;</div><div class="line">    <span class="keyword">let</span> _origin = retVal.css;</div><div class="line">    retVal.css = __watch__(retVal.css);</div><div class="line">    retVal.css.before = <span class="function"><span class="keyword">function</span>(<span class="params">target,...args</span>)</span>&#123;</div><div class="line">     requestAnimationFrame(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">       <span class="comment">//用requestAnimationFrame优化性能</span></div><div class="line">       _origin.apply(target,args);</div><div class="line">     &#125;);</div><div class="line">      <span class="comment">//返回true阻止默认行为</span></div><div class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> el = $(<span class="string">'#datalist&gt;li'</span>);</div><div class="line"></div><div class="line">el.css(<span class="string">'color'</span>,<span class="string">'red'</span>);</div></pre></td></tr></table></figure>
-<p>修改watch方法，如果before返回的值为true，则阻塞watch所监听的行为。</p>
-<p>将所有的css过程放到requestAnimationFrame中执行，改变了执行css的时机。</p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame" target="_blank" rel="external">requestAnimationFrame</a></p>
-<h4 id="假设：原始的函数不支持Reduce"><a href="#假设：原始的函数不支持Reduce" class="headerlink" title="假设：原始的函数不支持Reduce"></a>假设：原始的函数不支持Reduce</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x+y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mul</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x*y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">arr1,arr2</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> arr1.concat(arr2);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//只能这么写</span></div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>,add(<span class="number">2</span>,<span class="number">3</span>)),</div><div class="line">  mul(<span class="number">1</span>,mul(<span class="number">2</span>,mul(<span class="number">3</span>,<span class="number">4</span>))),</div><div class="line">  concat([<span class="number">1</span>,<span class="number">2</span>],concat([<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>])));</div></pre></td></tr></table></figure>
-<h4 id="方案1-改写原来的函数"><a href="#方案1-改写原来的函数" class="headerlink" title="方案1:改写原来的函数"></a>方案1:改写原来的函数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">x,y</span>)=&gt;</span>x+y);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mul</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">x,y</span>)=&gt;</span>x*y);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">arr1,arr2</span>)=&gt;</span>arr1.concat(arr2));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>));</div></pre></td></tr></table></figure>
-<p>缺点：需要去改所有的方法和调用的地方</p>
-<h4 id="方案2：包装为reduce"><a href="#方案2：包装为reduce" class="headerlink" title="方案2：包装为reduce"></a>方案2：包装为reduce</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reduce</span>(<span class="params">fn,...args</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> args.reduce(fn);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x+y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mul</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x*y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">arr1,arr2</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> arr1.concat(arr2);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(reduce(add,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>));</div></pre></td></tr></table></figure>
-<p>缺点是需要去改所有掉用该方法的地方。</p>
-<h4 id="方案3-bind一下"><a href="#方案3-bind一下" class="headerlink" title="方案3:bind一下"></a>方案3:bind一下</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reduce</span>(<span class="params">fn,...args</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> args.reduce(fn);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x+y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mul</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x*y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">arr1,arr2</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> arr1.concat(arr2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">add = reduce.bind(<span class="literal">null</span>,add);</div><div class="line">mul = reduce.bind(<span class="literal">null</span>,mul);</div><div class="line">concat = reduce.bind(<span class="literal">null</span>,concat);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>));</div></pre></td></tr></table></figure>
-<h4 id="方案4-过程抽象"><a href="#方案4-过程抽象" class="headerlink" title="方案4:过程抽象"></a>方案4:过程抽象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__reduce__</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> args.reduce(fn.bind(<span class="keyword">this</span>));</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x+y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mul</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> x*y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">arr1,arr2</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> arr1.concat(arr2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">add = __reduce__(add);</div><div class="line">mul = __reduce__(mul);</div><div class="line">concat = __reduce__(concat);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>));</div></pre></td></tr></table></figure>
-<h4 id="方案5-支持异步"><a href="#方案5-支持异步" class="headerlink" title="方案5:支持异步"></a>方案5:支持异步</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__reduce__</span>(<span class="params">fn,async</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">async</span>)&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">    	<span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">a,b</span>)=&gt;</span>&#123;</div><div class="line">          <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(a).then(<span class="function">(<span class="params">v</span>)=&gt;</span>fn.call(<span class="keyword">this</span>,v,b));</div><div class="line">    	&#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  &#125;<span class="keyword">else</span>&#123;</div><div class="line">   	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">    	<span class="keyword">return</span> args.reduce(fn.bind(<span class="keyword">this</span>));</div><div class="line">  	&#125; </div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncAdd</span>(<span class="params">x,y</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;x&#125;</span>+<span class="subst">$&#123;y&#125;</span>=<span class="subst">$&#123;x+y&#125;</span>`</span>);</div><div class="line">      resolve(x,y);</div><div class="line">    &#125;,<span class="number">1000</span>);</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">asyncAdd = __reduce__(asyncAdd,<span class="literal">true</span>);</div><div class="line">asyncAdd(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>).then(<span class="function">(<span class="params">v</span>)=&gt;</span>&#123;<span class="built_in">console</span>.log(v)&#125;);</div></pre></td></tr></table></figure>
-<h3 id="throttle避免重复点击"><a href="#throttle避免重复点击" class="headerlink" title="throttle避免重复点击"></a>throttle避免重复点击</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn,wait</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> timer;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(!timer)&#123;</div><div class="line">      timer = setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;timer=<span class="literal">null</span>&#125;,wait);</div><div class="line">      <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>,args);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</div><div class="line"></div><div class="line"><span class="comment">//按钮每500ms点击一次有效</span></div><div class="line">btn.onclick = throttle(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'btn clicked'</span>);</div><div class="line">&#125;,<span class="number">500</span>);</div></pre></td></tr></table></figure>
-<h3 id="debounce避免重复点击"><a href="#debounce避免重复点击" class="headerlink" title="debounce避免重复点击"></a>debounce避免重复点击</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn,delay</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> timer;</div><div class="line">  <span class="keyword">return</span> funcion(...args)&#123;</div><div class="line">    clearTimeout(timer);</div><div class="line">    timer = setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>fn.apply(<span class="keyword">this</span>,args),delay);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</div><div class="line"></div><div class="line"><span class="comment">//在300ms内不管点击多少次，都只会执行一次</span></div><div class="line">btn.onclick = throttle(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'btn clicked'</span>);</div><div class="line">&#125;,<span class="number">300</span>);</div></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/16/奇舞学院js视频笔记——函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1835,172 +1902,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/26/奇舞学院js视频笔记——变量、值和类型/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="zhx111">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Zhx's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Zhx's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/26/奇舞学院js视频笔记——变量、值和类型/" itemprop="url">
-                  奇舞学院js视频笔记——变量、值和类型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-26T22:50:50+08:00">
-                2017-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/26/奇舞学院js视频笔记——变量、值和类型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/26/奇舞学院js视频笔记——变量、值和类型/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>看了奇舞学院的视频之后，觉得讲的非常好，所以将听课时候听课时的笔记发上了，同时给大家推荐一下：<a href="https://t.75team.com/">https://t.75team.com/</a></p>
-<p>boolean</p>
-<p>…</p>
-<h1 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h1><p>数值范围</p>
-<ul>
-<li>整数 -2^53~2^53</li>
-<li>小数精度 Number.EPSILON</li>
-<li>Infinity、Number.MAX_VALUE、Number.MIN_VALUE</li>
-</ul>
-<p>浮点数精度问题</p>
-<p>二进制、八进制、十进制、十六进制</p>
-<p>+0和-0</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/26/奇舞学院js视频笔记——变量、值和类型/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2048,7 +1949,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
