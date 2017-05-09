@@ -1,0 +1,702 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="这个系列是记录笔者刷leetcode的过程。作为一个前端，还是要会一点算法的。虽然之前就有在leetcode上刷题，但是都没记录下来。所以从现在开始就把刷过的题有些有意思的记录下来。一个是加深印象，另一个是等以后水平提高了可以看看自己当时写的是不是很丑陋什么的，哈哈。
+今天带来的是，leetcode 95。题目意思是给一个范围n，求出从1到n的所有二叉搜索树。具体英文题目可以看上面链接。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[leetcode 95]Unique Binary Search Trees II(js版)">
+<meta property="og:url" content="http://yoursite.com/2017/05/09/leetcode-95-Unique-Binary-Search-Trees-II-js版/index.html">
+<meta property="og:site_name" content="Zhx's blog">
+<meta property="og:description" content="这个系列是记录笔者刷leetcode的过程。作为一个前端，还是要会一点算法的。虽然之前就有在leetcode上刷题，但是都没记录下来。所以从现在开始就把刷过的题有些有意思的记录下来。一个是加深印象，另一个是等以后水平提高了可以看看自己当时写的是不是很丑陋什么的，哈哈。
+今天带来的是，leetcode 95。题目意思是给一个范围n，求出从1到n的所有二叉搜索树。具体英文题目可以看上面链接。">
+<meta property="og:updated_time" content="2017-05-09T13:39:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[leetcode 95]Unique Binary Search Trees II(js版)">
+<meta name="twitter:description" content="这个系列是记录笔者刷leetcode的过程。作为一个前端，还是要会一点算法的。虽然之前就有在leetcode上刷题，但是都没记录下来。所以从现在开始就把刷过的题有些有意思的记录下来。一个是加深印象，另一个是等以后水平提高了可以看看自己当时写的是不是很丑陋什么的，哈哈。
+今天带来的是，leetcode 95。题目意思是给一个范围n，求出从1到n的所有二叉搜索树。具体英文题目可以看上面链接。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/09/leetcode-95-Unique-Binary-Search-Trees-II-js版/"/>
+
+
+
+
+
+  <title> [leetcode 95]Unique Binary Search Trees II(js版) | Zhx's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhx's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">前端修炼之路</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/09/leetcode-95-Unique-Binary-Search-Trees-II-js版/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhx111">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhx's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhx's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [leetcode 95]Unique Binary Search Trees II(js版)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-09T21:05:30+08:00">
+                2017-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/09/leetcode-95-Unique-Binary-Search-Trees-II-js版/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/09/leetcode-95-Unique-Binary-Search-Trees-II-js版/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这个系列是记录笔者刷leetcode的过程。作为一个前端，还是要会一点算法的。虽然之前就有在leetcode上刷题，但是都没记录下来。所以从现在开始就把刷过的题有些有意思的记录下来。一个是加深印象，另一个是等以后水平提高了可以看看自己当时写的是不是很丑陋什么的，哈哈。</p>
+<p>今天带来的是，<a href="https://leetcode.com/problems/unique-binary-search-trees-ii/#/description" target="_blank" rel="external">leetcode 95</a>。题目意思是给一个范围n，求出从1到n的所有二叉搜索树。具体英文题目可以看上面链接。</p>
+<a id="more"></a>
+<p>笔者一开始的思路是，首先，有n个数，肯定要构建出一个[1…n]的数组，然后根据这个数组去构造出所有的二叉搜索树。其实给一组数，构建一个二叉搜索树很简单，当该组数的顺序不同，构建出的二叉搜索树也就不相同了。笔者想能不能把1到n的所有数进行全排列，然后构建。当然这样有个问题就是全排列产生的组合是大于该组数所形成的所有二叉搜索树的，所以我们要找到那些排列中形成二叉搜索树相同的组合并去重。</p>
+<p>然后笔者在这个思路逗留了好久，发现想不出如何去重的方法。决定换个思路。</p>
+<p>所谓的二叉搜索树，就是右子树是大于根节点的元素，左子树是小于根节点的元素。而左子树和右子树又分别是二叉搜索树，这就有递归的思想在里面。而要找到一组数所有的二叉搜索树，就是要选取该组数中不同的数当作根节点。这两个思路和在一起就有解决办法了。没看懂？没关系，先上代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * function TreeNode(val) &#123;</div><div class="line"> *     this.val = val;</div><div class="line"> *     this.left = this.right = null;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="comment">/**</span></div><div class="line"> * @param &#123;number&#125; n</div><div class="line"> * @return &#123;TreeNode[]&#125;</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> generateTrees = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(n===<span class="number">0</span>) <span class="keyword">return</span> [];</div><div class="line">    <span class="keyword">var</span> arr = <span class="built_in">Array</span>.from(<span class="built_in">Array</span>(n).keys()).map(<span class="function"><span class="params">x</span>=&gt;</span>++x);</div><div class="line">    <span class="keyword">var</span> rootArr = generateT(arr);</div><div class="line">    <span class="keyword">return</span> rootArr;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateT</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(arr.length===<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">var</span> rootArr = [];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</div><div class="line">        <span class="keyword">let</span> arrL = arr.slice(<span class="number">0</span>,i);</div><div class="line">        <span class="keyword">let</span> arrR = arr.slice(i+<span class="number">1</span>);</div><div class="line">        <span class="keyword">let</span> childsR = generateT(arrR);</div><div class="line">  			<span class="keyword">let</span> childsL = generateT(arrL);</div><div class="line">        <span class="keyword">if</span>(childsR!==<span class="literal">undefined</span>&amp;&amp;childsL!==<span class="literal">undefined</span>)&#123;</div><div class="line">          <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;childsR.length;j++)&#123;</div><div class="line">      			<span class="keyword">for</span>(<span class="keyword">let</span> k=<span class="number">0</span>;k&lt;childsL.length;k++)&#123;</div><div class="line">              <span class="keyword">let</span> rootT = <span class="keyword">new</span> TreeNode(arr[i]);</div><div class="line">              rootT.right = childsR[j];</div><div class="line">              rootT.left = childsL[k];</div><div class="line">              rootArr.push(rootT);</div><div class="line">        		&#125;</div><div class="line">    		  &#125;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(childsR!==<span class="literal">undefined</span>&amp;&amp;childsL===<span class="literal">undefined</span>)&#123;</div><div class="line">          <span class="keyword">for</span>(<span class="keyword">let</span> l=<span class="number">0</span>;l&lt;childsR.length;l++)&#123;</div><div class="line">            <span class="keyword">let</span> rootT = <span class="keyword">new</span> TreeNode(arr[i]);</div><div class="line">            rootT.right = childsR[l];</div><div class="line">            rootArr.push(rootT);</div><div class="line">          &#125;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(childsR===<span class="literal">undefined</span>&amp;&amp;childsL!==<span class="literal">undefined</span>)&#123;</div><div class="line">          <span class="keyword">for</span>(<span class="keyword">let</span> m=<span class="number">0</span>;m&lt;childsL.length;m++)&#123;</div><div class="line">            <span class="keyword">let</span> rootT = <span class="keyword">new</span> TreeNode(arr[i]);</div><div class="line">            rootT.left = childsL[m];</div><div class="line">            rootArr.push(rootT);</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(childsR===<span class="literal">undefined</span>&amp;&amp;childsL===<span class="literal">undefined</span>)&#123;</div><div class="line">          <span class="keyword">let</span> rootT = <span class="keyword">new</span> TreeNode(arr[i]);</div><div class="line">          rootArr.push(rootT);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">  <span class="keyword">return</span> rootArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先，主体函数中的<code>var arr = Array.from(Array(n).keys()).map(x=&gt;++x);</code></p>
+<p>会产生一个[1,2…n]的数组。这个数组是有序的，这对我们非常重要。接下来，我们写了一个函数generateT，将数组传入。这样，我们循环arr，选取不同的值作为根节点，而右子树为选取节点右边的值，左子树为选取节点左边的值。比如n=4，选2为根节点，则1为左子树的集合，3，4为右子树集合。接下来将1递归传入generateT，[2,3]递归传入generateT。</p>
+<p>注意，因为要获得所有的搜索树，所以generateT所返回的应该是传入数组所产生的所有二叉搜索树的根节点的集合。这样，上一层函数就可以通过集合去生成新的根节点，根节点的左子树为递归返回的左子树，右子树同理。然后解决好，如果左右子树不存在的边界问题就好了。</p>
+<p>因为当n为0时，generateT返回undefined。所以在处理下n为0的情况即可ac了。</p>
+<p>目前笔者还没看过别人的解答，这道题应该是有更为巧妙的解答，笔者看到后再来更新！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/06/js实现动画效果的回到顶部/" rel="next" title="js实现动画效果的回到顶部">
+                <i class="fa fa-chevron-left"></i> js实现动画效果的回到顶部
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/09/leetcode-95-Unique-Binary-Search-Trees-II-js版/"
+           data-title="[leetcode 95]Unique Binary Search Trees II(js版)" data-url="http://yoursite.com/2017/05/09/leetcode-95-Unique-Binary-Search-Trees-II-js版/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img.135q.com/2015-05/05/14307837440001.jpg"
+               alt="zhx111" />
+          <p class="site-author-name" itemprop="name">zhx111</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhx111" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhx111</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhx111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
