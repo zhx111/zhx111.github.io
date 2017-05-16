@@ -1,0 +1,828 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="这是第9课的笔记，主要讲了关于js中的常用设计模式
+视频地址：https://t.75team.com/video
+javaScript 第九课第五课 js设计模式组件开发
+模式1:Behavior
+从交互需求出发设计一组“动作行为”
+在主题对象上应用和扩展这些行为
+为什么这么做？
+
+图片预览12345678910111213141516171819202122232425262728293031">
+<meta property="og:type" content="article">
+<meta property="og:title" content="奇舞学院js视频笔记——常用设计模式和组件开发实例">
+<meta property="og:url" content="http://yoursite.com/2017/05/14/奇舞学院js视频笔记——常用设计模式和组件开发实例/index.html">
+<meta property="og:site_name" content="Zhx's blog">
+<meta property="og:description" content="这是第9课的笔记，主要讲了关于js中的常用设计模式
+视频地址：https://t.75team.com/video
+javaScript 第九课第五课 js设计模式组件开发
+模式1:Behavior
+从交互需求出发设计一组“动作行为”
+在主题对象上应用和扩展这些行为
+为什么这么做？
+
+图片预览12345678910111213141516171819202122232425262728293031">
+<meta property="og:updated_time" content="2017-05-16T09:36:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="奇舞学院js视频笔记——常用设计模式和组件开发实例">
+<meta name="twitter:description" content="这是第9课的笔记，主要讲了关于js中的常用设计模式
+视频地址：https://t.75team.com/video
+javaScript 第九课第五课 js设计模式组件开发
+模式1:Behavior
+从交互需求出发设计一组“动作行为”
+在主题对象上应用和扩展这些行为
+为什么这么做？
+
+图片预览12345678910111213141516171819202122232425262728293031">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/14/奇舞学院js视频笔记——常用设计模式和组件开发实例/"/>
+
+
+
+
+
+  <title> 奇舞学院js视频笔记——常用设计模式和组件开发实例 | Zhx's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhx's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">前端修炼之路</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/14/奇舞学院js视频笔记——常用设计模式和组件开发实例/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhx111">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhx's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhx's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                奇舞学院js视频笔记——常用设计模式和组件开发实例
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-14T15:38:07+08:00">
+                2017-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/14/奇舞学院js视频笔记——常用设计模式和组件开发实例/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/14/奇舞学院js视频笔记——常用设计模式和组件开发实例/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是第9课的笔记，主要讲了关于js中的常用设计模式</p>
+<p>视频地址：<a href="https://t.75team.com/video" target="_blank" rel="external">https://t.75team.com/video</a></p>
+<h1 id="javaScript-第九课"><a href="#javaScript-第九课" class="headerlink" title="javaScript 第九课"></a>javaScript 第九课</h1><p>第五课 js设计模式组件开发</p>
+<h2 id="模式1-Behavior"><a href="#模式1-Behavior" class="headerlink" title="模式1:Behavior"></a>模式1:Behavior</h2><ul>
+<li>从交互需求出发设计一组“动作行为”</li>
+<li>在主题对象上应用和扩展这些行为</li>
+<li>为什么这么做？</li>
+</ul>
+<h3 id="图片预览"><a href="#图片预览" class="headerlink" title="图片预览"></a>图片预览</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> imgList = <span class="built_in">document</span>.getElementById(<span class="string">'list'</span>);</div><div class="line"><span class="keyword">var</span> imgs = <span class="built_in">document</span>.querySelectorAll(<span class="string">'ul img'</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setPreviewBehavior</span>(<span class="params">subjects</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> previewEvent = <span class="built_in">document</span>.createEvent(<span class="string">'Event'</span>);</div><div class="line">  previewEvent.initEvent(<span class="string">'preview'</span>,<span class="literal">true</span>,<span class="literal">true</span>);</div><div class="line">  </div><div class="line">  <span class="keyword">if</span>(!<span class="built_in">Array</span>.isArray(subjects))&#123;</div><div class="line">    <span class="keyword">if</span>(subjects.length) subjects = <span class="built_in">Array</span>.from(subjects);</div><div class="line">    <span class="keyword">else</span> subjects = [subjects];</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  previewEvent.previewTargets = subjects.map(<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> evt.src;</div><div class="line">  &#125;);</div><div class="line">  </div><div class="line">  subjects.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">subject</span>)</span>&#123;</div><div class="line">    subject.preview = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      subject.dispatchEvent(previewEvent);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">setPreviewBehavior(imgs);</div><div class="line"></div><div class="line"><span class="keyword">var</span> previewMask = <span class="built_in">document</span>.getElementById(<span class="string">'mask'</span>);</div><div class="line"><span class="keyword">var</span> previewImage = previewMask.querySelector(<span class="string">'img'</span>);</div><div class="line"><span class="keyword">var</span> previewPrevious = previewMask.querySelector(<span class="string">'.previous'</span>);</div><div class="line"><span class="keyword">var</span> previewNext =  previewMask.querySelector(<span class="string">'.next'</span>);</div><div class="line"></div><div class="line">previewMask.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(evt.target === previewMask)&#123;</div><div class="line">    previewMask.style.display = <span class="string">'none'</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">imgList.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(evt.target.preview)&#123;</div><div class="line">    evt.target.preview();</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">imgList.addEventListener(<span class="string">'preview'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> src = evt.target.src;</div><div class="line">  imgs = evt.previewTargets;</div><div class="line">  previewMask.style.display = <span class="string">'block;'</span></div><div class="line">  previewImages.src = src;</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> idx = imgs.indexOf(src);</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">updateButton</span></span></div><div class="line">(<span class="params">idx</span>)&#123;</div><div class="line">  previewPrevious.sytle.display = idx ? <span class="string">'block'</span> : <span class="string">'none'</span>;</div><div class="line">  previewNext.style.display = idx &lt; imgs.length<span class="number">-1</span>?<span class="string">'block'</span>:<span class="string">'none'</span>;</div><div class="line">&#125;</div><div class="line">  </div><div class="line">  updateButton(idx);</div><div class="line">  </div><div class="line">  previewPrevious.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">    previewImage.src = imgs[--idx];</div><div class="line">    updateButton(idx);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">    previewNext.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">    previewImage.src = imgs[++idx];</div><div class="line">    updateButton(idx);</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>分析：</p>
+<p>behavior模式：定义preview行为</p>
+<p>思考与练习：</p>
+<ol>
+<li>如果图片要动态加载，怎么修改setPreviewBehavior？</li>
+<li>如果要兼容旧的浏览器如何处理？（IE7）不支持createEvent</li>
+<li>为上一张、下一张图片切换添加动画</li>
+</ol>
+<h2 id="模式2-Adapter"><a href="#模式2-Adapter" class="headerlink" title="模式2:Adapter"></a>模式2:Adapter</h2><ul>
+<li>针对不同地层实现提供统一的外部接口</li>
+<li>让业务层面的代码可以适应不同的底层实现</li>
+</ul>
+<h3 id="Adapters"><a href="#Adapters" class="headerlink" title="Adapters"></a>Adapters</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> performance !== <span class="string">'undefined'</span> &amp;&amp; performance.now)&#123;</div><div class="line">   <span class="keyword">return</span> performance.now(); </div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Date</span>.now ? <span class="built_in">Date</span>.now() : (<span class="keyword">new</span> <span class="built_in">Date</span>()).getTime();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Behavior-Adaptor-上传文件模块"><a href="#Behavior-Adaptor-上传文件模块" class="headerlink" title="Behavior + Adaptor(上传文件模块)"></a>Behavior + Adaptor(上传文件模块)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setSelectFileBehavior</span>(<span class="params">subjects</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(!<span class="built_in">Array</span>.isArray(subjects))&#123;</div><div class="line">    <span class="keyword">if</span>(subjects.length) subjects = <span class="built_in">Array</span>.from(subjects);</div><div class="line">    <span class="keyword">else</span> subjects = [subjects];</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  subjects.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">subject</span>)</span>&#123;</div><div class="line">    subject.addEventListener(<span class="string">'change'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">     <span class="keyword">var</span> fileInput = evt.target;</div><div class="line">      <span class="keyword">var</span> files = <span class="built_in">Array</span>.from(fileInput.files);</div><div class="line">      <span class="keyword">var</span> URL = <span class="built_in">window</span>.URL || <span class="built_in">window</span>.webkitURL;</div><div class="line">      </div><div class="line">      <span class="keyword">if</span>(<span class="keyword">typeof</span> FileReader === <span class="string">'function'</span>)&#123;</div><div class="line">        files.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">file</span>)</span>&#123;</div><div class="line">          <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</div><div class="line">          reader.readAsDataURL(file);</div><div class="line">          reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">           <span class="keyword">var</span> event = <span class="keyword">new</span> CustomEvent(<span class="string">'fileselect'</span>,&#123;</div><div class="line">             <span class="attr">detail</span>:&#123;</div><div class="line">               <span class="attr">dataURL</span>:evt.target.result;</div><div class="line">             &#125;</div><div class="line">           &#125;);</div><div class="line">            subject.dispatchEvent(event);</div><div class="line">          &#125;</div><div class="line">        &#125;);</div><div class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(URL)&#123;</div><div class="line">        files.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">file</span>)</span>&#123;</div><div class="line">          <span class="keyword">var</span> blob = URL.createObjectURL(file);</div><div class="line">          <span class="keyword">var</span> event = <span class="keyword">new</span> CustomEvent(<span class="string">'fileselect'</span>,&#123;</div><div class="line">            <span class="attr">detail</span>:&#123;</div><div class="line">              <span class="attr">blob</span>:blob</div><div class="line">            &#125;</div><div class="line">          &#125;);</div><div class="line">          subject.dispatchEvent(event);</div><div class="line">        &#125;);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">setSelectFileBehavior(selectFile);</div><div class="line"></div><div class="line">selectFile.addEventListener(<span class="string">'change'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">  preview.innerHTML = <span class="string">''</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">selectFile.addEventListener(<span class="string">'fileselect'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">  img.src = evt.detail.dataURL || evt.detail.blob;</div><div class="line">  img.style.padding = <span class="string">'5px'</span>;</div><div class="line">  img.style.height = <span class="string">'150px'</span>;</div><div class="line">  preview.appendChild(img);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="模式3-Observer"><a href="#模式3-Observer" class="headerlink" title="模式3:Observer"></a>模式3:Observer</h2><ul>
+<li>同步多个对象的状态变化</li>
+<li>解耦各个对象之间的依赖</li>
+</ul>
+<h3 id="同步滚动"><a href="#同步滚动" class="headerlink" title="同步滚动"></a>同步滚动</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Editor</span>(<span class="params">input,preview</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.update = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    preview.innerHTML = markdown.toHTML(input.value);</div><div class="line">  &#125;;</div><div class="line">  input.editor = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">this</span>.update();</div><div class="line">&#125;</div><div class="line"><span class="keyword">new</span> Editor(editor,preview);</div><div class="line"></div><div class="line"><span class="comment">//三部分UI耦合在一起的update方法</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params">src,dest,hint</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> scrollRange = src.scrollHeight - src.cilentHeight,</div><div class="line">      p = src.scrollTop/scrollRange;</div><div class="line">  </div><div class="line">  dest.scrollTop = p * (dest.scrollHeight - dest.clientHeight);</div><div class="line">  hint.innerHTML = <span class="built_in">Math</span>.round(<span class="number">100</span>*p)+<span class="string">'%'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">update(editor,preview,hintbar);</div><div class="line"></div><div class="line"><span class="comment">//获得允许调用函数的权限，排斥其他函数的调用（因为底下注册了俩scroll事件，会相互调用）</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">monopoly</span>(<span class="params">fn,duration</span>)</span>&#123;</div><div class="line">  duration = duration || <span class="number">100</span>;</div><div class="line">  <span class="keyword">var</span> rat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(!monopoly.permit)&#123;</div><div class="line">      monopoly.permit = fn;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(monopoly.permit === fn)&#123;</div><div class="line">      clearTimeout(monopoly.permitTimer);</div><div class="line">      monopoly.permitTimer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">delete</span> monopoly.permit;</div><div class="line">      &#125;,duration);</div><div class="line">      <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line">editor.addEventListener(<span class="string">'scroll'</span>,monopoly(<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">  update(editor,preview,hintbar);</div><div class="line">&#125;));</div><div class="line"></div><div class="line">preview.addEventListener(<span class="string">'scroll'</span>,monopoly(<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">  update(editor,preview,hintbar);</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
+<p><strong>update方法耦合了三个部分</strong></p>
+<h3 id="引入观察者"><a href="#引入观察者" class="headerlink" title="引入观察者"></a>引入观察者</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Editor</span>(<span class="params">input,preview</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.update = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    preview.innerHTML = markdown.toHTML(input.value);</div><div class="line">  &#125;;</div><div class="line">  input.editor = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">this</span>.update();</div><div class="line">&#125;</div><div class="line"><span class="keyword">new</span> Editor(editor,preview);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setObserverBehavior</span>(<span class="params">subjects</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(!<span class="built_in">Array</span>.isArray(subjects))&#123;</div><div class="line">    subjects = <span class="built_in">Array</span>.from(subjects);</div><div class="line">  &#125;<span class="keyword">else</span> &#123;</div><div class="line">    subjects = [subjects];</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  subjects.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">subject</span>)</span>&#123;</div><div class="line">    subject.watchBy = <span class="function"><span class="keyword">function</span>(<span class="params">target,type</span>)</span>&#123;</div><div class="line">      subject.addEventListener(type,<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">       evt.sender = subject;</div><div class="line">        evt.receiver = target;</div><div class="line">        target.notice &amp;&amp; target.notice(type,evt);</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">setObserverBehavior(editor);</div><div class="line">editor.watchBy(preview,<span class="string">'scroll'</span>);</div><div class="line">editor.watchBy(hintbar,<span class="string">'scroll'</span>);</div><div class="line"></div><div class="line">preview.notice = <span class="function"><span class="keyword">function</span>(<span class="params">type,evt</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> sender = evt.sender,</div><div class="line">      receiver = evt.receiver;</div><div class="line">  <span class="keyword">var</span> scrollRange = sender.scrollHeight - sender.clientHeight,</div><div class="line">      p = sender.scrollTop / scrollRange;</div><div class="line">  </div><div class="line">  receiver.scrollTop = p*(receiver.scrollHeight - receiver.clientHeight);</div><div class="line">&#125;</div><div class="line"></div><div class="line">preview.notice = <span class="function"><span class="keyword">function</span>(<span class="params">type,evt</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> sender = evt.sender,</div><div class="line">      receiver = evt.receiver;</div><div class="line">  <span class="keyword">var</span> scrollRange = sender.scrollHeight - sender.clientHeight,</div><div class="line">      p = sender.scrollTop / scrollRange;</div><div class="line">  </div><div class="line">  receiver.innerHTML = <span class="built_in">Math</span>.round(<span class="number">100</span>*p)+<span class="string">'%'</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此处只是单独滚动，需要同步滚动，参考monopoly实现preview到editor的反向绑定。</p>
+<p>//在addEventListener处加monopoly然后再setOberverBehavior(preview)；</p>
+<h2 id="模式4-Mediator"><a href="#模式4-Mediator" class="headerlink" title="模式4:Mediator"></a>模式4:Mediator</h2><ul>
+<li>将命令传递给所有订阅者</li>
+<li>与所有订阅者之间维持依赖关系</li>
+<li>从而让订阅者彼此之间相互独立</li>
+</ul>
+<h3 id="改用pub-sub（同步滚动）"><a href="#改用pub-sub（同步滚动）" class="headerlink" title="改用pub/sub（同步滚动）"></a>改用pub/sub（同步滚动）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Editor</span>(<span class="params">input,preview</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.update = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    preview.innerHTML = markdown.toHTML(input.value);</div><div class="line">  &#125;;</div><div class="line">  input.editor = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">this</span>.update();</div><div class="line">&#125;</div><div class="line"><span class="keyword">new</span> Editor(editor,preview);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">PubSub</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.subscribers = &#123;&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">PubSub.prototype = &#123;</div><div class="line">  <span class="attr">pub</span>:<span class="function"><span class="keyword">function</span>(<span class="params">type,data</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> subscribers=<span class="keyword">this</span>.subscribers[type];</div><div class="line">    subscribers.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">subscriber</span>)</span>&#123;</div><div class="line">     data.type = type;</div><div class="line">      subscriber(data);</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">sub</span>:<span class="function"><span class="keyword">function</span>(<span class="params">type,target,fn</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.subscribers[type] = <span class="keyword">this</span>.subscribers[type] || [];</div><div class="line">    <span class="keyword">this</span>.subscribers[type].push(fn.bind(target));</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> mediator = <span class="keyword">new</span> PubSub();</div><div class="line"></div><div class="line">editor.addEventListener(<span class="string">'scroll'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> target = evt.target;</div><div class="line">  <span class="keyword">var</span> scrollRange = target.scrollHeight - cilentHeight,</div><div class="line">      p = target.scrollTop / scrollRange;</div><div class="line">  </div><div class="line">  mediator.pub(<span class="string">'scroll'</span>,p);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">mediator.sub(<span class="string">'scroll'</span>,preview,<span class="function"><span class="keyword">function</span>(<span class="params">p</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.scrollTop = p * (<span class="keyword">this</span>.scrollHeight - <span class="keyword">this</span>.clientHeight);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">mediator.sub(<span class="string">'scroll'</span>,hintbar,<span class="function"><span class="keyword">function</span>(<span class="params">p</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.innerHTML = <span class="built_in">Math</span>.round(p*<span class="number">100</span>)+<span class="string">'%'</span>;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="Observer-与-Mediator"><a href="#Observer-与-Mediator" class="headerlink" title="Observer 与 Mediator"></a>Observer 与 Mediator</h3><p>思考：</p>
+<p>两个模式有什么不同</p>
+<p>分别在什么情况下使用</p>
+<h2 id="模式5-Composite"><a href="#模式5-Composite" class="headerlink" title="模式5:Composite"></a>模式5:Composite</h2><ul>
+<li>对已有组件／库／功能的组合使用</li>
+<li>提升代码复用性的最常用手段</li>
+</ul>
+<h3 id="命令式连续动画"><a href="#命令式连续动画" class="headerlink" title="命令式连续动画"></a>命令式连续动画</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AnimCommander</span>(<span class="params">target,...commands</span>)</span>&#123;</div><div class="line">  <span class="keyword">const</span> easing = &#123;</div><div class="line">    <span class="attr">linear</span>:<span class="function"><span class="params">p</span>=&gt;</span>p,</div><div class="line">    <span class="attr">easeIn</span>:<span class="function"><span class="params">p</span>=&gt;</span>p*p,</div><div class="line">    <span class="attr">easeOut</span>:<span class="function"><span class="params">p</span>=&gt;</span>p*(<span class="number">2</span>-p)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">this</span>.animatorList = [];</div><div class="line">  command.forEach(<span class="function"><span class="params">command</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> cmd = command.split(<span class="string">' '</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> update = <span class="function"><span class="keyword">function</span>(<span class="params">ep,p</span>)</span>&#123;</div><div class="line">      <span class="keyword">let</span> [prop,cmdStr] = cmd[<span class="number">0</span>].split(<span class="string">':'</span>);</div><div class="line">      cmdStr = <span class="string">'return"'</span>+cmdStr.replace(<span class="regexp">/&#123;&#123;(.+)?&#125;&#125;/g</span>,<span class="string">'"+&#123;$1&#125;+'</span>)</div><div class="line">      target.style[prop] = (<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'ep'</span>,<span class="string">'p'</span>.cmdStr))(ep,p);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> duration = cmd[i];</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/^\d+s$/</span>.test(duration))&#123;</div><div class="line">      duration = <span class="built_in">parseInt</span>(duration) * <span class="number">1000</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> ease = cmd[<span class="number">2</span>] || <span class="string">'linear'</span>;</div><div class="line">    ease = easing[ease];</div><div class="line">    </div><div class="line">    <span class="keyword">this</span>.animatorList.push(<span class="keyword">new</span> Animator(duration,update,ease));</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">AnimCommander.prototype.exec = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="keyword">this</span>.animatorList.length;i++)&#123;</div><div class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.animatorList[i].animate();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">block.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  block.style.left = <span class="string">'100px'</span>;</div><div class="line">  block.style.top = <span class="string">'50px'</span>;</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> anim = <span class="keyword">new</span> AnimCommander(block,<span class="string">'left:&#123;&#123;100+100*ep&#125;&#125;px 2s easeIn'</span>,<span class="string">'top:&#123;&#123;100+100*ep&#125;&#125;px 2s easeIn'</span>);</div><div class="line">  </div><div class="line">  anim.exec();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="模式6-Partial-Application"><a href="#模式6-Partial-Application" class="headerlink" title="模式6:Partial Application"></a>模式6:Partial Application</h2><ul>
+<li>Function.prototype.bind</li>
+<li>部分应用／固化参数</li>
+</ul>
+<h3 id="resolve-path"><a href="#resolve-path" class="headerlink" title="resolve path"></a>resolve path</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> resolve = <span class="built_in">require</span>(<span class="string">"path"</span>).resolve,</div><div class="line">    asset = resolve.bind(<span class="literal">null</span>,__dirname,<span class="string">'..'</span>);</div><div class="line"></div><div class="line">asset(<span class="string">"package.json"</span>);</div><div class="line"><span class="comment">//returns "/path/to/modules/package.json"</span></div></pre></td></tr></table></figure>
+<h3 id="Logging-time"><a href="#Logging-time" class="headerlink" title="Logging time"></a>Logging time</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> logWithTime = <span class="built_in">console</span>.log.bind(<span class="built_in">console</span>,(<span class="keyword">new</span> <span class="built_in">Date</span>()).toString());</div><div class="line"></div><div class="line">logWithTime(<span class="string">'日志1'</span>);</div><div class="line">logWithTime(<span class="string">'日志2'</span>);</div></pre></td></tr></table></figure>
+<p>都是同样的时间，bind返回的函数里面bind的变量不变。</p>
+<p>所以该情况不能用bind</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> logWithTime = <span class="function"><span class="keyword">function</span>(<span class="params">...msg</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">console</span>.log((<span class="keyword">new</span> <span class="built_in">Date</span>()).toString(),...msg);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="模式7-Decorate"><a href="#模式7-Decorate" class="headerlink" title="模式7:Decorate"></a>模式7:Decorate</h2><ul>
+<li>在原有API基础上增加额外的功能</li>
+<li>不改变底层库的基础上扩展功能的一种模式</li>
+</ul>
+<h3 id="让函数只被调用一次"><a href="#让函数只被调用一次" class="headerlink" title="让函数只被调用一次"></a>让函数只被调用一次</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">once</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> ret = fn &amp;&amp; fn.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</div><div class="line">    fn = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">block.onclick = once(<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;...&#125;);<span class="comment">//点击事件函数仅执行一次</span></div></pre></td></tr></table></figure>
+<h3 id="debounce"><a href="#debounce" class="headerlink" title="debounce"></a>debounce</h3><p>避免一个函数被频繁的触发</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn,dur</span>)</span>&#123;</div><div class="line">  dur = dur || <span class="number">100</span>;</div><div class="line">  <span class="keyword">var</span> timer;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    clearTimeout(timer);</div><div class="line">    timer = setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">      fn.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</div><div class="line">    &#125;,dur);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'mousemove'</span>,debounce(<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;...&#125;，<span class="number">500</span>));</div><div class="line">                                                             <span class="comment">//在mousemove事件停止500ms后才触发</span></div></pre></td></tr></table></figure>
+<h2 id="模式8-Proxy"><a href="#模式8-Proxy" class="headerlink" title="模式8 Proxy"></a>模式8 Proxy</h2><ul>
+<li>保持原有API功能不变，改变执行过程和结果</li>
+<li>不改变底层库的基础上获得不同执行结果的手段</li>
+</ul>
+<h3 id="拦截异步数据"><a href="#拦截异步数据" class="headerlink" title="拦截异步数据"></a>拦截异步数据</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> open = XMLHttpRequest.prototype.open;</div><div class="line">  XMLHttpRequest.prototype.open = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> url = <span class="built_in">arguments</span>[i];</div><div class="line">    <span class="keyword">var</span> serverNameRegex = <span class="regexp">/^http:\/\/\teach.h5jun.com/</span>;</div><div class="line">    <span class="keyword">if</span>(serverNameRegex.test(url)&#123;</div><div class="line">      <span class="built_in">arguments</span>[<span class="number">1</span>] = url.replace(serverNameRegex,<span class="string">'http://localhost:8080'</span>);</div><div class="line">    <span class="keyword">return</span> open.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="keyword">var</span> apiURL = <span class="string">"http://teach.h5jun.com/get_some_data"</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line"></div><div class="line">xhr.open(<span class="string">'GET'</span>,apiURL);</div><div class="line">xhr.send();</div></pre></td></tr></table></figure>
+<h2 id="模式9-Aspect"><a href="#模式9-Aspect" class="headerlink" title="模式9:Aspect"></a>模式9:Aspect</h2><ul>
+<li>对代码执行过程进行监测和修改</li>
+<li>不改变代码主体执行流程的基础上控制执行过程</li>
+</ul>
+<p>系统／环境默认的一些可控制点：</p>
+<p>preventDefault()</p>
+<p>Symbols</p>
+<p>…</p>
+<h3 id="创建切面修改Swipable"><a href="#创建切面修改Swipable" class="headerlink" title="创建切面修改Swipable"></a>创建切面修改Swipable</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> swipable = <span class="keyword">new</span> Swipable(&#123;<span class="attr">element</span>:<span class="string">'.swipable-wrap'</span>,<span class="attr">dir</span>:<span class="string">'horizontal'</span>&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> fn = &#123;</div><div class="line">  <span class="attr">watch</span>: <span class="function"><span class="keyword">function</span></span></div><div class="line">(<span class="params">func,before,after</span>)&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>);</div><div class="line">    before &amp;&amp; before.apply(<span class="keyword">this</span>,args);</div><div class="line">    <span class="keyword">var</span> ret = func.apply</div><div class="line">(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</div><div class="line">    after &amp;&amp; after.apply(<span class="keyword">this</span>,[ret].concat(args));</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">//mouse touch(将touch事件转化为mouse)</span></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line">swipable._scroll = fn.watch(swipable._scroll,<span class="function"><span class="keyword">function</span>(<span class="params">pos</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> p = pos / (swipable.min - swipable.max);</div><div class="line">  $(<span class="string">'#progress-bar .current'</span>).css(<span class="string">'width'</span>,<span class="built_in">Math</span>.min(p,<span class="number">1.0</span>)*<span class="number">240</span>+<span class="string">'px'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">swipable.refresh();</div></pre></td></tr></table></figure>
+<h3 id="preformance-watch-监控性能"><a href="#preformance-watch-监控性能" class="headerlink" title="preformance.watch 监控性能"></a>preformance.watch 监控性能</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(performance)&#123;</div><div class="line">  performance.watch = <span class="function"><span class="keyword">function</span>(<span class="params">fn,mark</span>)</span>&#123;</div><div class="line">   <span class="keyword">var</span> idx = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      idx++;</div><div class="line">      </div><div class="line">      <span class="keyword">var</span> markStart = mark + idx +<span class="string">'_start'</span>,</div><div class="line">          markEnd = mark + idx + <span class="string">'_end'</span>;</div><div class="line">      </div><div class="line">      performance.mark(markStart);</div><div class="line">      <span class="keyword">var</span> ret = fn.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);</div><div class="line">      <span class="keyword">if</span>(ret <span class="keyword">instanceof</span> <span class="built_in">Promise</span>)&#123;</div><div class="line">        <span class="keyword">return</span> ret.then(<span class="function"><span class="params">r</span> =&gt;</span> &#123;</div><div class="line">          performance.mark(markEnd);</div><div class="line">          performance.measure(mark,markStart,markEnd);</div><div class="line">          <span class="keyword">return</span> r;</div><div class="line">        &#125;);</div><div class="line">      &#125;<span class="keyword">else</span>&#123;</div><div class="line">        performance.mark(markEnd);</div><div class="line">        performance.measure(mark,markStart,markEnd);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="总结Decorate、Proxy和Aspect"><a href="#总结Decorate、Proxy和Aspect" class="headerlink" title="总结Decorate、Proxy和Aspect"></a>总结Decorate、Proxy和Aspect</h2><p>三者的联系：</p>
+<ul>
+<li>Decorate强调的是声明和定义</li>
+<li>Proxy强调是功能</li>
+<li>Aspect强调的是运行过程</li>
+</ul>
+<p>动态语言可以用Decorate来时实现Proxy和Aspect。</p>
+<h2 id="模式10-Lazy-load"><a href="#模式10-Lazy-load" class="headerlink" title="模式10:Lazy load"></a>模式10:Lazy load</h2><ul>
+<li>一些加载耗时的资源进行分段、异步加载</li>
+<li>前端提升性能，减少响应用户的时间</li>
+<li>某些情况下减少网页流量的带宽和消耗</li>
+</ul>
+<h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><p>//不加载的src放在data-src里</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> imgList = ...</div><div class="line">var container =...</div><div class="line">var lazyLoadImg = imgList,filter(<span class="function"><span class="params">img</span>=&gt;</span>!img.src);</div><div class="line"></div><div class="line">container.addEventListener(<span class="string">'scroll'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(!load &amp;&amp; evt.target.scrollTop &gt; <span class="number">100</span>)&#123;</div><div class="line">    loaded =<span class="literal">true</span>;</div><div class="line">    lazyLoadImg.forEach(<span class="function"><span class="params">img</span>=&gt;</span>&#123;</div><div class="line">      img.src = img.dataset.src;</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/09/leetcode-95-Unique-Binary-Search-Trees-II-js版/" rel="next" title="[leetcode 95]Unique Binary Search Trees II(js版)">
+                <i class="fa fa-chevron-left"></i> [leetcode 95]Unique Binary Search Trees II(js版)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/14/奇舞学院js视频笔记——常用设计模式和组件开发实例/"
+           data-title="奇舞学院js视频笔记——常用设计模式和组件开发实例" data-url="http://yoursite.com/2017/05/14/奇舞学院js视频笔记——常用设计模式和组件开发实例/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img.135q.com/2015-05/05/14307837440001.jpg"
+               alt="zhx111" />
+          <p class="site-author-name" itemprop="name">zhx111</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhx111" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javaScript-第九课"><span class="nav-number">1.</span> <span class="nav-text">javaScript 第九课</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式1-Behavior"><span class="nav-number">1.1.</span> <span class="nav-text">模式1:Behavior</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图片预览"><span class="nav-number">1.1.1.</span> <span class="nav-text">图片预览</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式2-Adapter"><span class="nav-number">1.2.</span> <span class="nav-text">模式2:Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Adapters"><span class="nav-number">1.2.1.</span> <span class="nav-text">Adapters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Behavior-Adaptor-上传文件模块"><span class="nav-number">1.2.2.</span> <span class="nav-text">Behavior + Adaptor(上传文件模块)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式3-Observer"><span class="nav-number">1.3.</span> <span class="nav-text">模式3:Observer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步滚动"><span class="nav-number">1.3.1.</span> <span class="nav-text">同步滚动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入观察者"><span class="nav-number">1.3.2.</span> <span class="nav-text">引入观察者</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式4-Mediator"><span class="nav-number">1.4.</span> <span class="nav-text">模式4:Mediator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#改用pub-sub（同步滚动）"><span class="nav-number">1.4.1.</span> <span class="nav-text">改用pub/sub（同步滚动）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observer-与-Mediator"><span class="nav-number">1.4.2.</span> <span class="nav-text">Observer 与 Mediator</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式5-Composite"><span class="nav-number">1.5.</span> <span class="nav-text">模式5:Composite</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令式连续动画"><span class="nav-number">1.5.1.</span> <span class="nav-text">命令式连续动画</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式6-Partial-Application"><span class="nav-number">1.6.</span> <span class="nav-text">模式6:Partial Application</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#resolve-path"><span class="nav-number">1.6.1.</span> <span class="nav-text">resolve path</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logging-time"><span class="nav-number">1.6.2.</span> <span class="nav-text">Logging time</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式7-Decorate"><span class="nav-number">1.7.</span> <span class="nav-text">模式7:Decorate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#让函数只被调用一次"><span class="nav-number">1.7.1.</span> <span class="nav-text">让函数只被调用一次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#debounce"><span class="nav-number">1.7.2.</span> <span class="nav-text">debounce</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式8-Proxy"><span class="nav-number">1.8.</span> <span class="nav-text">模式8 Proxy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截异步数据"><span class="nav-number">1.8.1.</span> <span class="nav-text">拦截异步数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式9-Aspect"><span class="nav-number">1.9.</span> <span class="nav-text">模式9:Aspect</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建切面修改Swipable"><span class="nav-number">1.9.1.</span> <span class="nav-text">创建切面修改Swipable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#preformance-watch-监控性能"><span class="nav-number">1.9.2.</span> <span class="nav-text">preformance.watch 监控性能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结Decorate、Proxy和Aspect"><span class="nav-number">1.10.</span> <span class="nav-text">总结Decorate、Proxy和Aspect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式10-Lazy-load"><span class="nav-number">1.11.</span> <span class="nav-text">模式10:Lazy load</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图片懒加载"><span class="nav-number">1.11.1.</span> <span class="nav-text">图片懒加载</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhx111</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhx111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
