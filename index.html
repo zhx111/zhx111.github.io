@@ -337,8 +337,7 @@
 
       
         
-          
-            <h1 id="前端面试-HTML篇"><a href="#前端面试-HTML篇" class="headerlink" title="前端面试 HTML篇"></a>前端面试 HTML篇</h1><p>前言：这个系列为笔者在面试前梳理一下关于前端的基础知识。</p>
+          <h1 id="前端面试-HTML篇"><a href="#前端面试-HTML篇" class="headerlink" title="前端面试 HTML篇"></a>前端面试 HTML篇</h1><p>前言：这个系列为笔者在面试前梳理一下关于前端的基础知识。</p>
 <p>=====开始======</p>
 <h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><ul>
 <li>语义</li>
@@ -350,111 +349,13 @@
 <li>设备访问</li>
 <li>样式设计</li>
 </ul>
-<h3 id="语义"><a href="#语义" class="headerlink" title="语义"></a>语义</h3><ol>
-<li><p>节段和提纲</p>
-<ul>
-<li>HTML5增加了新的节段和提纲元素，比起以前单纯的使用div+class划分网页结构增强了语义性，这些元素分别是：</li>
-</ul>
-<p><code>&lt;section&gt;&lt;article&gt;&lt;nav&gt;&lt;header&gt;&lt;footer&gt;&lt;aside&gt;&lt;hgroup&gt;</code></p>
-<ul>
-<li><code>&lt;section&gt;</code>元素表示文档的一个区域或节，一般包含一个标题；<code>&lt;article&gt;</code>元素表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构，</li>
-<li>其中，<code>&lt;hgroup&gt;</code>已经从HTML5（W3C）规范中删除，但是它仍旧在 WHATWG 的 HTML 版本里。</li>
-</ul>
-</li>
-<li><p>使用HTML5的音频和视频</p>
-<ul>
-<li><p>audio音频元素</p>
-<p><code>&lt;audio&gt;</code> 元素用于在文档中表示音频内容。 <code>&lt;audio&gt;</code> 元素可以包含多个音频资源， 这些音频资源可以使用 <code>src</code> 属性或者<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/source" target="_blank" rel="external"><code>&lt;source&gt;</code></a>元素来进行描述；</p>
-<p>属性：</p>
-<ul>
-<li>autoplay <em>布尔属性，是否自动播放</em></li>
-<li>buffed <em>你可以通过该属性获取已缓冲的资源的时间段信息</em></li>
-<li>controls <em>该属性提供播放的控制面板</em></li>
-<li>loop <em>布尔属性，是否循环播放</em></li>
-<li>playload <em>枚举属性，none，metadata，auto。浏览器使用何种方式加载</em></li>
-<li>更多属性参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio" target="_blank" rel="external">MDN</a></li>
-</ul>
-<p>事件：</p>
-<ul>
-<li>可以通过js操作audio上的事件，具体参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Media_events" target="_blank" rel="external">MDN:media-event</a></li>
-</ul>
-</li>
-<li><p>video视频元素</p>
-<ul>
-<li>video元素大体和audio元素差不多，不过它的属性多了一个crossorigin（该枚举属性指明抓取相关图片是否必须用到CORS（跨域资源共享）），poster（播放之前的海报帧），height和width</li>
-<li>如果视频的MIME属性设置不正确，视频可能会不显示。</li>
-<li>通过canvas 处理video可以看这篇：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Manipulating_video_using_canvas" target="_blank" rel="external">canvas</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>新的语义元素</p>
-<ul>
-<li><code>&lt;mark&gt;</code>高亮语句、表现上下文之间的关联性。比如搜索结果</li>
-<li><code>&lt;figure&gt;</code>代表一段独立的内容，说明(caption) <code>&lt;figur&gt;</code> 配合使用</li>
-<li><code>&lt;output&gt;</code></li>
-<li><code>&lt;progress&gt;</code>显示一项任务的完成情况，属性有max和value</li>
-<li><code>&lt;meter&gt;</code>显示已知范围的标量值或者分数值</li>
-</ul>
-<p>关于更多html5标准化元素，可以参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list" target="_blank" rel="external">MDN标准化标签列表</a></p>
-</li>
-<li><p>\<iframe\>的改进</iframe\></p>
-<p>HTML内联框架元素 <code>&lt;iframe&gt;</code> 表示嵌套的浏览上下文，有效地将另一个HTML页面嵌入到当前页面中。</p>
-<p>H5新增sandbox、seamless、srcdoc属性，作者可以精确控制iframe元素的安全级</p>
-</li>
-<li><p>MathML</p>
-</li>
-</ol>
-<h3 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h3><ol>
-<li><p>Websocket</p>
-<p>客户端和服务端的双向通信（HTTP协议为单向通信）</p>
-<ul>
-<li><p>WebSocket</p>
-<p>实现接口<code>WebSocket WebSocket(in DOMString url, in optional DOMString protocols);</code>有send和close方法和open，message事件</p>
-</li>
-<li><p>CloseEvent</p>
-</li>
-<li><p>MessageEvent</p>
-</li>
-</ul>
-</li>
-<li><p>Server-sent events</p>
-<ul>
-<li>服务器发送事件API也就是<a href="https://developer.mozilla.org/zh-CN/Server-sent_events/EventSource" target="_blank" rel="external"><code>EventSource</code></a>接口,在你创建一个新的<a href="https://developer.mozilla.org/zh-CN/Server-sent_events/EventSource" target="_blank" rel="external"><code>EventSource</code></a>对象的同时,你可以指定一个接受事件的URI.例如:</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> evtSource = <span class="keyword">new</span> EventSource(<span class="string">"ssedemo.php"</span>);</div><div class="line"></div><div class="line">evtSource.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> newElement = <span class="built_in">document</span>.createElement(<span class="string">"li"</span>);</div><div class="line">  </div><div class="line">  newElement.innerHTML = <span class="string">"message: "</span> + e.data;</div><div class="line">  eventList.appendChild(newElement);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>服务器端发送的响应内容应该使用值为”text/event-stream”的MIME类型.这里有一个事件流文件的例子: <a href="https://developer.mozilla.org/zh-CN/docs/Server-sent_events/Using_server-sent_events#Event_stream_format" target="_blank" rel="external">Event stream format</a>.</li>
-</ul>
-</li>
-<li><p>WebRTC</p>
-</li>
-</ol>
-<h3 id="离线、存储"><a href="#离线、存储" class="headerlink" title="离线、存储"></a>离线、存储</h3><ol>
-<li><p>Storage</p>
-<ul>
-<li><p>Storage</p>
-<p>它是所有Storage实例（<code>sessionStorage</code>和<code>globalStorage[location.hostname]</code>）的构造函数</p>
-</li>
-<li><p>sessionStorage</p>
-<p><code>sessionStorage</code> 是个全局对象，它维护着在页面会话(page session)期间有效的存储空间。只要浏览器开着，页面会话周期就会一直持续。当页面重新载入(reload)或者被恢复(restores)时，页面会话也是一直存在的。每在新标签或者新窗口中打开一个新页面，都会初始化一个新的会话。 </p>
-<p>setItem和getItem存取数据</p>
-</li>
-<li><p>localStorage</p>
-<p>localStorage和sessionStorage的区别是存入的数据依然存在</p>
-</li>
-<li><p>cookie</p>
-<p>cookie其实不能算Storage的内容，不过放到这来做个区别。cookie一般由服务器生成，可设置实效时间。存放数据比较小，在4kb左右。每次都会携带在http头中。</p>
-</li>
-</ul>
-</li>
-<li><p>IndexedDB</p>
-</li>
-</ol>
-<p><strong>IndexedDB</strong> 是一种低级API，用于客户端存储大量结构化数据(包括, 文件/ blobs)。该API使用索引来实现对该数据的高性能搜索。虽然 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API" target="_blank" rel="external">Web Storage</a> 对于存储较少量的数据很有用，但对于存储更大量的结构化数据来说，这种方法不太有用。<strong>IndexedDB</strong>提供了一个解决方案。</p>
-<p>具体可见：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API" target="_blank" rel="external">MDN:IndexedDB</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/16/前端面试HTML篇/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
