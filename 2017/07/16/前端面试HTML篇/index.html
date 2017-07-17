@@ -110,7 +110,7 @@ HTML5
 性能&amp;amp;集成
 设备访问
 样式设计">
-<meta property="og:updated_time" content="2017-07-16T12:48:19.000Z">
+<meta property="og:updated_time" content="2017-07-17T03:44:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试HTML篇">
 <meta name="twitter:description" content="前端面试 HTML篇前言：这个系列为笔者在面试前梳理一下关于前端的基础知识。
@@ -481,6 +481,54 @@ HTML5
 </ol>
 <p><strong>IndexedDB</strong> 是一种低级API，用于客户端存储大量结构化数据(包括, 文件/ blobs)。该API使用索引来实现对该数据的高性能搜索。虽然 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API" target="_blank" rel="external">Web Storage</a> 对于存储较少量的数据很有用，但对于存储更大量的结构化数据来说，这种方法不太有用。<strong>IndexedDB</strong>提供了一个解决方案。</p>
 <p>具体可见：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API" target="_blank" rel="external">MDN:IndexedDB</a></p>
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><ul>
+<li>表单是html中很重要的一个组成部分。关于表单的元素和属性可以参考：<a href="https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Forms" target="_blank" rel="external">MDN:表单指南</a>。这里主要提一下h5中的几个新标签：</li>
+</ul>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/datalist" target="_blank" rel="external"><code>&lt;datalist&gt;</code></a>代表提供给其他控件的一组预定义选项；</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/keygen" target="_blank" rel="external"><code>&lt;keygen&gt;</code></a>代表一个<em>密钥对生成器</em> 控件。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/output" target="_blank" rel="external"><code>&lt;output&gt;</code></a>代表计算值。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/progress" target="_blank" rel="external"><code>&lt;progress&gt;</code></a>代表进度条。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meter" target="_blank" rel="external"><code>&lt;meter&gt;</code></a>代表滑动条。</p>
+<ul>
+<li><p>input的h5新type</p>
+<ul>
+<li>color用于指定颜色的控件；</li>
+<li>date用于输入日期的控件</li>
+<li>datetime基于UTC时区输入的控件</li>
+<li>email （这个不多说）</li>
+<li>month 输入年月</li>
+<li>number输入浮点数</li>
+<li>range用于输入不精确值控件。如果未指定相应的属性，控件使用如下缺省值：<ul>
+<li><code>min</code>：0</li>
+<li><code>max</code>：100</li>
+<li><code>value</code>：<code>min</code> + (<code>max</code>-<code>min</code>)/2，或当 <code>max</code> 小于 <code>min 时使用min</code></li>
+<li><code>step</code>：1</li>
+</ul>
+</li>
+<li>search用于输入搜索字符串的单行文本字段。换行会被从输入的值中自动移除。</li>
+<li>tel电话号码</li>
+<li>time用于输入不含时区的时间控件</li>
+<li>url用于编辑URL的字段。</li>
+<li>week用于输入一个由星期-年组成的日期，日期不包括时区。</li>
+</ul>
+</li>
+<li><p>表单安全</p>
+</li>
+</ul>
+<h2 id="HTML前端问题汇总"><a href="#HTML前端问题汇总" class="headerlink" title="HTML前端问题汇总"></a>HTML前端问题汇总</h2><ol>
+<li>input和textarea的区别<ul>
+<li>一个是单行文本框，一个是多行文本框</li>
+<li>input当type是text时是单行文本框，value指定初始值，size指定长度，Maxlength指定文本框可以输入的最长长度；textarea使用一个闭合标签，内容放在闭合标签内，使用row和col指定大小。</li>
+</ul>
+</li>
+<li>用一个div模拟textarea的实现<ul>
+<li>关键是要在div上加入<code>contentEditable</code>属性，再通过样式的调整来模拟textarea。比如，边框，背景，以及<code>-webkit-appearance: textarea;overflow:auto;resize:both;</code></li>
+<li>resize元素是调整元素的大小</li>
+<li>该问题参考：<a href="https://stackoverflow.com/questions/8956567/how-do-i-make-an-editable-div-look-like-a-text-field" target="_blank" rel="external">stackoverflow</a></li>
+</ul>
+</li>
+<li>​</li>
+</ol>
 
       
     </div>
@@ -659,7 +707,7 @@ HTML5
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试-HTML篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试 HTML篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5"><span class="nav-number">1.1.</span> <span class="nav-text">HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语义"><span class="nav-number">1.1.1.</span> <span class="nav-text">语义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通信"><span class="nav-number">1.1.2.</span> <span class="nav-text">通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离线、存储"><span class="nav-number">1.1.3.</span> <span class="nav-text">离线、存储</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试-HTML篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试 HTML篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5"><span class="nav-number">1.1.</span> <span class="nav-text">HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语义"><span class="nav-number">1.1.1.</span> <span class="nav-text">语义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通信"><span class="nav-number">1.1.2.</span> <span class="nav-text">通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离线、存储"><span class="nav-number">1.1.3.</span> <span class="nav-text">离线、存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单"><span class="nav-number">1.1.4.</span> <span class="nav-text">表单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML前端问题汇总"><span class="nav-number">1.2.</span> <span class="nav-text">HTML前端问题汇总</span></a></li></ol></li></ol></div>
             
 
           </div>
