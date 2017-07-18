@@ -110,7 +110,7 @@ HTML5
 性能&amp;amp;集成
 设备访问
 样式设计">
-<meta property="og:updated_time" content="2017-07-17T03:44:08.000Z">
+<meta property="og:updated_time" content="2017-07-17T06:47:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试HTML篇">
 <meta name="twitter:description" content="前端面试 HTML篇前言：这个系列为笔者在面试前梳理一下关于前端的基础知识。
@@ -490,8 +490,7 @@ HTML5
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/progress" target="_blank" rel="external"><code>&lt;progress&gt;</code></a>代表进度条。</p>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meter" target="_blank" rel="external"><code>&lt;meter&gt;</code></a>代表滑动条。</p>
 <ul>
-<li><p>input的h5新type</p>
-<ul>
+<li>input的h5新type<ul>
 <li>color用于指定颜色的控件；</li>
 <li>date用于输入日期的控件</li>
 <li>datetime基于UTC时区输入的控件</li>
@@ -512,7 +511,16 @@ HTML5
 <li>week用于输入一个由星期-年组成的日期，日期不包括时区。</li>
 </ul>
 </li>
-<li><p>表单安全</p>
+<li>表单安全<ul>
+<li>XXS（跨站脚本攻击）和CSRF（跨站请求伪造）<ul>
+<li>XXS：用户在输入中放入恶意代码，可以获取用户cookie等</li>
+<li>CSRF：盗用合法甚至是高级用户的身份，来进行某些恶意请求</li>
+<li>防御方法：查看用户输入，移除诸如<code>&lt;script&gt;&lt;iframe&gt;&lt;object&gt;</code>这种</li>
+</ul>
+</li>
+<li>SQL 注入</li>
+<li>HTTP header注入和email注入</li>
+</ul>
 </li>
 </ul>
 <h2 id="HTML前端问题汇总"><a href="#HTML前端问题汇总" class="headerlink" title="HTML前端问题汇总"></a>HTML前端问题汇总</h2><ol>
@@ -570,6 +578,10 @@ HTML5
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/17/前端面试CSS篇/" rel="prev" title="前端面试CSS篇">
+                前端面试CSS篇 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -643,7 +655,7 @@ HTML5
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
