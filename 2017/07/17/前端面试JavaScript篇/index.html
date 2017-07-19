@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/17/前端面试JavaScript篇/index.html">
 <meta property="og:site_name" content="Zhx's blog">
 <meta property="og:description" content="前端面试JS篇JavaScript高程阅读笔记">
-<meta property="og:updated_time" content="2017-07-18T14:00:53.000Z">
+<meta property="og:updated_time" content="2017-07-19T11:52:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试JavaScript篇">
 <meta name="twitter:description" content="前端面试JS篇JavaScript高程阅读笔记">
@@ -392,10 +392,46 @@
 <li>按位异或(XOR)  ^</li>
 <li>左移 &lt;&lt; 不会影响操作数的符号位</li>
 <li>无符号右移 &gt;&gt;&gt;</li>
+<li>同时使用!!模拟Boolean()转型函数的行为，将一个值转换为布尔值</li>
+<li>相等和不相等先比较再转换，全等和不全等，仅比较不转换</li>
+<li>for…in语句，可以用来枚举对象的属性</li>
+<li>label语句可以用于多循环嵌套的退出</li>
+<li>js可以在switch语句中使用任何数据类型</li>
+<li><strong>switch语句在比较值时使用的是全等操作符</strong></li>
+</ul>
+</li>
+<li>函数<ol>
+<li>理解参数<ul>
+<li>ECMAScript不介意传递进来多少参数，也不在乎传进来参数是什么数据类型</li>
+<li>arguments对象接收函数的参数，arguments对象只是和Array类似，并不是Array的实例</li>
+</ul>
+</li>
+<li>没有重载 如果有两个名字相同的函数，则该名字只属于后定义的函数</li>
+</ol>
+</li>
+</ol>
+<h3 id="第4章-变量、作用域和内存问题"><a href="#第4章-变量、作用域和内存问题" class="headerlink" title="第4章 变量、作用域和内存问题"></a>第4章 变量、作用域和内存问题</h3><ol>
+<li>基本类型和引用类型<ul>
+<li>基本类型按值访问，引用类型不能操作对象的内存空间，只能操作对象的引用</li>
+<li>对于引用类型的值我们可以为其添加属性和方法，也可以改变和删除属性和方法；对于基本类型我们不能添加属性</li>
+<li>ECMAScript中字符串为基本类型而不是引用类型</li>
+<li><strong>如果从一个变量向另一个变量复杂基本类型的值，会在变量对象上创建一个新值，然后把该值复制到为新变量分配的位置上；引用类型则是复制指针</strong></li>
+<li><strong>ECMAScript中所有函数都是按值传递的，而引用类型的传递，则如同引用类型变量的复制，可以把该参数想象成局部变量</strong></li>
+<li>typeof检测基本类型，instanceof检测引用类型（根据原型链）</li>
+</ul>
+</li>
+<li>执行环境和作用域<ul>
+<li><em>执行环境</em> 定义了变量或函数有权访问的其他数据。每个执行环境都有一个与之关联的变量对象</li>
+<li>每个函数都有自己的执行环境，当代码在一个环境中执行时，会创建变量对象的一个作用域链，作用域链前端始终都是当前执行的代码所在环境的变量对象，即arguments对象。全局执行环境的变量对象始终是作用域链中的最后一个对象</li>
+<li>没有块级作用域（let解决了这个）</li>
+</ul>
+</li>
+<li>垃圾收集<ul>
+<li>两个策略：标记清除、引用计数</li>
 </ul>
 </li>
 </ol>
-<h3 id="第21章-Ajax与Comet"><a href="#第21章-Ajax与Comet" class="headerlink" title="第21章 Ajax与Comet"></a>第21章 Ajax与Comet</h3><p>21.1 XMLHttpRequest</p>
+<h3 id="第5章-引用类型"><a href="#第5章-引用类型" class="headerlink" title="第5章 引用类型"></a>第5章 引用类型</h3><h3 id="第21章-Ajax与Comet"><a href="#第21章-Ajax与Comet" class="headerlink" title="第21章 Ajax与Comet"></a>第21章 Ajax与Comet</h3><p>21.1 XMLHttpRequest</p>
 <ul>
 <li>IE7+以及现代浏览器都支持XMLHttpRequest对象，<code>var xhr = new XMLHttpReuqest();</code></li>
 <li>open方法开启请求（三个参数发送类型、url和是否异步）,send方法作为请求主体发送数据。如果不需要通过请求主题发送数据，则必须传入null</li>
@@ -699,7 +735,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试JS篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试JS篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript高程阅读笔记"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript高程阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第3章-基本概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">第3章 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第21章-Ajax与Comet"><span class="nav-number">1.1.2.</span> <span class="nav-text">第21章 Ajax与Comet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第22章-高级函数"><span class="nav-number">1.1.3.</span> <span class="nav-text">第22章 高级函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第25章-离线应用与客户端存储"><span class="nav-number">1.1.4.</span> <span class="nav-text">第25章 离线应用与客户端存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6新特性"><span class="nav-number">1.2.</span> <span class="nav-text">ES6新特性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试JS篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试JS篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript高程阅读笔记"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript高程阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第3章-基本概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">第3章 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第4章-变量、作用域和内存问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">第4章 变量、作用域和内存问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第5章-引用类型"><span class="nav-number">1.1.3.</span> <span class="nav-text">第5章 引用类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第21章-Ajax与Comet"><span class="nav-number">1.1.4.</span> <span class="nav-text">第21章 Ajax与Comet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第22章-高级函数"><span class="nav-number">1.1.5.</span> <span class="nav-text">第22章 高级函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第25章-离线应用与客户端存储"><span class="nav-number">1.1.6.</span> <span class="nav-text">第25章 离线应用与客户端存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6新特性"><span class="nav-number">1.2.</span> <span class="nav-text">ES6新特性</span></a></li></ol></li></ol></div>
             
 
           </div>
