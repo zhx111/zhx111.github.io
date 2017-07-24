@@ -84,16 +84,37 @@
 
 
 
-<meta name="description" content="前端面试CSS篇">
+<meta name="description" content="前端面试CSS篇CSS 2.1（CSS权威指南）第二章选择器
+通配选择器为星号（*）
+元素，类，ID选择器
+属性选择器
+简单属性选择器  h1[class]{color:red;}
+根据具体属性值选择 p[class=&amp;quot;urgent warning&amp;quot;]{}不同于类选择器，是一个完全串的匹配
+根据部分属性值选择
+[foo~=&amp;quot;bar&amp;quot;] 选择foo属性值包含“">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端面试CSS篇">
 <meta property="og:url" content="http://yoursite.com/2017/07/17/前端面试CSS篇/index.html">
 <meta property="og:site_name" content="Zhx's blog">
-<meta property="og:description" content="前端面试CSS篇">
-<meta property="og:updated_time" content="2017-07-17T06:49:05.000Z">
+<meta property="og:description" content="前端面试CSS篇CSS 2.1（CSS权威指南）第二章选择器
+通配选择器为星号（*）
+元素，类，ID选择器
+属性选择器
+简单属性选择器  h1[class]{color:red;}
+根据具体属性值选择 p[class=&amp;quot;urgent warning&amp;quot;]{}不同于类选择器，是一个完全串的匹配
+根据部分属性值选择
+[foo~=&amp;quot;bar&amp;quot;] 选择foo属性值包含“">
+<meta property="og:updated_time" content="2017-07-24T08:58:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试CSS篇">
-<meta name="twitter:description" content="前端面试CSS篇">
+<meta name="twitter:description" content="前端面试CSS篇CSS 2.1（CSS权威指南）第二章选择器
+通配选择器为星号（*）
+元素，类，ID选择器
+属性选择器
+简单属性选择器  h1[class]{color:red;}
+根据具体属性值选择 p[class=&amp;quot;urgent warning&amp;quot;]{}不同于类选择器，是一个完全串的匹配
+根据部分属性值选择
+[foo~=&amp;quot;bar&amp;quot;] 选择foo属性值包含“">
 
 
 
@@ -335,7 +356,52 @@
       
 
       
-        <h1 id="前端面试CSS篇"><a href="#前端面试CSS篇" class="headerlink" title="前端面试CSS篇"></a>前端面试CSS篇</h1>
+        <h1 id="前端面试CSS篇"><a href="#前端面试CSS篇" class="headerlink" title="前端面试CSS篇"></a>前端面试CSS篇</h1><h2 id="CSS-2-1（CSS权威指南）"><a href="#CSS-2-1（CSS权威指南）" class="headerlink" title="CSS 2.1（CSS权威指南）"></a>CSS 2.1（CSS权威指南）</h2><h3 id="第二章选择器"><a href="#第二章选择器" class="headerlink" title="第二章选择器"></a>第二章选择器</h3><ul>
+<li>通配选择器为星号（*）</li>
+<li>元素，类，ID选择器</li>
+<li>属性选择器<ul>
+<li>简单属性选择器  <code>h1[class]{color:red;}</code></li>
+<li>根据具体属性值选择 <code>p[class=&quot;urgent warning&quot;]{}</code>不同于类选择器，是一个完全串的匹配</li>
+<li>根据部分属性值选择<ul>
+<li><code>[foo~=&quot;bar&quot;]</code> 选择foo属性值包含“bar”的所有元素</li>
+<li><code>[foo^=&quot;bar&quot;]</code> 选择foo属性值以“bar”开头的所有元素</li>
+<li><code>[foo$=&quot;bar&quot;]</code> 以bar结尾</li>
+<li><code>[foo*=&quot;bar&quot;]</code> 包含子串“bar”</li>
+</ul>
+</li>
+<li>特定属性选择类型</li>
+</ul>
+</li>
+<li>后代选择器（加一个空格）选择继承的所有元素</li>
+<li>选择子元素（使用大于符号&gt;）只是子元素，不包括继承的</li>
+<li>选择相邻兄弟元素 （使用+号）只能选择两个相邻兄弟中的第二个元素</li>
+<li>伪类和伪元素<ul>
+<li>链接伪类 <ul>
+<li><code>:link</code>有href属性的超链接</li>
+<li><code>:visited</code>作为以访问链接的所有锚</li>
+</ul>
+</li>
+<li>动态伪类<ul>
+<li><code>:focus</code>当前拥有输入焦点的元素</li>
+<li><code>：hover</code></li>
+<li><code>:active</code>被用户输入激活的元素</li>
+</ul>
+</li>
+<li>伪类顺序 l-v-f-h-a</li>
+<li>选择第一个子元素<ul>
+<li><code>:first-child</code> 常见的错误时认为例如<code>p:first-child</code>之类的选择器会选择p元素的第一个子元素。但实际是作为第一个子元素的p元素</li>
+</ul>
+</li>
+<li>伪元素选择器<ul>
+<li>设置首字母样式<code>:first-letter</code></li>
+<li>设置第一行样式<code>:first-line</code></li>
+<li>设置之前和之后元素的样式<code>:after :before</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h2><h2 id="CSS-预编译（LESS、SASS）"><a href="#CSS-预编译（LESS、SASS）" class="headerlink" title="CSS 预编译（LESS、SASS）"></a>CSS 预编译（LESS、SASS）</h2>
       
     </div>
 
@@ -517,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试CSS篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试CSS篇</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试CSS篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试CSS篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-2-1（CSS权威指南）"><span class="nav-number">1.1.</span> <span class="nav-text">CSS 2.1（CSS权威指南）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第二章选择器"><span class="nav-number">1.1.1.</span> <span class="nav-text">第二章选择器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3"><span class="nav-number">1.2.</span> <span class="nav-text">CSS3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-预编译（LESS、SASS）"><span class="nav-number">1.3.</span> <span class="nav-text">CSS 预编译（LESS、SASS）</span></a></li></ol></li></ol></div>
             
 
           </div>
