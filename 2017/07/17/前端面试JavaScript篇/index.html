@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/17/前端面试JavaScript篇/index.html">
 <meta property="og:site_name" content="Zhx's blog">
 <meta property="og:description" content="前端面试JS篇JavaScript高程阅读笔记">
-<meta property="og:updated_time" content="2017-08-04T08:38:43.000Z">
+<meta property="og:updated_time" content="2017-08-07T08:13:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试JavaScript篇">
 <meta name="twitter:description" content="前端面试JS篇JavaScript高程阅读笔记">
@@ -1068,7 +1068,108 @@
 </ul>
 </li>
 </ol>
-<h3 id="第11章DOM扩展"><a href="#第11章DOM扩展" class="headerlink" title="第11章DOM扩展"></a>第11章DOM扩展</h3><h3 id="第21章-Ajax与Comet"><a href="#第21章-Ajax与Comet" class="headerlink" title="第21章 Ajax与Comet"></a>第21章 Ajax与Comet</h3><p>21.1 XMLHttpRequest</p>
+<h3 id="第11章DOM扩展"><a href="#第11章DOM扩展" class="headerlink" title="第11章DOM扩展"></a>第11章DOM扩展</h3><ol>
+<li>选择符API<ol>
+<li><code>querySelector()</code>方法<ul>
+<li>接收一个CSS选择符号，如果没有找到匹配元素，则返回null。返回多个元素，取第一个。</li>
+<li>使用Element类型调用只会在该元素后代的范围内查找匹配元素</li>
+</ul>
+</li>
+<li><code>querySelectorAll()</code>方法<ul>
+<li>这个方法返回的是一个NodeList实例，如果没有找到匹配的元素，NodeList就是空的</li>
+<li>返回的实际上时带有所有属性和方法的NodeList，其底层实现类似于一组元素的快照，而非不断对文档进行搜索的动态查询</li>
+<li>要取得返回的NodeList中的每一个元素，可以使用item()方法也可以使用方括号语法</li>
+</ul>
+</li>
+<li><code>matchesSelector()</code>方法 <ul>
+<li>这个方法接收一个CSS选择符，如果调用元素与该选择符匹配，返回true，否则返回false</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>元素遍历<ul>
+<li>对于元素间空格，IE9以及之前版本不会返回文本节点，而其他所有的浏览器都会返回文本节点。为了弥补，Element Traversal规范增加了5个属性</li>
+<li>childElementCount：返回子元素的个数</li>
+<li>firstElementChild：指向第一个子元素</li>
+<li>lastElementChild</li>
+<li>previousElementSibling：指向前一个同辈元素</li>
+<li>nextElementSibling</li>
+</ul>
+</li>
+<li>HTML5<ol>
+<li><code>getElementByClassName()</code>方法<ul>
+<li>接收一个包含一或多个类名的字符串，返回带有指定类的所有元素的NodeList</li>
+</ul>
+</li>
+<li>classList属性<ul>
+<li>原来是通过className，取得整个类的字符串</li>
+<li>现在所有元素新增了classList属性，这个属性是新集合类型DOMTokenList的实例。要取得每个元素可以使用item()方法或者方括号</li>
+<li>新类型定义如下方法：<ul>
+<li>add(value):添加类名，如果值已经存在，就不添加</li>
+<li>contains(value):是否存在类名</li>
+<li>remove(value):删除指定类名</li>
+<li>toggle(value)：如果列表中已经存在给定的值，删除它；如果列表中没有给定的值，添加它。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>焦点管理<ol>
+<li>元素获得焦点的方式有页面加载、用户输入和再代码中调用focus()</li>
+<li>document.activeElement属性会引用DOM中当前获得焦点的元素</li>
+<li>默认情况，文档刚刚加载完成时，document.activeElement保存document.body；加载期间，其值为null</li>
+<li><code>document.hasFocus()</code>用于确定文档是否获得了焦点</li>
+</ol>
+</li>
+<li>HTMLDocument的变化<ul>
+<li>document.readyState属性：loading，正在加载文档；complete，已经加载完文档</li>
+<li>兼容模式（document.compatMode）</li>
+<li>head属性</li>
+</ul>
+</li>
+<li>字符集属性<ul>
+<li>document.charset取得/设置文档使用的字符集</li>
+<li>document.defaultCharset表示根据默认浏览器及操作系统的设置，当前文档默认的字符集应该是什么</li>
+</ul>
+</li>
+<li>自定义数据类型<ul>
+<li>前缀data-</li>
+<li>可通过元素的dataset属性来访问自定义属性的值</li>
+</ul>
+</li>
+<li>插入标记<ul>
+<li>innerHTML<ul>
+<li>读模式返回调用元素的所有子节点，写模式根据指定值创建新DOM树并<strong>替换</strong>所有子节点</li>
+<li>并不是所有元素懂支持innerHTML属性。不支持innerHTML的元素有：<code>&lt;col&gt; &lt;colgrouo&gt; &lt;frameset&gt; &lt;head&gt; &lt;html&gt; &lt;style&gt; &lt;table&gt; &lt;tbody&gt; &lt;thead&gt; &lt;tfoot&gt; &lt;tr&gt;</code></li>
+</ul>
+</li>
+<li>outerHTML 和innerHTML的不同是它包括本身调用的节点</li>
+<li>insertAdjacentHTML()方法</li>
+<li>内存与性能<ul>
+<li>如果删除节点存在事件处理程序，则不会一并删除。内存占用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>专有扩展<ol>
+<li>文档模式<ul>
+<li>IE8引入的概念，文档模式决定可以使用什么样的功能</li>
+<li>使用meta标签设置:<code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=IEVersion&quot;&gt;</code></li>
+<li>其中IEVersion可以取值:<code>Edge</code>, <code>EmulateIE9</code>, <code>EmulateIE8</code>…</li>
+</ul>
+</li>
+<li>children属性</li>
+<li>contains()方法<ul>
+<li>IE引入，确定两个节点之间的关系</li>
+</ul>
+</li>
+<li>插入文本</li>
+<li>滚动</li>
+</ol>
+</li>
+</ol>
+<h3 id="第12章-DOM2和DOM3"><a href="#第12章-DOM2和DOM3" class="headerlink" title="第12章 DOM2和DOM3"></a>第12章 DOM2和DOM3</h3><h3 id="第21章-Ajax与Comet"><a href="#第21章-Ajax与Comet" class="headerlink" title="第21章 Ajax与Comet"></a>第21章 Ajax与Comet</h3><p>21.1 XMLHttpRequest</p>
 <ul>
 <li>IE7+以及现代浏览器都支持XMLHttpRequest对象，<code>var xhr = new XMLHttpReuqest();</code></li>
 <li>open方法开启请求（三个参数发送类型、url和是否异步）,send方法作为请求主体发送数据。如果不需要通过请求主题发送数据，则必须传入null</li>
@@ -1154,7 +1255,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="第25章-离线应用与客户端存储"><a href="#第25章-离线应用与客户端存储" class="headerlink" title="第25章 离线应用与客户端存储"></a>第25章 离线应用与客户端存储</h3><ol>
+<h3 id="第23章-离线应用与客户端存储"><a href="#第23章-离线应用与客户端存储" class="headerlink" title="第23章 离线应用与客户端存储"></a>第23章 离线应用与客户端存储</h3><ol>
 <li>离线检测<ul>
 <li>navigator.onLine检测是否离线</li>
 </ul>
@@ -1395,7 +1496,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试JS篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试JS篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript高程阅读笔记"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript高程阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第3章-基本概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">第3章 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第4章-变量、作用域和内存问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">第4章 变量、作用域和内存问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第5章-引用类型-重要"><span class="nav-number">1.1.3.</span> <span class="nav-text">第5章 引用类型(重要)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第6章-面向对象的程序设计"><span class="nav-number">1.1.4.</span> <span class="nav-text">第6章 面向对象的程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#理解对象"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">理解对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建对象"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承（关键！）"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">继承（关键！）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第7章-函数表达式"><span class="nav-number">1.1.5.</span> <span class="nav-text">第7章 函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第8章-BOM"><span class="nav-number">1.1.6.</span> <span class="nav-text">第8章 BOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第10章-DOM"><span class="nav-number">1.1.7.</span> <span class="nav-text">第10章 DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#节点层次"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">节点层次</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM操作技术"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">DOM操作技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第11章DOM扩展"><span class="nav-number">1.1.8.</span> <span class="nav-text">第11章DOM扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第21章-Ajax与Comet"><span class="nav-number">1.1.9.</span> <span class="nav-text">第21章 Ajax与Comet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第22章-高级函数"><span class="nav-number">1.1.10.</span> <span class="nav-text">第22章 高级函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第25章-离线应用与客户端存储"><span class="nav-number">1.1.11.</span> <span class="nav-text">第25章 离线应用与客户端存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6新特性"><span class="nav-number">1.2.</span> <span class="nav-text">ES6新特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试"><span class="nav-number">1.3.</span> <span class="nav-text">面试</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试JS篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试JS篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript高程阅读笔记"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript高程阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第3章-基本概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">第3章 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第4章-变量、作用域和内存问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">第4章 变量、作用域和内存问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第5章-引用类型-重要"><span class="nav-number">1.1.3.</span> <span class="nav-text">第5章 引用类型(重要)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第6章-面向对象的程序设计"><span class="nav-number">1.1.4.</span> <span class="nav-text">第6章 面向对象的程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#理解对象"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">理解对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建对象"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承（关键！）"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">继承（关键！）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第7章-函数表达式"><span class="nav-number">1.1.5.</span> <span class="nav-text">第7章 函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第8章-BOM"><span class="nav-number">1.1.6.</span> <span class="nav-text">第8章 BOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第10章-DOM"><span class="nav-number">1.1.7.</span> <span class="nav-text">第10章 DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#节点层次"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">节点层次</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM操作技术"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">DOM操作技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第11章DOM扩展"><span class="nav-number">1.1.8.</span> <span class="nav-text">第11章DOM扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第12章-DOM2和DOM3"><span class="nav-number">1.1.9.</span> <span class="nav-text">第12章 DOM2和DOM3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第21章-Ajax与Comet"><span class="nav-number">1.1.10.</span> <span class="nav-text">第21章 Ajax与Comet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第22章-高级函数"><span class="nav-number">1.1.11.</span> <span class="nav-text">第22章 高级函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第23章-离线应用与客户端存储"><span class="nav-number">1.1.12.</span> <span class="nav-text">第23章 离线应用与客户端存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6新特性"><span class="nav-number">1.2.</span> <span class="nav-text">ES6新特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试"><span class="nav-number">1.3.</span> <span class="nav-text">面试</span></a></li></ol></li></ol></div>
             
 
           </div>
