@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Zhx's blog">
 <meta property="og:description" content="基本排序算法面临面试，虽然身为前端也要了解一些常用的排序算法。
 插入排序1234567891011function insertionSort(arr)&amp;#123;  for(let i=1;i&amp;lt;arr.length;i++)&amp;#123;    var node = arr[i];    //node&amp;lt;arr[j-1]递增，反正递减    for(var j=i;j&amp;gt;0&amp;amp;">
-<meta property="og:updated_time" content="2017-08-02T10:57:30.000Z">
+<meta property="og:updated_time" content="2017-08-08T07:10:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见排序算法">
 <meta name="twitter:description" content="基本排序算法面临面试，虽然身为前端也要了解一些常用的排序算法。
@@ -345,6 +345,7 @@
 <p>h为一个增量序列，如1、3、5。当h为1时即完成排序。</p>
 <p>希尔本人建议的序列是最大的h为N/2，h<sub>k</sub>=h<sub>k+1</sub>/2</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellsort</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> gap=arr.length/<span class="number">2</span>;gap&gt;<span class="number">0</span>;gap=<span class="built_in">Math</span>.floor(gap/<span class="number">2</span>))&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=gap;i&lt;arr.length;i++)&#123;</div><div class="line">      <span class="keyword">var</span> node = arr[i];</div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> j=i;j&gt;=gap&amp;&amp;node&lt;arr[j-gap];j-=gap)&#123;</div><div class="line">        arr[j] = arr[j-gap];</div><div class="line">      &#125;</div><div class="line">      arr[j]=node;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>主要思路是利用大顶堆。</p>
 <ol>
 <li>将初始的待排序数组构建成大顶堆。</li>

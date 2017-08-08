@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/17/前端面试JavaScript篇/index.html">
 <meta property="og:site_name" content="Zhx's blog">
 <meta property="og:description" content="前端面试JS篇JavaScript高程阅读笔记">
-<meta property="og:updated_time" content="2017-08-07T08:13:14.000Z">
+<meta property="og:updated_time" content="2017-08-08T07:12:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试JavaScript篇">
 <meta name="twitter:description" content="前端面试JS篇JavaScript高程阅读笔记">
@@ -1169,7 +1169,72 @@
 </ol>
 </li>
 </ol>
-<h3 id="第12章-DOM2和DOM3"><a href="#第12章-DOM2和DOM3" class="headerlink" title="第12章 DOM2和DOM3"></a>第12章 DOM2和DOM3</h3><h3 id="第21章-Ajax与Comet"><a href="#第21章-Ajax与Comet" class="headerlink" title="第21章 Ajax与Comet"></a>第21章 Ajax与Comet</h3><p>21.1 XMLHttpRequest</p>
+<h3 id="第12章-DOM2和DOM3"><a href="#第12章-DOM2和DOM3" class="headerlink" title="第12章 DOM2和DOM3"></a>第12章 DOM2和DOM3</h3><ol>
+<li><p>DOM变化</p>
+</li>
+<li><p>样式</p>
+<ol>
+<li><p>访问元素的样式</p>
+<ul>
+<li>sytle属性，对象是CSSStyleDeclaration的实例。包含通过HTML的style特性指定的所有样式信息，但不包含与外部样式表或嵌入样式表经层叠而来的样式</li>
+<li><code>mydiv.style.backgroundColor</code>, <code>mydiv.style.cssFloat</code>由于float是js保留字所以要换</li>
+<li>DOM2级样式为style对象定义了一些属性和方法：cssText、length、getPropertyCSSValue(propertyName)、getPropertyValue()</li>
+<li>因为style特性不能取得从其他样式表层叠而来并影响当前元素的样式信息。DOM2级增强了<code>document.defaultView</code>提供了<strong>getComputedStyle()方法</strong>。这个方法接收两个参数：要取得计算样式的元素和一个伪元素字符串(例如：after)，第二个参数可以为null。</li>
+<li>上面返回的对象是style对象的类型，可以通过类似<code>document.defaultView.getComputedStyle(mydiv).width</code>取得</li>
+<li>IE不支持，IE有currentStyle</li>
+</ul>
+</li>
+<li><p>操作样式表</p>
+</li>
+<li><p>元素大小</p>
+<ol>
+<li><p>偏移量</p>
+<ul>
+<li>包括元素在屏幕上占用的所有可见的空间。</li>
+<li>offsetHeight:元素在垂直方向上占用的空间大小，以像素计。包括元素的高度、可兼得水平滚动条的高度，上边框高度和下边框高度</li>
+<li>offsetWidth:水平方向</li>
+<li>offsetLeft:元素的左外边框至包含元素的左内边框之间的像素距离</li>
+<li>offsetTop:上外边框至上内边框</li>
+</ul>
+</li>
+<li><p>客户区大小</p>
+<ul>
+<li>元素的内容及其内边距所占据的空间大小（不包括边框）</li>
+<li>clientWidth和clientHeight</li>
+</ul>
+</li>
+<li><p>滚动大小</p>
+<ul>
+<li>包含滚动内容的元素的大小</li>
+<li>scrollHeight：在没有滚动条的情况下，元素内容的总高度</li>
+<li>scrollWidth:在没有滚动条的情况下，元素内容的总宽度</li>
+<li>scrollLeft:被隐藏在内容区域左侧的像素数。通过设置这个属性可以改变元素的滚动位置</li>
+<li>scrollTop:被隐藏在内容区域上方的像素数。通过设置这个属性可以改变元素的滚动位置</li>
+<li>可以通过属性实现回到顶部功能</li>
+</ul>
+</li>
+<li><p>确定元素大小</p>
+<ul>
+<li><code>getBoundClientRect()</code>方法，这个方法会返回一个矩形对象，包含4个属性：left, top,right,bottom。这些属性给出了元素在页面中相对于视窗的位置</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>遍历</p>
+<ul>
+<li>NodeIterator<ul>
+<li>​使用document.createNodeIterator()方法创建它的新实例</li>
+</ul>
+</li>
+<li>TreeWalker</li>
+</ul>
+</li>
+<li><p>范围</p>
+</li>
+</ol>
+<h3 id="第21章-Ajax与Comet"><a href="#第21章-Ajax与Comet" class="headerlink" title="第21章 Ajax与Comet"></a>第21章 Ajax与Comet</h3><p>21.1 XMLHttpRequest</p>
 <ul>
 <li>IE7+以及现代浏览器都支持XMLHttpRequest对象，<code>var xhr = new XMLHttpReuqest();</code></li>
 <li>open方法开启请求（三个参数发送类型、url和是否异步）,send方法作为请求主体发送数据。如果不需要通过请求主题发送数据，则必须传入null</li>
