@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/17/前端面试JavaScript篇/index.html">
 <meta property="og:site_name" content="Zhx's blog">
 <meta property="og:description" content="前端面试JS篇JavaScript高程阅读笔记">
-<meta property="og:updated_time" content="2017-08-08T09:28:50.000Z">
+<meta property="og:updated_time" content="2017-08-14T02:15:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试JavaScript篇">
 <meta name="twitter:description" content="前端面试JS篇JavaScript高程阅读笔记">
@@ -1292,7 +1292,132 @@
 <li>cancelBubble：默认值为false，true取消事件冒泡。（与DOM中stopPropagation()相同）</li>
 <li>returnValue：默认值为true，但值设为false就可以取消事件的默认行为(与DOM中的preventDefault()方法的作用相同)</li>
 </ul>
-<h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><h4 id="内存和性能"><a href="#内存和性能" class="headerlink" title="内存和性能"></a>内存和性能</h4><h4 id="模拟事件"><a href="#模拟事件" class="headerlink" title="模拟事件"></a>模拟事件</h4><h3 id="第21章-Ajax与Comet"><a href="#第21章-Ajax与Comet" class="headerlink" title="第21章 Ajax与Comet"></a>第21章 Ajax与Comet</h3><p>21.1 XMLHttpRequest</p>
+<h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><ol>
+<li>UI事件<ol>
+<li>load事件<ul>
+<li>当页面完全加载后，就会触发load事件</li>
+<li>图像也有load事件</li>
+</ul>
+</li>
+<li>unload事件<ul>
+<li>用户从一个页面切换到另一个页面就会发生unload事件</li>
+</ul>
+</li>
+<li>resize事件<ul>
+<li>当浏览器窗口调整到一个新的高度或宽度时，就会触发resize事件。这个事件再window上面触发</li>
+</ul>
+</li>
+<li>scroll事件<ul>
+<li>当页面滚动时触发</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>焦点事件<ul>
+<li>blur：再元素失去焦点时触发，这个事件不会冒泡</li>
+<li>DOMFocusIn：元素获得焦点时触发。只有Opera支持这个事件</li>
+<li>DOMFocusOut：失去焦点触发，只有Opera支持这个事件</li>
+<li>focus：元素获得焦点时触发，这个事件不会冒泡</li>
+<li>focusin：元素获得焦点时触发，冒泡</li>
+<li>focusout：元素失去焦点时触发，冒泡</li>
+</ul>
+</li>
+<li>鼠标与滚轮事件<ul>
+<li>click：用户单击主鼠标或者按下回车触发</li>
+<li>dblclick：用户双击主鼠标按钮时触发</li>
+<li>mousedown：用户在按下任意鼠标按钮时触发。不能通过键盘触发这个事件</li>
+<li>mouseenter：鼠标光标从元素外部首次移动到元素范围之外时触发。IE、Firefox 9+和Opera支持这个事件</li>
+<li>mouseleave：在位于元素上方的鼠标移动到元素之外触发。IE、Firefox 9+和Opera支持这个事件</li>
+<li>mousemove：当鼠标指针在元素内部移动时重复的触发</li>
+<li>mouseout：在鼠标指针位于一个元素上方，然后用户将其移入另一个元素时触发。</li>
+<li>mouseover：在鼠标指针位于一个元素外部，然后用户将其首次移入另一个元素边界之内时触发。</li>
+<li>mouseup：在用户释放鼠标按钮时触发</li>
+<li>mousewheel：鼠标滚轮事件</li>
+<li>鼠标事件中，<code>event.clientX, event.clientY</code>可以获得鼠标点击相对于视窗的位置</li>
+<li><code>pageX,pageY</code>这俩个属性，是鼠标点击相对于页面的距离（包括滚动）</li>
+<li><code>screenX, screenY</code>相对于整个电脑屏幕</li>
+<li>修改键：<code>shiftKey, ctrlKey, altKey, metaKey</code>包含布尔值</li>
+<li>相关元素：对于mouseover和mouseout事件，会有一个相关元素（比如失去目标的元素），可通过relatedTarget属性访问；IE是fromElement和toElement</li>
+<li>触摸设备：<ul>
+<li>不支持dblclick事件，双击会放大屏幕</li>
+<li>两个手指放在屏幕上且页面随手指移动时会触发mousewheel和scroll事件</li>
+<li>轻击可单击元素会触发mousemove事件。如果此操作会导致内容变化，则不再有其他事件发生；如果没变化则发生mousedown、mouseup和click</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>键盘与文本事件<ol>
+<li>有三个个键盘事件：<code>keydown</code>（按下字符键和非字符键都触发）, <code>keypress</code>（按下字符键触发）, <code>keyup</code></li>
+<li>event.keyCode包含一个代码，与键盘上一个特定的键对应。keyCode属性的值与ASCII码中对应小写字母或数字的编码相同。</li>
+<li>keypress事件的event支持charCode属性。</li>
+<li>DOM3中包含两个新属性key和char。key的值是一个字符串，在按下某个字符键时，key的值就是相应的文本字符。按下非字符键时，key的值是相应键的名（shift）。char属性按下字符键时的行为与key相同，但在按下非字符键时值为null</li>
+<li>DOM3级添加了一个location属性。表示按下什么位置的按键。与key属性一样，支持location的浏览器也不多</li>
+<li>DOM3级事件引入了一个新事件，名叫textInput。当用户在可编辑区域中输入字符时，就会触发这个事件。textInput的event对象包含一个data属性，这个属性的值就是用户输入的字符。</li>
+</ol>
+</li>
+<li>复合事件<ul>
+<li>复合事件用于处理IME的输入序列（类似中文输入，按多个键输入一个字）</li>
+<li><code>compositionstart</code>：在IME的文本复合系统打开时触发</li>
+<li><code>compositionupdate</code>：在向输入字段中插入新字符时触发</li>
+<li><code>compositioned</code>：IME关闭时触发</li>
+</ul>
+</li>
+<li>变动事件<ul>
+<li>DOM中某一部分发生变化时触发的事件</li>
+</ul>
+</li>
+<li>HTML5事件<ol>
+<li>contextmenu事件：右键打开上下文菜单时触发</li>
+<li>beforeunload事件：在页面卸载前触发</li>
+<li>DOMContentLoaded事件：形成完整的DOM树之后就会触发，不理会图像、JS文件、CSS文件或其他资源是否下载完毕</li>
+<li>readystatechange事件：提供与文档或元素的加载状态有关的信息</li>
+<li>pageshow和pagehide事件</li>
+<li>haschange事件：URL的参数列表（URL中“#”号后面的）发生变化时触发。</li>
+</ol>
+</li>
+<li>设备事件<ol>
+<li>orientationchange事件：Safari中定义，确定用户何时将设备由横向查看模式切换为纵向查看模式。window.orientation包含3个值，决定用户手机查看模式。</li>
+<li>MozOrientation事件</li>
+<li>deviceorientation事件：告诉开发人员设备在空中朝向哪</li>
+<li>devicemotion事件：设备什么时候移动</li>
+</ol>
+</li>
+<li>触摸与手势事件<ol>
+<li>触摸事件<ul>
+<li>touchstart</li>
+<li>touchmove</li>
+<li>touchend</li>
+<li>touchcancel</li>
+<li>touches：当前跟踪的触摸操作的Touch对象数组</li>
+<li>targetTouches</li>
+<li>changeTouches </li>
+<li>Touch对象包含属性：clientX, clientY, identifier, pageX, pageY, screenX, screenY, target</li>
+</ul>
+</li>
+<li>手势事件<ul>
+<li>gesturestart：当一个手指已经安在屏幕上而另一个手指又触摸屏幕时触发</li>
+<li>gesturechange：当触摸屏幕的任何一个手指的位置发生变化时触发</li>
+<li>gestureend：当任何一个手指从屏幕上面移开</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="内存和性能"><a href="#内存和性能" class="headerlink" title="内存和性能"></a>内存和性能</h4><p>事件委托、对于不用的事件处理程序需要移除</p>
+<h4 id="模拟事件"><a href="#模拟事件" class="headerlink" title="模拟事件"></a>模拟事件</h4><ul>
+<li>createEvent()方法创建event对象</li>
+<li>鼠标：initMouseEvent()初始化、键盘：initKeyEvent()初始化</li>
+<li>dispatchEvent()方法触发事件</li>
+</ul>
+<p>###第14章 表单脚本</p>
+<ol>
+<li>表单的基础知识</li>
+<li>文本框脚本</li>
+<li>选择框脚本</li>
+<li>表单序列化</li>
+<li>富文本编辑</li>
+</ol>
+<h3 id="第21章-Ajax与Comet"><a href="#第21章-Ajax与Comet" class="headerlink" title="第21章 Ajax与Comet"></a>第21章 Ajax与Comet</h3><p>21.1 XMLHttpRequest</p>
 <ul>
 <li>IE7+以及现代浏览器都支持XMLHttpRequest对象，<code>var xhr = new XMLHttpReuqest();</code></li>
 <li>open方法开启请求（三个参数发送类型、url和是否异步）,send方法作为请求主体发送数据。如果不需要通过请求主题发送数据，则必须传入null</li>
