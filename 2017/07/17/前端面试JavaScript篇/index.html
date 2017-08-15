@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/17/前端面试JavaScript篇/index.html">
 <meta property="og:site_name" content="Zhx's blog">
 <meta property="og:description" content="前端面试JS篇JavaScript高程阅读笔记">
-<meta property="og:updated_time" content="2017-08-14T08:25:24.000Z">
+<meta property="og:updated_time" content="2017-08-15T06:36:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试JavaScript篇">
 <meta name="twitter:description" content="前端面试JS篇JavaScript高程阅读笔记">
@@ -1488,6 +1488,50 @@
 </ol>
 </li>
 </ol>
+<h3 id="第15章-使用Canvas绘图"><a href="#第15章-使用Canvas绘图" class="headerlink" title="第15章 使用Canvas绘图"></a>第15章 使用Canvas绘图</h3><p>HTML5添加的元素：canvas；它还建议了一个名为WebGL的3D上下文</p>
+<p>####基本用法</p>
+<ul>
+<li>要使用canvas元素，必须先设置其width和height属性</li>
+<li>要在这块画布上绘图，需要取得绘图上下文。而取得绘图上下文对象的引用，需要调用getContext()方法并传入上下文的名字，传入“2d”就可以取得绘图上下文对象的引用</li>
+<li><code>var drawing = document.getElementById(&#39;drawing&#39;);var context = drawing.getContext(&quot;2d&quot;)</code></li>
+<li>使用toDataURL()方法，可以导出在canvas元素上绘制的图像</li>
+</ul>
+<p>####2D上下文</p>
+<p>2d上下文坐标开始于canvas元素的左上角。原点坐标为(0,0)</p>
+<ol>
+<li>填充和描边<ul>
+<li>2d上下文的两种基本操作是填充和描边。填充，就是用指定的样式填充图形；描边，就是只在图形的边缘画线。大多数2d上下文操作都会细分为填充和描边两个操作，而操作的结果取决于两个属性：fillStyle和strokeStyle。</li>
+<li>这两个属性的值可以是字符串、渐变对象或模式对象。</li>
+</ul>
+</li>
+<li>绘制矩形<ul>
+<li>矩形是唯一一种可以直接在2d上下文中绘制的形状。与矩形有关的方法包括fillRect(), strokeRect()和clearRect()</li>
+<li>fillRect()方法在画布上绘制的矩形会填充指定的颜色。填充的颜色通过fillStyle属性指定 <code>context.fillRect(10,10,50,50)</code></li>
+<li>strokeRect()方法在画布上绘制的矩形会使用指定的颜色描边。描边颜色通过strokeStyle属性指定</li>
+<li>clearRect()方法用于清除画布上的矩形区域。本质上，这个方法可以把绘制上下文中的某一矩形区域变透明</li>
+</ul>
+</li>
+<li>绘制路径<ul>
+<li>要绘制路径，首先必须调用beginPath()方法，然后再调用以下方法来实际地绘制路径</li>
+<li>arc(x,y,radius,startAngle,endAngle,counterclockwise)：以x、y为圆心绘制一条弧线，弧线半径为radius，起始和结束角度分别为startAngle和endAngle。最后一个参数表示startAngle和endAngle是否按逆时针方向计算，值为false表示按顺时针。</li>
+<li>arcTo(x1,y1,x2,y2,radius)：从上一点开始绘制一条弧线，到x2，y2为止，并以给定的半径radius穿过x1，y1</li>
+<li>bezierCurveTo(c1x,c1y,c2x,c2y,x,y)：从上一点开始绘制一条曲线，到(x,y)为止,并且以(c1x,c1y)和(c2x,c2y)为控制点</li>
+<li>lineTo(x,y):从上一点开始绘制一条直线，到(x,y)为止</li>
+<li>moveTo(x,y)：将绘图游标移动到(x,y)，不画线</li>
+<li>quadraticCurveTo(cx,cy,x,y)：从上一点开始绘制一条二次曲线，到(x,y)为止，并且以(cx,cy)为控制点</li>
+<li>rect(x,y,width,height)：从点(x,y)开始绘制一个矩形，宽度和高度分别由width和height指定。这个方法绘制的是矩形路径，而不是strokeRect()和fillRect()所绘制的独立的形状</li>
+</ul>
+</li>
+<li>绘制文本</li>
+<li>变换</li>
+<li>绘制图像</li>
+<li>阴影</li>
+<li>渐变</li>
+<li>模式</li>
+<li>使用图像数据</li>
+<li>合成</li>
+</ol>
+<p>####WebGL</p>
 <h3 id="第21章-Ajax与Comet"><a href="#第21章-Ajax与Comet" class="headerlink" title="第21章 Ajax与Comet"></a>第21章 Ajax与Comet</h3><p>21.1 XMLHttpRequest</p>
 <ul>
 <li>IE7+以及现代浏览器都支持XMLHttpRequest对象，<code>var xhr = new XMLHttpReuqest();</code></li>
@@ -1751,7 +1795,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1815,7 +1859,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试JS篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试JS篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript高程阅读笔记"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript高程阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第3章-基本概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">第3章 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第4章-变量、作用域和内存问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">第4章 变量、作用域和内存问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第5章-引用类型-重要"><span class="nav-number">1.1.3.</span> <span class="nav-text">第5章 引用类型(重要)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第6章-面向对象的程序设计"><span class="nav-number">1.1.4.</span> <span class="nav-text">第6章 面向对象的程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#理解对象"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">理解对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建对象"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承（关键！）"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">继承（关键！）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第7章-函数表达式"><span class="nav-number">1.1.5.</span> <span class="nav-text">第7章 函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第8章-BOM"><span class="nav-number">1.1.6.</span> <span class="nav-text">第8章 BOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第10章-DOM"><span class="nav-number">1.1.7.</span> <span class="nav-text">第10章 DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#节点层次"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">节点层次</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM操作技术"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">DOM操作技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第11章DOM扩展"><span class="nav-number">1.1.8.</span> <span class="nav-text">第11章DOM扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第12章-DOM2和DOM3"><span class="nav-number">1.1.9.</span> <span class="nav-text">第12章 DOM2和DOM3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第13章-事件"><span class="nav-number">1.1.10.</span> <span class="nav-text">第13章 事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件流"><span class="nav-number">1.1.10.1.</span> <span class="nav-text">事件流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件处理程序"><span class="nav-number">1.1.10.2.</span> <span class="nav-text">事件处理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件对象"><span class="nav-number">1.1.10.3.</span> <span class="nav-text">事件对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件类型"><span class="nav-number">1.1.10.4.</span> <span class="nav-text">事件类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存和性能"><span class="nav-number">1.1.10.5.</span> <span class="nav-text">内存和性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟事件"><span class="nav-number">1.1.10.6.</span> <span class="nav-text">模拟事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第21章-Ajax与Comet"><span class="nav-number">1.1.11.</span> <span class="nav-text">第21章 Ajax与Comet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第22章-高级函数"><span class="nav-number">1.1.12.</span> <span class="nav-text">第22章 高级函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第23章-离线应用与客户端存储"><span class="nav-number">1.1.13.</span> <span class="nav-text">第23章 离线应用与客户端存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6新特性"><span class="nav-number">1.2.</span> <span class="nav-text">ES6新特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试"><span class="nav-number">1.3.</span> <span class="nav-text">面试</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试JS篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试JS篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript高程阅读笔记"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript高程阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第3章-基本概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">第3章 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第4章-变量、作用域和内存问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">第4章 变量、作用域和内存问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第5章-引用类型-重要"><span class="nav-number">1.1.3.</span> <span class="nav-text">第5章 引用类型(重要)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第6章-面向对象的程序设计"><span class="nav-number">1.1.4.</span> <span class="nav-text">第6章 面向对象的程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#理解对象"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">理解对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建对象"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承（关键！）"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">继承（关键！）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第7章-函数表达式"><span class="nav-number">1.1.5.</span> <span class="nav-text">第7章 函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第8章-BOM"><span class="nav-number">1.1.6.</span> <span class="nav-text">第8章 BOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第10章-DOM"><span class="nav-number">1.1.7.</span> <span class="nav-text">第10章 DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#节点层次"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">节点层次</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM操作技术"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">DOM操作技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第11章DOM扩展"><span class="nav-number">1.1.8.</span> <span class="nav-text">第11章DOM扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第12章-DOM2和DOM3"><span class="nav-number">1.1.9.</span> <span class="nav-text">第12章 DOM2和DOM3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第13章-事件"><span class="nav-number">1.1.10.</span> <span class="nav-text">第13章 事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件流"><span class="nav-number">1.1.10.1.</span> <span class="nav-text">事件流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件处理程序"><span class="nav-number">1.1.10.2.</span> <span class="nav-text">事件处理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件对象"><span class="nav-number">1.1.10.3.</span> <span class="nav-text">事件对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件类型"><span class="nav-number">1.1.10.4.</span> <span class="nav-text">事件类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存和性能"><span class="nav-number">1.1.10.5.</span> <span class="nav-text">内存和性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟事件"><span class="nav-number">1.1.10.6.</span> <span class="nav-text">模拟事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第15章-使用Canvas绘图"><span class="nav-number">1.1.11.</span> <span class="nav-text">第15章 使用Canvas绘图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第21章-Ajax与Comet"><span class="nav-number">1.1.12.</span> <span class="nav-text">第21章 Ajax与Comet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第22章-高级函数"><span class="nav-number">1.1.13.</span> <span class="nav-text">第22章 高级函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第23章-离线应用与客户端存储"><span class="nav-number">1.1.14.</span> <span class="nav-text">第23章 离线应用与客户端存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6新特性"><span class="nav-number">1.2.</span> <span class="nav-text">ES6新特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试"><span class="nav-number">1.3.</span> <span class="nav-text">面试</span></a></li></ol></li></ol></div>
             
 
           </div>
