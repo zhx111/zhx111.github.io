@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Zhx's blog">
 <meta property="og:description" content="深入理解ES6阅读笔记前言：博主最近在准备校招，本来想把js的相关知识点都放在之前那篇前端面试js篇中，但是光红宝书的阅读笔记就占了好大篇幅，因此把这篇ES6的阅读笔记拿出来单开一篇。这本书是js高程那本书作者的新作，关于es6之前稍微看了部分阮一峰老师的ES6入门。这次更想深入的了解一下ES6。
 第一章 块级作用域绑定var声明及变量提升机制在函数作用域或全局作用域中通过关键字var声明的变量，">
-<meta property="og:updated_time" content="2017-08-15T09:26:03.000Z">
+<meta property="og:updated_time" content="2017-08-16T07:51:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解ES6阅读笔记">
 <meta name="twitter:description" content="深入理解ES6阅读笔记前言：博主最近在准备校招，本来想把js的相关知识点都放在之前那篇前端面试js篇中，但是光红宝书的阅读笔记就占了好大篇幅，因此把这篇ES6的阅读笔记拿出来单开一篇。这本书是js高程那本书作者的新作，关于es6之前稍微看了部分阮一峰老师的ES6入门。这次更想深入的了解一下ES6。
@@ -341,6 +341,7 @@
         <h1 id="深入理解ES6阅读笔记"><a href="#深入理解ES6阅读笔记" class="headerlink" title="深入理解ES6阅读笔记"></a>深入理解ES6阅读笔记</h1><p>前言：博主最近在准备校招，本来想把js的相关知识点都放在之前那篇前端面试js篇中，但是光红宝书的阅读笔记就占了好大篇幅，因此把这篇ES6的阅读笔记拿出来单开一篇。这本书是js高程那本书作者的新作，关于es6之前稍微看了部分阮一峰老师的ES6入门。这次更想深入的了解一下ES6。</p>
 <h2 id="第一章-块级作用域绑定"><a href="#第一章-块级作用域绑定" class="headerlink" title="第一章 块级作用域绑定"></a>第一章 块级作用域绑定</h2><h3 id="var声明及变量提升机制"><a href="#var声明及变量提升机制" class="headerlink" title="var声明及变量提升机制"></a>var声明及变量提升机制</h3><p>在函数作用域或全局作用域中通过关键字var声明的变量，无论实际上是在哪里声明的，都会被当成在当前作用域顶部的声明。</p>
 <p>ES5是只有函数作用域的，ES6引入块级作用域来强化对变量生命周期的控制。</p>
+<a id="more"></a>
 <h3 id="块级声明"><a href="#块级声明" class="headerlink" title="块级声明"></a>块级声明</h3><ol>
 <li><p>let声明</p>
 <ul>
@@ -453,13 +454,130 @@
 </ul>
 </li>
 </ol>
-<h3 id="模版字面量"><a href="#模版字面量" class="headerlink" title="模版字面量"></a>模版字面量</h3><ol>
-<li>基础语法</li>
-<li>多行字符串</li>
-<li>字符串占位符</li>
-<li>标签模版</li>
+<h3 id="模版字面量"><a href="#模版字面量" class="headerlink" title="模版字面量"></a>模版字面量</h3><p>为了让开发者解决更复杂的问题，ES6模版字面量语法支持创建领域专用语言(DSL)</p>
+<p>ES6弥补了ES5中缺少的特性，多行字符串、基本的字符串格式、HTML转义</p>
+<ol>
+<li><p>基础语法</p>
+<ul>
+<li>模版字面量最简单的用法，看起来好像只是用反撇号`，代替了单、双引号。</li>
+<li>如果想在字符串中使用反撇号，那么用反斜杠将它转义就可以</li>
+</ul>
+</li>
+<li><p>多行字符串</p>
+<ul>
+<li>ES5想实现多行字符串都是依靠数组或者字符串拼接的方法</li>
+<li>ES6中只要直接换行即可。注意使用模版字面量时所有的空白符都属于字符串的一部分，所以要小心缩进。</li>
+<li>需要通过缩进来对齐文本，可以第一行留白，然后使用trim()方法</li>
+</ul>
+</li>
+<li><p>字符串占位符</p>
+<ul>
+<li>在模版字面量中，你可以把任何合法的JavaScript表达式嵌入到占位符中并将其作为字符串一部分输出</li>
+<li>占位符：<code>${}</code>，中间包含任意js表达式</li>
+<li><code>他的名字是${person.name}</code></li>
+</ul>
+</li>
+<li><p>标签模版</p>
+<ul>
+<li><p>标签指的是在模版字面量第一个反撇号(`)前方标注的字符串。</p>
+</li>
+<li><p>标签可以是一个函数，调用时传入加工过的模版字面量各部分数据，但必须结合每个部分来创建结果</p>
+</li>
+<li><p>这个函数的第一个参数是一个数组，包含JS解释过程后的字面量字符串，之后的所有参数都是每一个占位符的解释值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">5</span>;</div><div class="line"><span class="keyword">var</span> b = <span class="number">10</span>;</div><div class="line"></div><div class="line">tag<span class="string">`Hello <span class="subst">$&#123; a + b &#125;</span> world <span class="subst">$&#123; a * b &#125;</span>`</span>;</div><div class="line"><span class="comment">// 等同于</span></div><div class="line">tag([<span class="string">'Hello '</span>, <span class="string">' world '</span>, <span class="string">''</span>], <span class="number">15</span>, <span class="number">50</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>标签模版的重要应用，就是过滤HTML内容</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message = safeHTML<span class="string">`&lt;p&gt;<span class="subst">$&#123;sender&#125;</span> has sent you a message&lt;/p&gt;`</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">safeHTML</span>(<span class="params">templateData</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> s = templateData[<span class="number">0</span>];</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;<span class="built_in">arguments</span>.length;i++)&#123;</div><div class="line">    <span class="keyword">var</span> arg = <span class="built_in">String</span>(<span class="built_in">arguments</span>[i]);</div><div class="line"></div><div class="line">    <span class="comment">// Escape special characters in the substitution.</span></div><div class="line">    s += arg.replace(<span class="regexp">/&amp;/g</span>, <span class="string">"&amp;amp;"</span>)</div><div class="line">            .replace(<span class="regexp">/&lt;/g</span>, <span class="string">"&amp;lt;"</span>)</div><div class="line">            .replace(<span class="regexp">/&gt;/g</span>, <span class="string">"&amp;gt;"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// Don't escape special characters in the template.</span></div><div class="line">    s += templateData[i];</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> s;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> sender = <span class="string">'&lt;script&gt;alert("abc")&lt;/script&gt;'</span>; <span class="comment">// 恶意代码</span></div><div class="line"><span class="keyword">var</span> message = SaferHTML<span class="string">`&lt;p&gt;<span class="subst">$&#123;sender&#125;</span> has sent you a message.&lt;/p&gt;`</span>;</div><div class="line"></div><div class="line">message</div><div class="line"><span class="comment">// &lt;p&gt;&amp;lt;script&amp;gt;alert("abc")&amp;lt;/script&amp;gt; has sent you a message.&lt;/p&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>String.raw转义斜杠</p>
+</li>
+</ul>
+</li>
 </ol>
-<h2 id="第三章-函数"><a href="#第三章-函数" class="headerlink" title="第三章 函数"></a>第三章 函数</h2>
+<h2 id="第三章-函数"><a href="#第三章-函数" class="headerlink" title="第三章 函数"></a>第三章 函数</h2><h3 id="函数形参的默认值"><a href="#函数形参的默认值" class="headerlink" title="函数形参的默认值"></a>函数形参的默认值</h3><ol>
+<li><p>在ES5中的模拟默认参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeRequest</span>(<span class="params">url,timeout,callback</span>)</span>&#123;</div><div class="line">    timeout = timeout || <span class="number">2000</span>;</div><div class="line">    callback = callback || <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">  <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//上面函数的问题是如果timeout为0，则||会判断0为false，timeout还是为2000，更安全的方法是通过typeof检查参数类型</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>ES6中的默认参数值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeRequest</span>(<span class="params">url,timeout=<span class="number">2000</span>,callback=function(</span>)</span>&#123;&#125;)&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当不给参数传入值或者给参数传入undefined的时候才会使用timeout默认值</p>
+</li>
+<li><p>默认参数值对arguments对象的影响</p>
+<ul>
+<li>在ES5的非严格模式下，函数命名参数的变化会体现在arguments对象中，而在严格模式下，不管参数如何变化，arguments对象不再随之变化</li>
+<li>在ES6中，如果一个函数使用了默认参数值，则无论是否显式定义了严格模式，arguments对象的行为都将与ES5严格模式下保持一致</li>
+</ul>
+</li>
+<li><p>默认参数表达式</p>
+<ul>
+<li><p>你可以通过函数执行来得到默认参数的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">5</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">first,second=getValue(</span>))</span>&#123;</div><div class="line">    <span class="keyword">return</span> first+second;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>还可以使用先定义的参数作为后定义参数的默认值</p>
+</li>
+<li><p>先定义的参数不能访问后定义的参数的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">first=second,second</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> first+second;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span>,<span class="number">1</span>);<span class="comment">//抛出错误</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>默认参数的临时死区</p>
+<ul>
+<li>函数参数有自己的作用域和临时死区，其与函数体的作用域是各自独立的，也就是说参数的默认值不可访问函数体内声明的变量</li>
+<li>定义参数时会为每个参数创建一个新的标识符绑定，该绑定在初始化之前不可被引用</li>
+</ul>
+</li>
+</ol>
+<h3 id="处理无命名参数"><a href="#处理无命名参数" class="headerlink" title="处理无命名参数"></a>处理无命名参数</h3><ol>
+<li><p>ES5的无命名参数</p>
+<ul>
+<li>通过使用arguments对象来检查函数的所有参数</li>
+</ul>
+</li>
+<li><p>不定参数（rest parameters）</p>
+<ul>
+<li><p>在函数的命名参数前添加三个点(…)就表明这是一个不定参数，该参数为一个数组。举个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">pick</span>(<span class="params">object,...keys</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> result = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</div><div class="line">  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>,len=keys.length;i&lt;len;i++)&#123;</div><div class="line">        result[keys[i]] = object[keys[i]];</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>不定参数限制</p>
+<ul>
+<li>每个函数最多只能声明一个不定参数，而且一定要放在所有参数的末尾</li>
+<li>不定参数不能用于对象字面量setter中。因为对象字面量setter的参数有且只能有一个</li>
+</ul>
+</li>
+<li><p>不定参数对arguments对象的影响</p>
+<ul>
+<li>无论是否使用不定参数，arguments对象总是包含所有传入函数的参数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="增强的Function构造函数"><a href="#增强的Function构造函数" class="headerlink" title="增强的Function构造函数"></a>增强的Function构造函数</h3><h3 id="展开运算符"><a href="#展开运算符" class="headerlink" title="展开运算符"></a>展开运算符</h3><h3 id="name属性"><a href="#name属性" class="headerlink" title="name属性"></a>name属性</h3><ol>
+<li>如何选择合适的名称</li>
+<li>name属性的特殊情况</li>
+</ol>
+<h3 id="明确函数的多重用途"><a href="#明确函数的多重用途" class="headerlink" title="明确函数的多重用途"></a>明确函数的多重用途</h3><ol>
+<li>ES5中判断函数被调用的方法</li>
+<li>元属性(Metaproperty)new.target</li>
+</ol>
+<h3 id="块级函数"><a href="#块级函数" class="headerlink" title="块级函数"></a>块级函数</h3><ol>
+<li>块级函数的使用场景</li>
+<li>非严格模式下的块级函数</li>
+</ol>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><ol>
+<li>差异</li>
+<li>基本语法</li>
+<li>创建立即执行函数表达式</li>
+<li>箭头函数没有this绑定</li>
+<li>箭头函数和数组</li>
+<li>箭头函数没有arguments绑定</li>
+<li>箭头函数的辨识方法</li>
+</ol>
+<h3 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h3><ol>
+<li>ES6中的尾调用优化</li>
+<li>如何利用尾调用优化</li>
+</ol>
+<h2 id="第四章-扩展对象的功能性"><a href="#第四章-扩展对象的功能性" class="headerlink" title="第四章 扩展对象的功能性"></a>第四章 扩展对象的功能性</h2>
       
     </div>
 
@@ -637,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深入理解ES6阅读笔记"><span class="nav-number">1.</span> <span class="nav-text">深入理解ES6阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-块级作用域绑定"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 块级作用域绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#var声明及变量提升机制"><span class="nav-number">1.1.1.</span> <span class="nav-text">var声明及变量提升机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块级声明"><span class="nav-number">1.1.2.</span> <span class="nav-text">块级声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环中的块作用域绑定"><span class="nav-number">1.1.3.</span> <span class="nav-text">循环中的块作用域绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环中的函数"><span class="nav-number">1.1.4.</span> <span class="nav-text">循环中的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环中的let声明"><span class="nav-number">1.1.5.</span> <span class="nav-text">循环中的let声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环中的const声明"><span class="nav-number">1.1.6.</span> <span class="nav-text">循环中的const声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局块作用域绑定"><span class="nav-number">1.1.7.</span> <span class="nav-text">全局块作用域绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块级绑定最佳实践"><span class="nav-number">1.1.8.</span> <span class="nav-text">块级绑定最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-字符串和正则表达式"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 字符串和正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更好的Unicode支持"><span class="nav-number">1.2.1.</span> <span class="nav-text">更好的Unicode支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他字符串变更"><span class="nav-number">1.2.2.</span> <span class="nav-text">其他字符串变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他正则表达式语法变更"><span class="nav-number">1.2.3.</span> <span class="nav-text">其他正则表达式语法变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模版字面量"><span class="nav-number">1.2.4.</span> <span class="nav-text">模版字面量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-函数"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 函数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深入理解ES6阅读笔记"><span class="nav-number">1.</span> <span class="nav-text">深入理解ES6阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-块级作用域绑定"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 块级作用域绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#var声明及变量提升机制"><span class="nav-number">1.1.1.</span> <span class="nav-text">var声明及变量提升机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块级声明"><span class="nav-number">1.1.2.</span> <span class="nav-text">块级声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环中的块作用域绑定"><span class="nav-number">1.1.3.</span> <span class="nav-text">循环中的块作用域绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环中的函数"><span class="nav-number">1.1.4.</span> <span class="nav-text">循环中的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环中的let声明"><span class="nav-number">1.1.5.</span> <span class="nav-text">循环中的let声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环中的const声明"><span class="nav-number">1.1.6.</span> <span class="nav-text">循环中的const声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局块作用域绑定"><span class="nav-number">1.1.7.</span> <span class="nav-text">全局块作用域绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块级绑定最佳实践"><span class="nav-number">1.1.8.</span> <span class="nav-text">块级绑定最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-字符串和正则表达式"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 字符串和正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更好的Unicode支持"><span class="nav-number">1.2.1.</span> <span class="nav-text">更好的Unicode支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他字符串变更"><span class="nav-number">1.2.2.</span> <span class="nav-text">其他字符串变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他正则表达式语法变更"><span class="nav-number">1.2.3.</span> <span class="nav-text">其他正则表达式语法变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模版字面量"><span class="nav-number">1.2.4.</span> <span class="nav-text">模版字面量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-函数"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数形参的默认值"><span class="nav-number">1.3.1.</span> <span class="nav-text">函数形参的默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理无命名参数"><span class="nav-number">1.3.2.</span> <span class="nav-text">处理无命名参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强的Function构造函数"><span class="nav-number">1.3.3.</span> <span class="nav-text">增强的Function构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展开运算符"><span class="nav-number">1.3.4.</span> <span class="nav-text">展开运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#name属性"><span class="nav-number">1.3.5.</span> <span class="nav-text">name属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#明确函数的多重用途"><span class="nav-number">1.3.6.</span> <span class="nav-text">明确函数的多重用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块级函数"><span class="nav-number">1.3.7.</span> <span class="nav-text">块级函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数"><span class="nav-number">1.3.8.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尾调用优化"><span class="nav-number">1.3.9.</span> <span class="nav-text">尾调用优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-扩展对象的功能性"><span class="nav-number">1.4.</span> <span class="nav-text">第四章 扩展对象的功能性</span></a></li></ol></li></ol></div>
             
 
           </div>
