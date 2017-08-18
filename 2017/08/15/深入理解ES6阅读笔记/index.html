@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Zhx's blog">
 <meta property="og:description" content="深入理解ES6阅读笔记前言：博主最近在准备校招，本来想把js的相关知识点都放在之前那篇前端面试js篇中，但是光红宝书的阅读笔记就占了好大篇幅，因此把这篇ES6的阅读笔记拿出来单开一篇。这本书是js高程那本书作者的新作，关于es6之前稍微看了部分阮一峰老师的ES6入门。这次更想深入的了解一下ES6。
 第一章 块级作用域绑定var声明及变量提升机制在函数作用域或全局作用域中通过关键字var声明的变量，">
-<meta property="og:updated_time" content="2017-08-16T08:35:46.000Z">
+<meta property="og:updated_time" content="2017-08-18T03:29:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解ES6阅读笔记">
 <meta name="twitter:description" content="深入理解ES6阅读笔记前言：博主最近在准备校招，本来想把js的相关知识点都放在之前那篇前端面试js篇中，但是光红宝书的阅读笔记就占了好大篇幅，因此把这篇ES6的阅读笔记拿出来单开一篇。这本书是js高程那本书作者的新作，关于es6之前稍微看了部分阮一峰老师的ES6入门。这次更想深入的了解一下ES6。
@@ -582,26 +582,77 @@
 </ul>
 </li>
 <li>元属性(Metaproperty)new.target<ul>
-<li>为了判断函数是否通过new关键字调用的问题，ES6引入了new.target这个元属性3</li>
+<li>为了判断函数是否通过new关键字调用的问题，ES6引入了new.target这个元属性</li>
+<li>当调用函数的[[Construct]]方法时，new.target（在构造函数中）被赋予为new操作符的目标，通常是新创建对象的实例。如果调用[[Call]]方法，则new.target的值为undefined</li>
 </ul>
 </li>
 </ol>
-<h3 id="块级函数"><a href="#块级函数" class="headerlink" title="块级函数"></a>块级函数</h3><ol>
-<li>块级函数的使用场景</li>
-<li>非严格模式下的块级函数</li>
+<h3 id="块级函数"><a href="#块级函数" class="headerlink" title="块级函数"></a>块级函数</h3><p>在代码块中声明块级函数。</p>
+<ol>
+<li><p>块级函数的使用场景</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">"use strict"</span>;</div><div class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">typeof</span> doSomething);<span class="comment">//"function"</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    doSomething();</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> doSomething)<span class="comment">//undefined</span></div></pre></td></tr></table></figure>
+<p>与使用let的区别是该代码块中，函数会提升到顶端。let不会</p>
+</li>
+<li><p>非严格模式下的块级函数</p>
+<ul>
+<li>在非严格模式下，块级函数提升不再提示至代码块的顶部，而是提升至外围函数或全局作用域的顶部</li>
+</ul>
+</li>
 </ol>
 <h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><ol>
-<li>差异</li>
-<li>基本语法</li>
-<li>创建立即执行函数表达式</li>
-<li>箭头函数没有this绑定</li>
-<li>箭头函数和数组</li>
-<li>箭头函数没有arguments绑定</li>
-<li>箭头函数的辨识方法</li>
+<li><p>差异</p>
+<ul>
+<li><strong>没有this、super、arguments和new.target绑定</strong>  箭头函数中的this、super、arguments及new.target这些值由外层最近一层非箭头函数决定</li>
+<li><strong>不能通过new关键字调用</strong> 箭头函数没有[[Construct]]方法，所以不能用作构造函数，如果通过new关键字调用，程序会抛出错误。</li>
+<li><strong>没有原型</strong> 由于不可以通过new关键字调用箭头函数，因而没有构建原型的需求，所以箭头函数不存在prototype这个属性</li>
+<li><strong>不可以改变this的绑定</strong> 函数内部的this值不可以被改变，在函数的生命周期内始终一致。</li>
+<li><strong>不支持arguments对象</strong> 箭头函数没有arguments绑定，所以你必须通过命名参数和不定参数这两种形式访问函数的参数</li>
+<li><strong>不支持重复的命名参数</strong> 无论在严格还是非严格模式下，箭头函数都不支持重复的命名参数；而在传统函数的规定中，只有在严格模式下才不能有重复的命名参数</li>
+</ul>
+</li>
+<li><p>基本语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//单参立即返回</span></div><div class="line"><span class="keyword">let</span> reflect = <span class="function"><span class="params">value</span> =&gt;</span> value;</div><div class="line"><span class="keyword">let</span> reflect = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//双参</span></div><div class="line"><span class="keyword">let</span> sum = <span class="function">(<span class="params">num1,num2</span>) =&gt;</span> num1+num2;</div><div class="line"></div><div class="line"><span class="comment">//无参</span></div><div class="line"><span class="keyword">let</span> getName = <span class="function"><span class="params">()</span> =&gt;</span> <span class="string">"zhx"</span>;</div><div class="line"></div><div class="line"><span class="comment">//更传统的函数体</span></div><div class="line"><span class="keyword">let</span> sum = <span class="function">(<span class="params">num1,num2</span>) =&gt;</span>&#123;</div><div class="line">    <span class="keyword">return</span> num1+num2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//想在箭头函数外返回一个对象字面量</span></div><div class="line"><span class="keyword">let</span> getTempItem = <span class="function"><span class="params">id</span> =&gt;</span>(&#123;<span class="attr">id</span>:id,<span class="attr">name</span>:<span class="string">"Temp"</span>&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建立即执行函数表达式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> person = <span class="function">(<span class="params">(name</span>)=&gt;</span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">getName</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> name;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)(<span class="string">"zhx"</span>);</div><div class="line"><span class="built_in">console</span>.log(person.getName());</div></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数没有this绑定</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> PageHandler = &#123;</div><div class="line">    <span class="attr">id</span>:<span class="string">"12345"</span>,</div><div class="line">    <span class="attr">init</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">            <span class="keyword">this</span>.doSomething(event.type);<span class="comment">//抛出错误</span></div><div class="line">        &#125;，<span class="literal">false</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">doSomething</span>:<span class="function"><span class="keyword">function</span>(<span class="params">type</span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(type);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//可以使用bind绑定this</span></div><div class="line"><span class="keyword">let</span> PageHandler = &#123;</div><div class="line">    <span class="attr">id</span>:<span class="string">"12345"</span>,</div><div class="line">    <span class="attr">init</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>,(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">            <span class="keyword">this</span>.doSomething(event.type);<span class="comment">//正常</span></div><div class="line">        &#125;).bind(<span class="keyword">this</span>)，<span class="literal">false</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">doSomething</span>:<span class="function"><span class="keyword">function</span>(<span class="params">type</span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(type);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//使用箭头函数</span></div><div class="line"><span class="keyword">let</span> PageHandler = &#123;</div><div class="line">    <span class="attr">id</span>:<span class="string">"12345"</span>,</div><div class="line">    <span class="attr">init</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>,(event)=&gt;&#123;</div><div class="line">            <span class="keyword">this</span>.doSomething(event.type);</div><div class="line">        &#125;，<span class="literal">false</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">doSomething</span>:<span class="function"><span class="keyword">function</span>(<span class="params">type</span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(type);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>箭头函数中没有this绑定，须通过查找作用域链来决定其值。如果箭头函数被非箭头函数包含，则this绑定的是最近一层非箭头函数的this</p>
+</li>
+<li><p>箭头函数和数组</p>
+<ul>
+<li><code>let result = values.sort((a,b)=&gt;a-b);</code></li>
+</ul>
+</li>
+<li><p>箭头函数没有arguments绑定</p>
+<ul>
+<li>箭头函数没有自己的arguments对象，但可以访问外围函数的arguments对象</li>
+</ul>
+</li>
+<li><p>箭头函数的辨识方法</p>
+<ul>
+<li>typeof 和 instanceof和普通函数结果一致</li>
+<li>在箭头函数上调用call(), apply(), bind()方法仍然可行，但this值不会受影响</li>
+</ul>
+</li>
 </ol>
-<h3 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h3><ol>
-<li>ES6中的尾调用优化</li>
-<li>如何利用尾调用优化</li>
+<h3 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h3><p>尾调用指的是函数作为另一个函数的最后一条语句被调用，就像这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> doSomethingElse();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在ES5的引擎中，尾调用的实现与其他函数调用的实现类似：创建一个新的栈帧，将其推入调用栈来表示函数调用。在循环调用中，每一个未用完的栈帧都会保存在内存中，当调用栈变得过大时会造成程序问题</p>
+<ol>
+<li><p>ES6中的尾调用优化</p>
+<ul>
+<li>在<strong>严格模式</strong>下，如果满足以下条件尾调用不再创建新的栈帧，而是清除并重用当前栈帧</li>
+<li>尾调用不访问当前栈帧的变量</li>
+<li>在函数内部，尾调用是最后一条语句</li>
+<li>尾调用的结果作为函数值返回</li>
+</ul>
+</li>
+<li><p>如何利用尾调用优化</p>
+<p>主要是递归函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="comment">//无法优化，必须在返回后执行乘法操作</span></div><div class="line">      <span class="keyword">return</span> n*factorial(n<span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//优化</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n,p=<span class="number">1</span></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>*p;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">let</span> result = n*p;</div><div class="line">      <span class="comment">//优化后</span></div><div class="line">      <span class="keyword">return</span> factorial(n<span class="number">-1</span>,result);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ol>
 <h2 id="第四章-扩展对象的功能性"><a href="#第四章-扩展对象的功能性" class="headerlink" title="第四章 扩展对象的功能性"></a>第四章 扩展对象的功能性</h2>
       
