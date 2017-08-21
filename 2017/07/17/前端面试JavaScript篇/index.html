@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/17/前端面试JavaScript篇/index.html">
 <meta property="og:site_name" content="Zhx's blog">
 <meta property="og:description" content="前端面试JS篇JavaScript高程阅读笔记">
-<meta property="og:updated_time" content="2017-08-15T06:36:17.000Z">
+<meta property="og:updated_time" content="2017-08-21T03:37:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试JavaScript篇">
 <meta name="twitter:description" content="前端面试JS篇JavaScript高程阅读笔记">
@@ -677,7 +677,7 @@
 </li>
 <li><p>读取属性的特性</p>
 <ul>
-<li>使用<code>Object.getOwnPropertyDescriptor()</code>方法，可以取得给定属性的描述符。这个方法接收两个参数：属性所在的对象和要读取其妙舒服的属性名称。返回值是一个对象，如果是个访问器属性，这个对象的属性有访问器的那四个特性。是数据属性，则是数据属性的那四个特性。</li>
+<li>使用<code>Object.getOwnPropertyDescriptor()</code>方法，可以取得给定属性的描述符。这个方法接收两个参数：属性所在的对象和要读取其对象的属性名称。返回值是一个对象，如果是个访问器属性，这个对象的属性有访问器的那四个特性。是数据属性，则是数据属性的那四个特性。</li>
 </ul>
 </li>
 </ol>
@@ -736,7 +736,7 @@
 <p>构造函数定义实例属性，而原型对象定义方法和共享的属性。</p>
 </li>
 <li><p>动态原型模式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age= age;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName()!=<span class="string">"function"</span>)&#123;</div><div class="line">    Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      alert(<span class="string">"hi"</span>);</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> friend - <span class="keyword">new</span> Person(<span class="string">"zhx"</span>,<span class="number">23</span>);</div><div class="line">friend.sayName();<span class="comment">//"hi"</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age= age;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName()!=<span class="string">"function"</span>)&#123;</div><div class="line">    Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      alert(<span class="string">"hi"</span>);</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> friend = <span class="keyword">new</span> Person(<span class="string">"zhx"</span>,<span class="number">23</span>);</div><div class="line">friend.sayName();<span class="comment">//"hi"</span></div></pre></td></tr></table></figure>
 <p>​</p>
 </li>
 <li><p>寄生构造函数模式</p>
