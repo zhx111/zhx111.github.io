@@ -772,7 +772,7 @@
 </li>
 <li>动态伪类<ul>
 <li><code>:focus</code>当前拥有输入焦点的元素</li>
-<li><code>：hover</code></li>
+<li><code>:hover</code></li>
 <li><code>:active</code>被用户输入激活的元素</li>
 </ul>
 </li>
@@ -923,7 +923,51 @@
 </tbody>
 </table>
 <p>比较重要的（常用）：<code>:nth-child(n) :checked :not(selector)</code></p>
-<h2 id="CSS-预编译（LESS、SASS）"><a href="#CSS-预编译（LESS、SASS）" class="headerlink" title="CSS 预编译（LESS、SASS）"></a>CSS 预编译（LESS、SASS）</h2>
+<h3 id="第三章-结构和层叠"><a href="#第三章-结构和层叠" class="headerlink" title="第三章 结构和层叠"></a>第三章 结构和层叠</h3><h4 id="特殊性"><a href="#特殊性" class="headerlink" title="特殊性"></a>特殊性</h4><p>对于每个规则，用户代理会计算选择器的特殊性，并将特殊性附近到各个声明中。最高特殊性的声明胜出。</p>
+<p>特殊性分四个部分（0，0，0，0）：</p>
+<ul>
+<li>对于选择器中给定的各个ID属性值，加0，1，0，0</li>
+<li>对于选择器中给定的各个类属性值、属性选择或伪类，加0，0，1，0</li>
+<li>对于选择器中给定的各个元素和伪元素，加0，0，0，1</li>
+<li>结合符和通配选择器对特殊性没有任何贡献</li>
+</ul>
+<p>ID选择器和指定id属性选择器再特殊性上有所不同。(#idNames | tr[id=”idNames”])</p>
+<p>內联样式的特殊性为1，0，0，0</p>
+<p>重要声明：!important 如果一个重要声明和一个非重要声明冲突，胜出的总是重要声明</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>颜色，字体等属性可以继承。而边框等属性不能继承。</p>
+<p>继承根本没有特殊性，甚至连0特殊性都没有。意味着通配选择器有0特殊性&gt;没有特殊性的继承。（这就造成了a元素不能继承父元素的字体颜色，因为用户代理会覆盖）</p>
+<h4 id="层叠"><a href="#层叠" class="headerlink" title="层叠"></a>层叠</h4><p>css2.1 层叠规则：</p>
+<ol>
+<li>找出所有相关规则，这些规则都包含一个给定元素匹配的选择器</li>
+<li>按显式权重对应用到该元素的所有声明排序。标志!important的规则的权重要高于没有的。按来源对应到给定元素的所有声明排序。3种来源：创作人员、读者和用户代理</li>
+<li>按特殊性对应到给定元素的所有声明排序。</li>
+<li>按出现顺序对应到给定元素的所有声明排序</li>
+</ol>
+<p>一般建议按link-visited-hover-active的顺序声明链接样式</p>
+<h3 id="第四章-值和单位"><a href="#第四章-值和单位" class="headerlink" title="第四章 值和单位"></a>第四章 值和单位</h3><p>数字</p>
+<p>百分数</p>
+<h4 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h4><ul>
+<li>命名颜色 red olive…17种标准颜色。非标准颜色多到140个</li>
+<li>RGB rgb(color) | #ffffff   </li>
+<li>HSL hsl(<em>hue</em>, <em>saturation</em>, <em>lightness</em>) 色调，饱和度，亮度 比较适合相同色系的颜色选择</li>
+</ul>
+<h4 id="长度单位"><a href="#长度单位" class="headerlink" title="长度单位"></a>长度单位</h4><ul>
+<li>绝对长度单位</li>
+</ul>
+<p>英寸 in 厘米cm 。。。</p>
+<ul>
+<li>相对长度单位</li>
+</ul>
+<p>有三种：em、ex和px（rem为css3新增）</p>
+<p>em和ex单位：1个“em”定义为一种给定字体的font-size值。如果一个元素的font-size为14像素，那么对于该元素，1em就等于14像素。</p>
+<p>如果h1元素字体大小为18px，设置左边距为1em。则左边距为18px。这个大小随字体大小变动而变动。</p>
+<p>ex是指所用字体中小写x的高度。</p>
+<p>任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em=16px。那么12px=0.75em,10px=0.625em。为了简化font-size的换算，需要在css中的body选择器中声明Font-size=62.5%，这就使em值变为 16px*62.5%=10px, 这样12px=1.2em, 10px=1em, 也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。</p>
+<p><strong>em和rem的区别</strong>：em会继承父元素的大小，结果是必须注意字体的重复声明。而rem只是相对于html的根元素，避免了字体大小逐层复合的连锁反应。</p>
+<h4 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h4><p>url(protocol://server/pathname) 绝对URL</p>
+<p>url(pathname) 相对URL</p>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>none，underline。。。</p>
+<h3 id="第五章-字体"><a href="#第五章-字体" class="headerlink" title="第五章 字体"></a>第五章 字体</h3><h2 id="CSS-预编译（LESS、SASS）"><a href="#CSS-预编译（LESS、SASS）" class="headerlink" title="CSS 预编译（LESS、SASS）"></a>CSS 预编译（LESS、SASS）</h2>
           
         
       
