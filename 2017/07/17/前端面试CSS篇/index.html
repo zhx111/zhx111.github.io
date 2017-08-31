@@ -104,7 +104,7 @@
 根据具体属性值选择 p[class=&amp;quot;urgent warning&amp;quot;]{}不同于类选择器，是一个完全串的匹配
 根据部分属性值选择
 [foo~=&amp;quot;bar&amp;quot;] 选择foo属性值包含“">
-<meta property="og:updated_time" content="2017-08-30T09:31:34.000Z">
+<meta property="og:updated_time" content="2017-08-31T09:25:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试CSS篇">
 <meta name="twitter:description" content="前端面试CSS篇CSS 2.1（CSS权威指南）第二章选择器
@@ -578,7 +578,51 @@
 <h4 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h4><p>url(protocol://server/pathname) 绝对URL</p>
 <p>url(pathname) 相对URL</p>
 <h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>none，underline。。。</p>
-<h3 id="第五章-字体"><a href="#第五章-字体" class="headerlink" title="第五章 字体"></a>第五章 字体</h3><h2 id="CSS-预编译（LESS、SASS）"><a href="#CSS-预编译（LESS、SASS）" class="headerlink" title="CSS 预编译（LESS、SASS）"></a>CSS 预编译（LESS、SASS）</h2>
+<h3 id="第五章-字体"><a href="#第五章-字体" class="headerlink" title="第五章 字体"></a>第五章 字体</h3><h4 id="font-family-字体系列"><a href="#font-family-字体系列" class="headerlink" title="font-family 字体系列"></a>font-family 字体系列</h4><p>serif字体 有衬线字。sans-serif 无衬线字。</p>
+<p>字体-字体-字体-通用字体</p>
+<p>字体名称有空格需要加引号</p>
+<p>可继承</p>
+<h4 id="font-weight-字体加粗"><a href="#font-weight-字体加粗" class="headerlink" title="font-weight 字体加粗"></a>font-weight 字体加粗</h4><p>取值：normal | bold | bolder | lighter | 100-900 | inherit</p>
+<p>可继承</p>
+<h4 id="font-size-字体大小"><a href="#font-size-字体大小" class="headerlink" title="font-size 字体大小"></a>font-size 字体大小</h4><p>可继承。不过继承的是计算值而不是百分数。</p>
+<p>所以如果多层嵌套，比如嵌套4层。最后一层设置font-size为0.8em。则最后一层是父层的0.8*4 = 0.4096</p>
+<h4 id="font-style-amp-font-variant-风格和变形"><a href="#font-style-amp-font-variant-风格和变形" class="headerlink" title="font-style&amp;font-variant 风格和变形"></a>font-style&amp;font-variant 风格和变形</h4><p>font-style：italic | oblique | normal | inherit</p>
+<p>font-variant：samll-caps(小型大写文字) | normal | inherit</p>
+<h4 id="font属性"><a href="#font属性" class="headerlink" title="font属性"></a>font属性</h4><p>值：[[font-style || font-variant || font-weight]? font-size [/line-height]]? font-family] | caption | icon | menu | message-box | small-caption | status-bar | inherit</p>
+<p>font-size和font-family是必须且顺序不能错的</p>
+<p>Font-size总是在line-height之前，而且这两个属性总要用一个斜线分隔</p>
+<h3 id="第六章-文本属性"><a href="#第六章-文本属性" class="headerlink" title="第六章 文本属性"></a>第六章 文本属性</h3><h4 id="text-indent-缩进"><a href="#text-indent-缩进" class="headerlink" title="text-indent 缩进"></a>text-indent 缩进</h4><p>值：length | percentage | inherit</p>
+<p>可以为所有块级元素应用，但不能用在行内元素。</p>
+<p>可以设置值为负制造悬挂缩进。</p>
+<p>这个值会继承。</p>
+<h4 id="text-align水平对齐"><a href="#text-align水平对齐" class="headerlink" title="text-align水平对齐"></a>text-align水平对齐</h4><p>值：left | center | right | justify(两端对齐) | inherit</p>
+<p>只应用于块级元素</p>
+<h4 id="垂直对齐：line-height-行高"><a href="#垂直对齐：line-height-行高" class="headerlink" title="垂直对齐：line-height 行高"></a>垂直对齐：line-height 行高</h4><p>值：\<length\> | \<percentage\> | \<number\></number\></percentage\></length\></p>
+<p>应用于所有元素</p>
+<p>指的是文本行基线的距离</p>
+<p>可继承。</p>
+<p>指定一个数的话，则由它来设置缩放因子。各元素都根据自己的font-size值计算line-height</p>
+<h4 id="垂直对齐：vertical-align-垂直对齐文本"><a href="#垂直对齐：vertical-align-垂直对齐文本" class="headerlink" title="垂直对齐：vertical-align 垂直对齐文本"></a>垂直对齐：vertical-align 垂直对齐文本</h4><p>值：baseline | sub | super | top | text-top | middle | bottom | text-bottom | \<length\> | \<percentage\> | inherit</percentage\></length\></p>
+<p>初始值：baseline</p>
+<p>应用于行内元素和表单元格，无继承。</p>
+<h4 id="word-spacing-字间隔"><a href="#word-spacing-字间隔" class="headerlink" title="word-spacing 字间隔"></a>word-spacing 字间隔</h4><p>初始值：normal</p>
+<p>有继承性</p>
+<p>非罗马书写体（比如中文）往往无法指定字间隔</p>
+<h4 id="letter-spacing-字母间隔"><a href="#letter-spacing-字母间隔" class="headerlink" title="letter-spacing 字母间隔"></a>letter-spacing 字母间隔</h4><p>字母和字母的间隔</p>
+<p>有继承性</p>
+<h4 id="text-transform-文本转换"><a href="#text-transform-文本转换" class="headerlink" title="text-transform 文本转换"></a>text-transform 文本转换</h4><p>值：uppercase | lowercase | capitalize | none | inherit</p>
+<h4 id="text-decoration-文本装饰"><a href="#text-decoration-文本装饰" class="headerlink" title="text-decoration 文本装饰"></a>text-decoration 文本装饰</h4><p>值：none | [ underline || overline || line-through || blink ] | inherit</p>
+<p>下划线-上划线-贯穿线-闪烁</p>
+<p>无继承性（但是父元素的装饰会“经过”子元素）</p>
+<h4 id="text-shadow-文本阴影"><a href="#text-shadow-文本阴影" class="headerlink" title="text-shadow 文本阴影"></a>text-shadow 文本阴影</h4><p>值：none | [\<color\> || \<length\>\<length\>\<length\>?, ]* [\<color\> || \<length\>\<length\>\<length\>?, ] |inherit</length\></length\></length\></color\></length\></length\></length\></color\></p>
+<h4 id="white-space-处理空白符"><a href="#white-space-处理空白符" class="headerlink" title="white-space 处理空白符"></a>white-space 处理空白符</h4><p>值：normal | nowrap | pre | pre-wrap | pre-line | inherit</p>
+<p>nowrap防止元素中的文本换行</p>
+<p>有个相关问题：<a href="http://www.alloyteam.com/2016/05/css-word-for-word-breaker-do-you-really-understand/" target="_blank" rel="external">css的断词等</a></p>
+<h4 id="文本方向：direction-amp-unicode-bidi"><a href="#文本方向：direction-amp-unicode-bidi" class="headerlink" title="文本方向：direction &amp; unicode-bidi"></a>文本方向：direction &amp; unicode-bidi</h4><h2 id="预编译（LESS、SASS）"><a href="#预编译（LESS、SASS）" class="headerlink" title="预编译（LESS、SASS）"></a>预编译（LESS、SASS）</h2><p>变量</p>
+<p>嵌套</p>
+<p>mixins</p>
+<p>函数表达式</p>
+
       
     </div>
 
@@ -760,7 +804,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试CSS篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试CSS篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-2-1（CSS权威指南）"><span class="nav-number">1.1.</span> <span class="nav-text">CSS 2.1（CSS权威指南）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第二章选择器"><span class="nav-number">1.1.1.</span> <span class="nav-text">第二章选择器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3"><span class="nav-number">1.2.</span> <span class="nav-text">CSS3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高级选择器"><span class="nav-number">1.2.1.</span> <span class="nav-text">高级选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三章-结构和层叠"><span class="nav-number">1.2.2.</span> <span class="nav-text">第三章 结构和层叠</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊性"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">特殊性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#层叠"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">层叠</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四章-值和单位"><span class="nav-number">1.2.3.</span> <span class="nav-text">第四章 值和单位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#颜色"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#长度单位"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">长度单位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键字"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">关键字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五章-字体"><span class="nav-number">1.2.4.</span> <span class="nav-text">第五章 字体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-预编译（LESS、SASS）"><span class="nav-number">1.3.</span> <span class="nav-text">CSS 预编译（LESS、SASS）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试CSS篇"><span class="nav-number">1.</span> <span class="nav-text">前端面试CSS篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-2-1（CSS权威指南）"><span class="nav-number">1.1.</span> <span class="nav-text">CSS 2.1（CSS权威指南）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第二章选择器"><span class="nav-number">1.1.1.</span> <span class="nav-text">第二章选择器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3"><span class="nav-number">1.2.</span> <span class="nav-text">CSS3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高级选择器"><span class="nav-number">1.2.1.</span> <span class="nav-text">高级选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三章-结构和层叠"><span class="nav-number">1.2.2.</span> <span class="nav-text">第三章 结构和层叠</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊性"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">特殊性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#层叠"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">层叠</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四章-值和单位"><span class="nav-number">1.2.3.</span> <span class="nav-text">第四章 值和单位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#颜色"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#长度单位"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">长度单位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键字"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">关键字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五章-字体"><span class="nav-number">1.2.4.</span> <span class="nav-text">第五章 字体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#font-family-字体系列"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">font-family 字体系列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#font-weight-字体加粗"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">font-weight 字体加粗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#font-size-字体大小"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">font-size 字体大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#font-style-amp-font-variant-风格和变形"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">font-style&font-variant 风格和变形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#font属性"><span class="nav-number">1.2.4.5.</span> <span class="nav-text">font属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六章-文本属性"><span class="nav-number">1.2.5.</span> <span class="nav-text">第六章 文本属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#text-indent-缩进"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">text-indent 缩进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text-align水平对齐"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">text-align水平对齐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垂直对齐：line-height-行高"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">垂直对齐：line-height 行高</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垂直对齐：vertical-align-垂直对齐文本"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">垂直对齐：vertical-align 垂直对齐文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#word-spacing-字间隔"><span class="nav-number">1.2.5.5.</span> <span class="nav-text">word-spacing 字间隔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#letter-spacing-字母间隔"><span class="nav-number">1.2.5.6.</span> <span class="nav-text">letter-spacing 字母间隔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text-transform-文本转换"><span class="nav-number">1.2.5.7.</span> <span class="nav-text">text-transform 文本转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text-decoration-文本装饰"><span class="nav-number">1.2.5.8.</span> <span class="nav-text">text-decoration 文本装饰</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text-shadow-文本阴影"><span class="nav-number">1.2.5.9.</span> <span class="nav-text">text-shadow 文本阴影</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#white-space-处理空白符"><span class="nav-number">1.2.5.10.</span> <span class="nav-text">white-space 处理空白符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本方向：direction-amp-unicode-bidi"><span class="nav-number">1.2.5.11.</span> <span class="nav-text">文本方向：direction & unicode-bidi</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预编译（LESS、SASS）"><span class="nav-number">1.3.</span> <span class="nav-text">预编译（LESS、SASS）</span></a></li></ol></li></ol></div>
             
 
           </div>
