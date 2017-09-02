@@ -1007,7 +1007,18 @@
 <h4 id="white-space-处理空白符"><a href="#white-space-处理空白符" class="headerlink" title="white-space 处理空白符"></a>white-space 处理空白符</h4><p>值：normal | nowrap | pre | pre-wrap | pre-line | inherit</p>
 <p>nowrap防止元素中的文本换行</p>
 <p>有个相关问题：<a href="http://www.alloyteam.com/2016/05/css-word-for-word-breaker-do-you-really-understand/" target="_blank" rel="external">css的断词等</a></p>
-<h4 id="文本方向：direction-amp-unicode-bidi"><a href="#文本方向：direction-amp-unicode-bidi" class="headerlink" title="文本方向：direction &amp; unicode-bidi"></a>文本方向：direction &amp; unicode-bidi</h4><h2 id="预编译（LESS、SASS）"><a href="#预编译（LESS、SASS）" class="headerlink" title="预编译（LESS、SASS）"></a>预编译（LESS、SASS）</h2><p>变量</p>
+<h4 id="文本方向：direction-amp-unicode-bidi"><a href="#文本方向：direction-amp-unicode-bidi" class="headerlink" title="文本方向：direction &amp; unicode-bidi"></a>文本方向：direction &amp; unicode-bidi</h4><h3 id="第7章-基本视觉格式化"><a href="#第7章-基本视觉格式化" class="headerlink" title="第7章 基本视觉格式化"></a>第7章 基本视觉格式化</h3><h4 id="基本框"><a href="#基本框" class="headerlink" title="基本框"></a>基本框</h4><p>css假定每个元素都会生成一个或多个矩形框，这称为元素框。各元素框的中心有一个内容区。这个区周围有可选的内边距，边框和外边框。</p>
+<p><em>正常流</em> 这是值西方语言从左向右，从上向下显示。</p>
+<p>非替换元素 元素内容包含在文档中</p>
+<p><em>替换元素</em> 用作其他内容占位符的元素，经典例子是img</p>
+<p><em>块级元素</em>   <em>行内元素</em></p>
+<h4 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h4><p>盒模型 height和width指的是content的高度宽度（IE盒模型指的是包含padding和border的宽度和高度）</p>
+<p>水平属性：margin-left，border-left，padding-left，width以及所有的右边属性（margin-right…）</p>
+<p>只有margin和width可以设置为auto，其他必须指定值</p>
+<p>两个外边距设置为auto可以使元素居中。这不同于使用text-align，text-align只应用于块级元素的内联内容。</p>
+<p>关于负外边距：</p>
+<p>由于7个水平属性的总和要等于父元素的width。可以通过设置负外边距让子元素更宽</p>
+<h2 id="预编译（LESS、SASS）"><a href="#预编译（LESS、SASS）" class="headerlink" title="预编译（LESS、SASS）"></a>预编译（LESS、SASS）</h2><p>变量</p>
 <p>嵌套</p>
 <p>mixins</p>
 <p>函数表达式</p>
