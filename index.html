@@ -1180,6 +1180,33 @@
 <h4 id="display-改变元素显示"><a href="#display-改变元素显示" class="headerlink" title="display 改变元素显示"></a>display 改变元素显示</h4><p>值：none | inline | block | inline-block | list-item | run-in | table | inline-table | table-row-group | table-header-group | table-footer-group | table-row | table-column-group | table-column | table-cell | teble-caption | inherit</p>
 <p>inline-block:</p>
 <p>行内块元素会作为替换元素放在行中，这说明，行内快元素的底端默认地位于文本行的基线上，而且内部没有行分隔符。</p>
+<h3 id="第八章-内边距、边框和外边距"><a href="#第八章-内边距、边框和外边距" class="headerlink" title="第八章 内边距、边框和外边距"></a>第八章 内边距、边框和外边距</h3><h4 id="基本元素框"><a href="#基本元素框" class="headerlink" title="基本元素框"></a>基本元素框</h4><p>宽度和高度不能应用于行内非替换元素</p>
+<p>IE的盒模型中，widht和height包括了内边距和边框。CSS3可以通过box-sizing来控制其行为。</p>
+<p>IE/Win对行内非替换元素应用了width和height属性。</p>
+<h3 id="外边距"><a href="#外边距" class="headerlink" title="外边距"></a>外边距</h3><p>背景会延伸到内边距而不会延伸到外边距。</p>
+<p>外边距 margin 上右下左</p>
+<p>外边距设置百分数，相对于父元素的width计算的。</p>
+<p>值复制：如果指定了3个值，第四个值会从第二个值复制得到。如果给定了2个值。第3个值会从第1个值复制，第4个值从第2个值复制。</p>
+<p>margin-top、margin-right、margin-bottom、margin-left</p>
+<p>负外边距会使元素框超出其父元素，或与其他元素重叠。</p>
+<p>外边距可以应用于行内元素。会在整段文本上设置上下外边距。</p>
+<p><em>对于只包含文本的行，能改变行间距距离的属性只有line-height、font-size和vertical-align</em></p>
+<p>行内元素的左右外边距是可见的。</p>
+<p>替换元素的上下左右外边距都会影响</p>
+<h4 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h4><p>边框绘制在“元素的背景之上”</p>
+<p><strong>border-style</strong></p>
+<p>值：[none | hidden | dotted(点虚线) | dashed(长虚线) | solid | double | groove | ridge | inset | outset]{1,4} | inherit</p>
+<p>多个样式符合上右下左的规则</p>
+<p>单边样式：border-top-style ..</p>
+<p><strong>border-width</strong></p>
+<p>值：[ thin | medium | thick ]{1,4} | inherit</p>
+<p><strong>border-color</strong></p>
+<p><strong>border</strong></p>
+<p>值：[border-width | border-style | border-color ] | inherit</p>
+<p>可以通过设置某两条边框为0画三角</p>
+<h4 id="内边距"><a href="#内边距" class="headerlink" title="内边距"></a>内边距</h4><p>padding</p>
+<p>内边距和行内元素</p>
+<p>在行内非替换元素应用内边距，行高不会改变，但是背景可以项元素上面和下面延伸。</p>
 <h2 id="预编译（LESS、SASS）"><a href="#预编译（LESS、SASS）" class="headerlink" title="预编译（LESS、SASS）"></a>预编译（LESS、SASS）</h2><p>变量</p>
 <p>嵌套</p>
 <p>mixins</p>
