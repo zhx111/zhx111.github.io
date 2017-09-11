@@ -95,9 +95,9 @@
 最近在看HTTP协议的相关知识，其中HTTP首部字段中有Cache-Control、If-None-Match、ETag等字段。这些都和Web缓存有关。之前博主一直对缓存这块知识有点模糊，所以这篇博客就试着理清并总结一下Web缓存的相关知识，如果有些地方写得不对的地方希望能指出。
 为什么需要缓存虽然现在网速在不断提升，但是网页的性能还是十分重要。如果在一个网页的加载中，能对于">
 <meta property="og:image" content="http://yoursite.com/images/web缓存-Network1.png">
-<meta property="og:image" content="http://yoursite.com/images/web缓存机制-2.png">
-<meta property="og:image" content="http://yoursite.com/images/web缓存-3.png">
-<meta property="og:updated_time" content="2017-09-08T09:53:22.000Z">
+<meta property="og:image" content="http://yoursite.com/images/Web缓存机制-2.png">
+<meta property="og:image" content="http://yoursite.com/images/Web缓存-3.png">
+<meta property="og:updated_time" content="2017-09-11T01:47:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web缓存机制">
 <meta name="twitter:description" content="Web缓存机制前言：
@@ -359,7 +359,7 @@
 <h2 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h2><p>前面说了那么多理论，想要直观地感受缓存，我们可以随便打开一个网站，再打开Chrome的开发者工具，查看其中的Network，下面是我打开的知乎的网络图：</p>
 <p><img src="/images/web缓存-Network1.png" alt="img"></p>
 <p>我们可以看到，其中状态码为200，并且size为from memory cache或disk cache的为强缓存，而状态码为304的为协商缓存。</p>
-<p><img src="/images/web缓存机制-2.png" alt="img"></p>
+<p><img src="/images/Web缓存机制-2.png" alt="img"></p>
 <p>可以看到Header中，有Cache-Control字段。（我们可以同时发现e-tag和last-moidfied字段，但是没有Expires了）</p>
 <p>同时在查看这些强缓存的时候发现有的header中没有Cache-control和Expries也命中了强缓存。google之后发现，应该是使用了淘宝的CDN，CDN的缓存技术。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">server:Tengine</div><div class="line">status:200</div><div class="line">timing-allow-origin:*</div><div class="line">via:cache15.l2et15-1[0,200-0,H], cache35.l2et15-1[0,0], cache3.cn286[0,200-0,H], cache8.cn286[11,0]</div><div class="line">x-cache:HIT TCP_MEM_HIT dirn:20:727080716</div><div class="line">x-swift-cachetime:31535998</div><div class="line">x-swift-savetime:Fri, 19 Aug 2016 02:55:13 GMT</div></pre></td></tr></table></figure>
@@ -372,7 +372,7 @@
 <p>关于这个头的详细参数可以看前一篇讲HTTP协议的文章。</p>
 <h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>协商缓存就是由服务器来确定缓存资源是否可用，所以客户端与服务器端要通过某种标识来进行通信，从而让服务器判断请求资源是否可以缓存访问，这主要涉及到下面两组header字段。</p>
 <p>这两组搭档都是成对出现的，即第一次请求的响应头带上某个字段（<code>Last-Modified</code>或者<code>Etag</code>），则后续请求则会带上对应的请求字段（<code>If-Modified-Since</code>或者<code>If-None-Match</code>）</p>
-<p><img src="/images/web缓存-3.png" alt="img"></p>
+<p><img src="/images/Web缓存-3.png" alt="img"></p>
 <p>可以看到，这两对头都是相等的。</p>
 <p>关于Last-Modified和ETag，一个是判断资源改变的时间，另一个是判断资源内容是否改变。</p>
 <p>为什么使用Last-Modified：</p>
