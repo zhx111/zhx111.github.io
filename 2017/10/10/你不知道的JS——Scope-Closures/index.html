@@ -1,0 +1,796 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="这是你不知道的JS的阅读笔记，可能会让我们在更深入的角度去看待javascript这门语言。
+电子书地址：https://github.com/getify/You-Dont-Know-JS
+Scope&amp;amp;Closures
+Chapter1:What is Scope？编译器理论传统语言的编译过程：
+
+Tokenizing／Lexing
+将代码分割成有意义的块，这些块就是所谓的tokens。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你不知道的JS——Scope&Closures">
+<meta property="og:url" content="http://yoursite.com/2017/10/10/你不知道的JS——Scope-Closures/index.html">
+<meta property="og:site_name" content="Zhx's blog">
+<meta property="og:description" content="这是你不知道的JS的阅读笔记，可能会让我们在更深入的角度去看待javascript这门语言。
+电子书地址：https://github.com/getify/You-Dont-Know-JS
+Scope&amp;amp;Closures
+Chapter1:What is Scope？编译器理论传统语言的编译过程：
+
+Tokenizing／Lexing
+将代码分割成有意义的块，这些块就是所谓的tokens。">
+<meta property="og:updated_time" content="2017-10-10T07:25:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你不知道的JS——Scope&Closures">
+<meta name="twitter:description" content="这是你不知道的JS的阅读笔记，可能会让我们在更深入的角度去看待javascript这门语言。
+电子书地址：https://github.com/getify/You-Dont-Know-JS
+Scope&amp;amp;Closures
+Chapter1:What is Scope？编译器理论传统语言的编译过程：
+
+Tokenizing／Lexing
+将代码分割成有意义的块，这些块就是所谓的tokens。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/10/你不知道的JS——Scope-Closures/"/>
+
+
+
+
+
+  <title> 你不知道的JS——Scope&Closures | Zhx's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhx's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">前端修炼之路</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/你不知道的JS——Scope-Closures/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhx111">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhx's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhx's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                你不知道的JS——Scope&Closures
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-10T15:20:21+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/10/你不知道的JS——Scope-Closures/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/10/你不知道的JS——Scope-Closures/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是你不知道的JS的阅读笔记，可能会让我们在更深入的角度去看待javascript这门语言。</p>
+<p>电子书地址：<a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="external">https://github.com/getify/You-Dont-Know-JS</a></p>
+<p>Scope&amp;Closures</p>
+<h2 id="Chapter1-What-is-Scope？"><a href="#Chapter1-What-is-Scope？" class="headerlink" title="Chapter1:What is Scope？"></a>Chapter1:What is Scope？</h2><h3 id="编译器理论"><a href="#编译器理论" class="headerlink" title="编译器理论"></a>编译器理论</h3><p>传统语言的编译过程：</p>
+<ol>
+<li><p>Tokenizing／Lexing</p>
+<p>将代码分割成有意义的块，这些块就是所谓的tokens。</p>
+</li>
+<li><p>Parsing</p>
+<p>这个阶段将tokens转化成AST树（抽象语法树）</p>
+</li>
+<li><p>Code-Generation</p>
+<p>将ast树转化为可执行代码</p>
+</li>
+</ol>
+<p>JavaScript 引擎不像其他语言在编译上花费很多时间，所以为了更好的性能。js引擎使用很多技巧（比如JITs，lazy compile 甚至hot re-compile），所以说js语句在执行前会编译。</p>
+<a id="more"></a>
+<h3 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h3><h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><ol>
+<li>Engine</li>
+<li>Compiler</li>
+<li>Scope：收集和维护了一张所有声明标识（变量）的查找表，并且制定了这些标识能否访问的规则</li>
+</ol>
+<h4 id="Back-amp-Forth"><a href="#Back-amp-Forth" class="headerlink" title="Back&amp;Forth"></a>Back&amp;Forth</h4><p>我们来看看引擎和上面的这些角色是如何解释<code>var a =2</code>这个程序的。</p>
+<p>Compiler：</p>
+<p>1、当看到<code>var a</code>，Compiler询问Scope是否变量<code>a</code>已经存在于特定的作用域集合（scope collection）了。如果存在，那么Compiler就会忽略这个声明并继续处理，如果不存在，Compiler则会要求Scope声明一个新的变量在当前的作用域集合中。</p>
+<p>2、接下来，Compiler生成出供Engine执行的语句（<code>a=2</code>），Engine会先查找Scope是否有一个变量<code>a</code>在当前的作用域集合，如果有，就进行赋值操作，如果没有，Engine则去其他地方寻找。</p>
+<p>如果最终Engine找到了变量，那么将2赋值进去，如果没有，就抛出错误。</p>
+<h4 id="Compiler-Speak"><a href="#Compiler-Speak" class="headerlink" title="Compiler Speak"></a>Compiler Speak</h4><p><strong>LHS</strong>  “Left-hand Side”:赋值操作，(who’s the target of the assignment)</p>
+<p><strong>RHS</strong>  “Right-hand Side”:非LHS，例如<code>console.log(a)</code>,(who’s the source of the assignment)</p>
+<h4 id="Engine-Scope-Conversation"><a href="#Engine-Scope-Conversation" class="headerlink" title="Engine/Scope Conversation"></a>Engine/Scope Conversation</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( a ); <span class="comment">// 2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( <span class="number">2</span> );</div></pre></td></tr></table></figure>
+<p>对于上面的一段代码我们可以把Engine和Scope的交互看成一个对话。</p>
+<blockquote>
+<p><strong>Engine</strong>: Hey <em>Scope</em>, I have an RHS reference for <code>foo</code>. Ever heard of it?</p>
+<p>我有个RHS的引用叫foo，听过吗？</p>
+<p><strong>Scope</strong>: Why yes, I have. <em>Compiler</em> declared it just a second ago. He’s a function. Here you go.</p>
+<p>当然，Compiler1秒之前刚声明过，诺，给你函数。</p>
+<p><strong>Engine</strong>: Great, thanks! OK, I’m executing <code>foo</code>.</p>
+<p>太棒了，我开始执行foo了</p>
+<p><strong>Engine</strong>: Hey, <em>Scope</em>, I’ve got an LHS reference for <code>a</code>, ever heard of it?</p>
+<p>我有个LHS的引用叫foo，听过吗？</p>
+<p><strong>Scope</strong>: Why yes, I have. <em>Compiler</em> declared it as a formal parameter to <code>foo</code> just recently. Here you go.</p>
+<p>当然，Compiler刚声明它为foo的形参，诺，给你。</p>
+<p><strong>Engine</strong>: Helpful as always, <em>Scope</em>. Thanks again. Now, time to assign <code>2</code> to <code>a</code>.</p>
+<p>谢了，现在该把2赋给变量a了。</p>
+<p><strong>Engine</strong>: Hey, <em>Scope</em>, sorry to bother you again. I need an RHS look-up for <code>console</code>. Ever heard of it?</p>
+<p>抱歉打扰了，我还需要console，有吗？</p>
+<p><strong>Scope</strong>: No problem, <em>Engine</em>, this is what I do all day. Yes, I’ve got <code>console</code>. He’s built-in. Here ya go.</p>
+<p>没问题，我有console，它是内置的，给你。</p>
+<p><strong>Engine</strong>: Perfect. Looking up <code>log(..)</code>. OK, great, it’s a function.</p>
+<p>完美！看看log(..)，嗯，他是函数。</p>
+<p><strong>Engine</strong>: Yo, <em>Scope</em>. Can you help me out with an RHS reference to <code>a</code>. I think I remember it, but just want to double-check.</p>
+<p>Scope，帮我找找变量a，我想我记得它，但是想检查一下。</p>
+<p><strong>Scope</strong>: You’re right, <em>Engine</em>. Same guy, hasn’t changed. Here ya go.</p>
+<p>你说对了，还是它，没变。给你。</p>
+<p><strong>Engine</strong>: Cool. Passing the value of <code>a</code>, which is <code>2</code>, into <code>log(..)</code>.</p>
+<p>酷，那我就把a的值2传入log吧。</p>
+</blockquote>
+<h3 id="Nested-Scope-嵌套作用域"><a href="#Nested-Scope-嵌套作用域" class="headerlink" title="Nested Scope 嵌套作用域"></a>Nested Scope 嵌套作用域</h3><p>我们说Scope是一些通过变量的名字来寻找它们的规则，但通常不会只有一个Scope。</p>
+<p>如果一个变量不能在当前的作用域找到的话，那么就会通过作用域链往上寻找直到找到全局而停止。</p>
+<h3 id="Errors"><a href="#Errors" class="headerlink" title="Errors"></a>Errors</h3><p>为什么要有LHS和RHS的区分呢，因为这两种方式在找不到变量的时候会有区别。</p>
+<p>当RHS找不到一个变量的时候，结果是<code>ReferenceError</code>类型的错误被Engine抛出。</p>
+<p>相反，如果LHS查找到作用域顶层（global Scope）没有找到，那么如果不是在严格模式下，全局作用域会创建这个变量。</p>
+<p>如果变量在RHS查找时存在，但是对这个变量做的事是不可能的，如变量值为null或undefined。Engine会抛出<code>TypeError</code>的错误类型。</p>
+<h2 id="Chapter-2-Lexical-Scope"><a href="#Chapter-2-Lexical-Scope" class="headerlink" title="Chapter 2:Lexical Scope"></a>Chapter 2:Lexical Scope</h2><p>有两种主要的模型来解释scope是怎么工作的。第一种是<strong>Lexical Scope</strong>词法作用域，第二种是<strong>Dynamic Scope</strong>动态作用域。</p>
+<h3 id="Lex-time"><a href="#Lex-time" class="headerlink" title="Lex-time"></a>Lex-time</h3><p>lexing-time是将代码拆分成有意义的token的阶段。</p>
+<p>lexical scope 是定义在lexing time的scope。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">var</span> b = a * <span class="number">2</span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">c</span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( a, b, c );</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	bar(b * <span class="number">3</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( <span class="number">2</span> ); <span class="comment">// 2 4 12</span></div></pre></td></tr></table></figure>
+<p>这段代码有三个作用域：</p>
+<p>1、全局：identifier：foo</p>
+<p>2、foo作用域：identifier：a、bar、b</p>
+<p>3、bar作用域：identifier：c</p>
+<h4 id="Look-ups"><a href="#Look-ups" class="headerlink" title="Look-ups"></a>Look-ups</h4><p><strong>Scope look-up stops once it finds the first match</strong></p>
+<p>也就是说作用域查找在第一次找到时就会停止。比如上面代码中，在bar作用于的c找到之后，就不会去foo作用域去找。</p>
+<p>所以当变量名重复时，内部作用域的变量可能覆盖（shadowing）了外部作用域变量。</p>
+<p>词法作用域在函数声明时产生。</p>
+<p>词法作用域查找过程仅适用于first-class identifiers(第一级变量)，例如<code>a,b,c</code>。如果类似<code>foo.bar.baz</code>。词法作用域查找到foo就会停止。而bar和baz的查找则有对象属性查找规则接管。</p>
+<h3 id="Cheating-Lexical"><a href="#Cheating-Lexical" class="headerlink" title="Cheating Lexical"></a>Cheating Lexical</h3><p>javascript有两种改变（cheating）词法作用域的机制，但是改变词法作用域会导致更差的性能。</p>
+<h4 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h4><p>这个函数接收一个字符串，并且将字符串当可编辑代码看待。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">str, a</span>) </span>&#123;</div><div class="line">	<span class="built_in">eval</span>( str ); <span class="comment">// cheating!</span></div><div class="line">	<span class="built_in">console</span>.log( a, b );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</div><div class="line"></div><div class="line">foo( <span class="string">"var b = 3;"</span>, <span class="number">1</span> ); <span class="comment">// 1 3</span></div></pre></td></tr></table></figure>
+<p>eval函数修改了现存的词法作用域foo()，在foo中加入了b这个变量。</p>
+<p>严格模式下则不能修改。</p>
+<h4 id="with"><a href="#with" class="headerlink" title="with"></a>with</h4><p>with可以用在批量修改对象的属性上，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">1</span>,</div><div class="line">	<span class="attr">b</span>: <span class="number">2</span>,</div><div class="line">	<span class="attr">c</span>: <span class="number">3</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// more "tedious" to repeat "obj"</span></div><div class="line">obj.a = <span class="number">2</span>;</div><div class="line">obj.b = <span class="number">3</span>;</div><div class="line">obj.c = <span class="number">4</span>;</div><div class="line"></div><div class="line"><span class="comment">// "easier" short-hand</span></div><div class="line"><span class="keyword">with</span> (obj) &#123;</div><div class="line">	a = <span class="number">3</span>;</div><div class="line">	b = <span class="number">4</span>;</div><div class="line">	c = <span class="number">5</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再看下面的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">	<span class="keyword">with</span> (obj) &#123;</div><div class="line">		a = <span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> o1 = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">3</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> o2 = &#123;</div><div class="line">	<span class="attr">b</span>: <span class="number">3</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">foo( o1 );</div><div class="line"><span class="built_in">console</span>.log( o1.a ); <span class="comment">// 2</span></div><div class="line"></div><div class="line">foo( o2 );</div><div class="line"><span class="built_in">console</span>.log( o2.a ); <span class="comment">// undefined</span></div><div class="line"><span class="built_in">console</span>.log( a ); <span class="comment">// 2 -- Oops, leaked global!</span></div></pre></td></tr></table></figure>
+<p>我们给foo传递o1的时候，<code>a=2</code>找到了<code>o1.a</code>并将它赋值为2，但是当我们将o2传递给foo时，因为o2没有a属性，所以<code>o2.a</code>为undefined。但是全局属性a却被赋值为2了。</p>
+<p>with语句将接收的object看作是又一个完全分隔开的词法作用域。</p>
+<h4 id="performance"><a href="#performance" class="headerlink" title="performance"></a>performance</h4><p>使用eval和with会让js引擎的优化无效，降低性能。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/08/Web缓存机制/" rel="next" title="Web缓存机制">
+                <i class="fa fa-chevron-left"></i> Web缓存机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/10/10/你不知道的JS——Scope-Closures/"
+           data-title="你不知道的JS——Scope&Closures" data-url="http://yoursite.com/2017/10/10/你不知道的JS——Scope-Closures/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img.135q.com/2015-05/05/14307837440001.jpg"
+               alt="zhx111" />
+          <p class="site-author-name" itemprop="name">zhx111</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhx111" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter1-What-is-Scope？"><span class="nav-number">1.</span> <span class="nav-text">Chapter1:What is Scope？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译器理论"><span class="nav-number">1.1.</span> <span class="nav-text">编译器理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理解作用域"><span class="nav-number">1.2.</span> <span class="nav-text">理解作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#角色"><span class="nav-number">1.2.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Back-amp-Forth"><span class="nav-number">1.2.2.</span> <span class="nav-text">Back&Forth</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Compiler-Speak"><span class="nav-number">1.2.3.</span> <span class="nav-text">Compiler Speak</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Engine-Scope-Conversation"><span class="nav-number">1.2.4.</span> <span class="nav-text">Engine/Scope Conversation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nested-Scope-嵌套作用域"><span class="nav-number">1.3.</span> <span class="nav-text">Nested Scope 嵌套作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Errors"><span class="nav-number">1.4.</span> <span class="nav-text">Errors</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-Lexical-Scope"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2:Lexical Scope</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lex-time"><span class="nav-number">2.1.</span> <span class="nav-text">Lex-time</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Look-ups"><span class="nav-number">2.1.1.</span> <span class="nav-text">Look-ups</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cheating-Lexical"><span class="nav-number">2.2.</span> <span class="nav-text">Cheating Lexical</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#eval"><span class="nav-number">2.2.1.</span> <span class="nav-text">eval</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#with"><span class="nav-number">2.2.2.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#performance"><span class="nav-number">2.2.3.</span> <span class="nav-text">performance</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhx111</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhx111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
