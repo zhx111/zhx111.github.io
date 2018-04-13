@@ -1,0 +1,734 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet这篇文章翻译自https://www.sitepoint.com/es6-collections-map-set-weakmap-weakset/，主要讲的是关于ES6推出的新集合类型，说是翻译其实更类似于笔者针对文章总结出来的笔记，感兴趣的读者可以看看原文。
+
+寻找JavaScript的HashMapHashMa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet/index.html">
+<meta property="og:site_name" content="Zhx's blog">
+<meta property="og:description" content="【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet这篇文章翻译自https://www.sitepoint.com/es6-collections-map-set-weakmap-weakset/，主要讲的是关于ES6推出的新集合类型，说是翻译其实更类似于笔者针对文章总结出来的笔记，感兴趣的读者可以看看原文。
+
+寻找JavaScript的HashMapHashMa">
+<meta property="og:updated_time" content="2018-04-13T07:49:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet">
+<meta name="twitter:description" content="【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet这篇文章翻译自https://www.sitepoint.com/es6-collections-map-set-weakmap-weakset/，主要讲的是关于ES6推出的新集合类型，说是翻译其实更类似于笔者针对文章总结出来的笔记，感兴趣的读者可以看看原文。
+
+寻找JavaScript的HashMapHashMa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/13/【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet/"/>
+
+
+
+
+
+  <title> 【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet | Zhx's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhx's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">前端修炼之路</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhx111">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhx's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhx's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-13T15:47:53+08:00">
+                2018-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/13/【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/13/【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet"><a href="#【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet" class="headerlink" title="【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet"></a>【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet</h1><p>这篇文章翻译自<a href="https://www.sitepoint.com/es6-collections-map-set-weakmap-weakset/，主要讲的是关于ES6推出的新集合类型，说是翻译其实更类似于笔者针对文章总结出来的笔记，感兴趣的读者可以看看原文。" target="_blank" rel="external">https://www.sitepoint.com/es6-collections-map-set-weakmap-weakset/，主要讲的是关于ES6推出的新集合类型，说是翻译其实更类似于笔者针对文章总结出来的笔记，感兴趣的读者可以看看原文。</a></p>
+<hr>
+<h2 id="寻找JavaScript的HashMap"><a href="#寻找JavaScript的HashMap" class="headerlink" title="寻找JavaScript的HashMap"></a>寻找JavaScript的HashMap</h2><p>HashMap这种数据结构是一种使用非常多也非常好用的key/value数据结构（因为找某个元素是O(1)复杂度的），在ES5中，JavaScript的object使用key/value的方式处理值，可以模拟hashmap的使用方式，这个在我以前的文章中<a href="https://zhx111.github.io/2017/04/12/%E7%94%A8javaScript%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84hashMap/" target="_blank" rel="external">link</a>，也说过js的object底层是通过Hash table实现的。但是使用object模拟hashmap还是有一些缺点的。</p>
+<a id="more"></a>
+<h3 id="缺点1-属性必须是字符串"><a href="#缺点1-属性必须是字符串" class="headerlink" title="缺点1:属性必须是字符串"></a>缺点1:属性必须是字符串</h3><p>JavaScript的object的属性必须是字符串，如果是其他数据类型作为属性，js会自动转化为字符串，这样1和’1’就分不出差别了。当然，你可以自定义一个转化函数讲不同类型转化为字符串，但是这无疑工作量更大了。</p>
+<h3 id="缺点2-Objects并不是内在可迭代的"><a href="#缺点2-Objects并不是内在可迭代的" class="headerlink" title="缺点2:Objects并不是内在可迭代的"></a>缺点2:Objects并不是内在可迭代的</h3><p>这点是说Objects并不是作为一个集合被设计的，迭代一个Object通常会不太方便，Object.keys性能比较差，并且还需要考虑Object原型链上的属性，当然可以通过forin和hasOwnProperty()去遍历，但是这并不是一个非常好的方法。</p>
+<h3 id="缺点3-Object内置的方法会发生冲突"><a href="#缺点3-Object内置的方法会发生冲突" class="headerlink" title="缺点3:Object内置的方法会发生冲突"></a>缺点3:Object内置的方法会发生冲突</h3><p>Object有一些内置方法比如：constructor, toString, valueOf，如果加入key重名的话会造成冲突，你可以使用<code>Object.create(null)</code>创建一个不继承原型链的object，但这并不是一个好方法。</p>
+<h2 id="Using-ES6-Map-Collections"><a href="#Using-ES6-Map-Collections" class="headerlink" title="Using ES6 Map Collections"></a>Using ES6 Map Collections</h2><p>ES6带来了新的集合类型，我们先来看看Map类型。</p>
+<h3 id="创建一个Map并操作"><a href="#创建一个Map并操作" class="headerlink" title="创建一个Map并操作"></a>创建一个Map并操作</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>(); <span class="comment">// Create a new Map</span></div><div class="line">map.set(<span class="string">'hobby'</span>, <span class="string">'cycling'</span>); <span class="comment">// Sets a key value pair</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> foods = &#123; <span class="attr">dinner</span>: <span class="string">'Curry'</span>, <span class="attr">lunch</span>: <span class="string">'Sandwich'</span>, <span class="attr">breakfast</span>: <span class="string">'Eggs'</span> &#125;; <span class="comment">// New Object</span></div><div class="line"><span class="keyword">const</span> normalfoods = &#123;&#125;; <span class="comment">// New Object</span></div><div class="line"></div><div class="line">map.set(normalfoods, foods); <span class="comment">// Sets two objects as key value pair</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, value] <span class="keyword">of</span> map) &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span> = <span class="subst">$&#123;value&#125;</span>`</span>); <span class="comment">// hobby = cycling  [object Object] = [object Object]</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">map.forEach(<span class="function">(<span class="params">value, key</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span> = <span class="subst">$&#123;value&#125;</span>`</span>);</div><div class="line">&#125;, map); <span class="comment">// hobby = cycling  [object Object] = [object Object]</span></div><div class="line"></div><div class="line">map.clear(); <span class="comment">// Clears key value pairs</span></div><div class="line"><span class="built_in">console</span>.log(map.size === <span class="number">0</span>); <span class="comment">// True</span></div></pre></td></tr></table></figure>
+<p>从里面我们可以发现map可以使用Object作为key值。</p>
+<p>在ES2017中，有一个Object.entries()方法，可以把Object变为分散的key，value数组，这样可以方便将object转为map</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> cars = &#123;<span class="string">'BMW'</span>:<span class="number">3</span>,<span class="string">'Tesla'</span>:<span class="number">2</span>&#125;;</div><div class="line"></div><div class="line"><span class="comment">//ES2017</span></div><div class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>(<span class="built_in">Object</span>.entries(cars))</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(map);<span class="comment">//Map &#123;'BMW'=&gt;3,'Tesla'=&gt;2&#125;</span></div></pre></td></tr></table></figure>
+<h2 id="Using-the-Set-Collection"><a href="#Using-the-Set-Collection" class="headerlink" title="Using the Set Collection"></a>Using the Set Collection</h2><p>Set集合大家应该也比较熟悉，可以理解为没有重复值的数组。它和数组的区别是没有用index而用了keys。Set已经在Java，Ruby，Python等语言中存在，和其他有些区别的是ES6的Set是有顺序的。</p>
+<p>具体操作方法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> planetsOrderFromSun = <span class="keyword">new</span> <span class="built_in">Set</span>();</div><div class="line">planetsOrderFromSun.add(<span class="string">'Mercury'</span>);</div><div class="line">planetsOrderFromSun.add(<span class="string">'Venus'</span>).add(<span class="string">'Earth'</span>).add(<span class="string">'Mars'</span>); <span class="comment">//链式调用</span></div><div class="line"><span class="built_in">console</span>.log(planetsOrderFromSun.has(<span class="string">'Earth'</span>)); <span class="comment">// True</span></div><div class="line"></div><div class="line">planetsOrderFromSun.delete(<span class="string">'Mars'</span>);</div><div class="line"><span class="built_in">console</span>.log(planetsOrderFromSun.has(<span class="string">'Mars'</span>)); <span class="comment">// False</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">const</span> x <span class="keyword">of</span> planetsOrderFromSun) &#123;</div><div class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// 和插入时的顺序一样 - Mercury Venus Earth</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(planetsOrderFromSun.size); <span class="comment">// 3</span></div><div class="line"></div><div class="line">planetsOrderFromSun.add(<span class="string">'Venus'</span>); <span class="comment">// 试着加入相同的元素</span></div><div class="line"><span class="built_in">console</span>.log(planetsOrderFromSun.size); <span class="comment">// 仍然是3</span></div><div class="line"></div><div class="line">planetsOrderFromSun.clear();</div><div class="line"><span class="built_in">console</span>.log(planetsOrderFromSun.size); <span class="comment">// 0</span></div></pre></td></tr></table></figure>
+<h2 id="Weak-Collections-Memory-and-Garbage-Collections"><a href="#Weak-Collections-Memory-and-Garbage-Collections" class="headerlink" title="Weak Collections, Memory, and Garbage Collections"></a>Weak Collections, Memory, and Garbage Collections</h2><p>JavaScript的垃圾回收是当Object没用引用的时候进行删除和释放内存。</p>
+<p>但是Map和Set对于Object的引用会造成垃圾回收不回收相关的Object。这有可能造成性能消耗，比如DOM元素已经从DOM树中移除，但是Map或Set依旧持有它的引用的话，垃圾回收是不会删除的。</p>
+<p>为了避免这个副作用，ES6引入了WeakMap和WeakSet，它们支持删除不再被引用的Object。</p>
+<h3 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h3><p>WeakMap和普通的Map很像，尽管有着更少的方法。操作方法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> aboutAuthor = <span class="keyword">new</span> <span class="built_in">WeakMap</span>(); <span class="comment">// Create New WeakMap</span></div><div class="line"><span class="keyword">const</span> currentAge = &#123;&#125;; <span class="comment">// key must be an object</span></div><div class="line"><span class="keyword">const</span> currentCity = &#123;&#125;; <span class="comment">// keys must be an object</span></div><div class="line"></div><div class="line">aboutAuthor.set(currentAge, <span class="number">30</span>); <span class="comment">// Set Key Values</span></div><div class="line">aboutAuthor.set(currentCity, <span class="string">'Denver'</span>); <span class="comment">// Key Values can be of different data types</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(aboutAuthor.has(currentCity)); <span class="comment">// Test if WeakMap has a key</span></div><div class="line"></div><div class="line">aboutAuthor.delete(currentAge); <span class="comment">// Delete a key</span></div></pre></td></tr></table></figure>
+<h4 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h4><h5 id="私有属性"><a href="#私有属性" class="headerlink" title="私有属性"></a>私有属性</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Person = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> privateData = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    privateData.set(<span class="keyword">this</span>, &#123; <span class="attr">name</span>: name &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  Person.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> privateData.get(<span class="keyword">this</span>).name;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> Person;</div><div class="line">&#125;());</div><div class="line"></div><div class="line"><span class="comment">//使用</span></div><div class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Person(<span class="string">'a'</span>);</div><div class="line">a.getName();<span class="comment">//a</span></div><div class="line">a.privateData;<span class="comment">//undefined</span></div></pre></td></tr></table></figure>
+<p>上例中可以很容易的引用到Person对象，但是引用privateDataWeakMap如果没有Person的getName方法的话引用不到。</p>
+<h5 id="DOM-nodes"><a href="#DOM-nodes" class="headerlink" title="DOM nodes"></a>DOM nodes</h5><p>Google在PositionWalker中使用了WeakMap</p>
+<blockquote>
+<p>PositionWalker追踪了DOM树中某个元素的位置</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">_makeClone() &#123;</div><div class="line">  <span class="keyword">this</span>._containerClone = <span class="keyword">this</span>.container.cloneNode(<span class="literal">true</span>);</div><div class="line">  <span class="keyword">this</span>._cloneToNodes = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</div><div class="line">  <span class="keyword">this</span>._nodesToClones = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</div><div class="line"></div><div class="line">  ...</div><div class="line"></div><div class="line">  let n = <span class="keyword">this</span>.container;</div><div class="line">  <span class="keyword">let</span> c = <span class="keyword">this</span>._containerClone;</div><div class="line"></div><div class="line">  <span class="comment">// find the currentNode's clone</span></div><div class="line">  <span class="keyword">while</span> (n !== <span class="literal">null</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (n === <span class="keyword">this</span>.currentNode) &#123;</div><div class="line">    <span class="keyword">this</span>._currentNodeClone = c;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>._cloneToNodes.set(c, n);</div><div class="line">    <span class="keyword">this</span>._nodesToClones.set(n, c);</div><div class="line"></div><div class="line">    n = iterator.nextNode();</div><div class="line">    c = cloneIterator.nextNode();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h3><p>WeakSet很显而易见就是“Weak”版的Set，WeakSet不能遍历，它的使用场景更少。ES6Features.org网站有一个例子是用WeakSet标记object的。例子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> isMarked     = <span class="keyword">new</span> <span class="built_in">WeakSet</span>()</div><div class="line"><span class="keyword">let</span> attachedData = <span class="keyword">new</span> <span class="built_in">WeakMap</span>()</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span> (id)   &#123; <span class="keyword">this</span>.id = id                  &#125;</div><div class="line">    mark        ()     &#123; isMarked.add(<span class="keyword">this</span>)            &#125;</div><div class="line">    unmark      ()     &#123; isMarked.delete(<span class="keyword">this</span>)         &#125;</div><div class="line">    marked      ()     &#123; <span class="keyword">return</span> isMarked.has(<span class="keyword">this</span>)     &#125;</div><div class="line">    set data    (data) &#123; attachedData.set(<span class="keyword">this</span>, data)  &#125;</div><div class="line">    get data    ()     &#123; <span class="keyword">return</span> attachedData.get(<span class="keyword">this</span>) &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> foo = <span class="keyword">new</span> Node(<span class="string">"foo"</span>)</div><div class="line"></div><div class="line"><span class="built_in">JSON</span>.stringify(foo) === <span class="string">'&#123;"id":"foo"&#125;'</span></div><div class="line">foo.mark()</div><div class="line">foo.data = <span class="string">"bar"</span></div><div class="line">foo.data === <span class="string">"bar"</span></div><div class="line"><span class="built_in">JSON</span>.stringify(foo) === <span class="string">'&#123;"id":"foo"&#125;'</span></div><div class="line"></div><div class="line">isMarked.has(foo)     === <span class="literal">true</span></div><div class="line">attachedData.has(foo) === <span class="literal">true</span></div><div class="line">foo = <span class="literal">null</span>  <span class="comment">/* remove only reference to foo */</span></div><div class="line">attachedData.has(foo) === <span class="literal">false</span></div><div class="line">isMarked.has(foo)     === <span class="literal">false</span></div></pre></td></tr></table></figure>
+<h2 id="Map-All-Things-Records-vs-ES6-Collections"><a href="#Map-All-Things-Records-vs-ES6-Collections" class="headerlink" title="Map All Things? Records vs ES6 Collections"></a>Map All Things? Records vs ES6 Collections</h2><p>Map和Set给js提供了新的数据结构，当然很多情况下使用object当作集合类型还是很方便的，MDN有一个关于究竟是使用Map还是Object的清单：</p>
+<ul>
+<li>key是不是在运行时才知道，你是不是需要动态的查看它们？</li>
+<li>是不是所有value都用相同的type并且可以互换？</li>
+<li>你是不是需要非字符串的key？</li>
+<li>key-value对是否经常需要移除？</li>
+<li>key-value的数量经常会变动吗？</li>
+<li>集合需要经常遍历吗？</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/10/你不知道的JS——this-Object-Prototypes-对象篇/" rel="next" title="你不知道的JS——this-Object-Prototypes(对象篇)">
+                <i class="fa fa-chevron-left"></i> 你不知道的JS——this-Object-Prototypes(对象篇)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/04/13/【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet/"
+           data-title="【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet" data-url="http://yoursite.com/2018/04/13/【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img.135q.com/2015-05/05/14307837440001.jpg"
+               alt="zhx111" />
+          <p class="site-author-name" itemprop="name">zhx111</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhx111" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet"><span class="nav-number">1.</span> <span class="nav-text">【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#寻找JavaScript的HashMap"><span class="nav-number">1.1.</span> <span class="nav-text">寻找JavaScript的HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点1-属性必须是字符串"><span class="nav-number">1.1.1.</span> <span class="nav-text">缺点1:属性必须是字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点2-Objects并不是内在可迭代的"><span class="nav-number">1.1.2.</span> <span class="nav-text">缺点2:Objects并不是内在可迭代的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点3-Object内置的方法会发生冲突"><span class="nav-number">1.1.3.</span> <span class="nav-text">缺点3:Object内置的方法会发生冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-ES6-Map-Collections"><span class="nav-number">1.2.</span> <span class="nav-text">Using ES6 Map Collections</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个Map并操作"><span class="nav-number">1.2.1.</span> <span class="nav-text">创建一个Map并操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-the-Set-Collection"><span class="nav-number">1.3.</span> <span class="nav-text">Using the Set Collection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak-Collections-Memory-and-Garbage-Collections"><span class="nav-number">1.4.</span> <span class="nav-text">Weak Collections, Memory, and Garbage Collections</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WeakMap"><span class="nav-number">1.4.1.</span> <span class="nav-text">WeakMap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用案例"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">使用案例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#私有属性"><span class="nav-number">1.4.1.1.1.</span> <span class="nav-text">私有属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DOM-nodes"><span class="nav-number">1.4.1.1.2.</span> <span class="nav-text">DOM nodes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WeakSet"><span class="nav-number">1.4.2.</span> <span class="nav-text">WeakSet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map-All-Things-Records-vs-ES6-Collections"><span class="nav-number">1.5.</span> <span class="nav-text">Map All Things? Records vs ES6 Collections</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhx111</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhx111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
