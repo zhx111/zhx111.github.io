@@ -1,0 +1,864 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="webpack," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="【译文】使用webpack提高网页性能优化这篇文章原文来自https://developers.google.com/web/fundamentals/performance/webpack/，说是译文其实更像是笔者做的笔记，如有错误之处请原谅。
+减小前端资源大小使用Production mode（webpack4限定）webpack提供了mode属性，你可以设置该属性为‘development’">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译文】使用webpack提高网页性能优化">
+<meta property="og:url" content="http://yoursite.com/2018/04/19/【译文】使用webpack提高网页性能优化/index.html">
+<meta property="og:site_name" content="Zhx's blog">
+<meta property="og:description" content="【译文】使用webpack提高网页性能优化这篇文章原文来自https://developers.google.com/web/fundamentals/performance/webpack/，说是译文其实更像是笔者做的笔记，如有错误之处请原谅。
+减小前端资源大小使用Production mode（webpack4限定）webpack提供了mode属性，你可以设置该属性为‘development’">
+<meta property="og:updated_time" content="2018-04-19T06:03:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译文】使用webpack提高网页性能优化">
+<meta name="twitter:description" content="【译文】使用webpack提高网页性能优化这篇文章原文来自https://developers.google.com/web/fundamentals/performance/webpack/，说是译文其实更像是笔者做的笔记，如有错误之处请原谅。
+减小前端资源大小使用Production mode（webpack4限定）webpack提供了mode属性，你可以设置该属性为‘development’">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/19/【译文】使用webpack提高网页性能优化/"/>
+
+
+
+
+
+  <title> 【译文】使用webpack提高网页性能优化 | Zhx's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhx's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">前端修炼之路</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/19/【译文】使用webpack提高网页性能优化/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhx111">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://img.135q.com/2015-05/05/14307837440001.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhx's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhx's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【译文】使用webpack提高网页性能优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-19T14:01:49+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/19/【译文】使用webpack提高网页性能优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/19/【译文】使用webpack提高网页性能优化/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="【译文】使用webpack提高网页性能优化"><a href="#【译文】使用webpack提高网页性能优化" class="headerlink" title="【译文】使用webpack提高网页性能优化"></a>【译文】使用webpack提高网页性能优化</h1><p>这篇文章原文来自<a href="https://developers.google.com/web/fundamentals/performance/webpack/，说是译文其实更像是笔者做的笔记，如有错误之处请原谅。" target="_blank" rel="external">https://developers.google.com/web/fundamentals/performance/webpack/，说是译文其实更像是笔者做的笔记，如有错误之处请原谅。</a></p>
+<h2 id="减小前端资源大小"><a href="#减小前端资源大小" class="headerlink" title="减小前端资源大小"></a>减小前端资源大小</h2><h3 id="使用Production-mode（webpack4限定）"><a href="#使用Production-mode（webpack4限定）" class="headerlink" title="使用Production mode（webpack4限定）"></a>使用Production mode（webpack4限定）</h3><p>webpack提供了mode属性，你可以设置该属性为‘development’或者‘production’。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">mode</span>: <span class="string">'production'</span>,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>更多阅读链接：</p>
+<ul>
+<li><a href="https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a" target="_blank" rel="external">mode flag</a></li>
+</ul>
+<a id="more"></a>
+<h3 id="压缩资源（webpack3）"><a href="#压缩资源（webpack3）" class="headerlink" title="压缩资源（webpack3）"></a>压缩资源（webpack3）</h3><p>可以从bundle-level和loader-specific options两个方面进行。</p>
+<p>Bundle-level minification</p>
+<p>webpack4:在mode为production时自动进行。</p>
+<p>webpack3:使用UglifyJS plugin</p>
+<p>Loader-specific options</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">rules</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">        <span class="attr">use</span>: [</div><div class="line">          <span class="string">'style-loader'</span>,</div><div class="line">          &#123; <span class="attr">loader</span>: <span class="string">'css-loader'</span>, <span class="attr">options</span>: &#123; <span class="attr">minimize</span>: <span class="literal">true</span> &#125; &#125;,</div><div class="line">        ],</div><div class="line">      &#125;,</div><div class="line">    ],</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="定义NODE-ENV-production"><a href="#定义NODE-ENV-production" class="headerlink" title="定义NODE_ENV=production"></a>定义NODE_ENV=production</h3><p><em>这个适用于webpack3，webpack4使用mode=production就行</em></p>
+<p>一些库会判断NODE_ENV的参数然后判断是否打印warnings等。</p>
+<p>在webpack4中，你可以这么写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js (for webpack 4)</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">optimization</span>: &#123;</div><div class="line">    <span class="attr">nodeEnv</span>: <span class="string">'production'</span>,</div><div class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在webpack3中，你需要使用<code>DefinePlugin</code>插件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js (for webpack 3)</span></div><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">      <span class="string">'process.env.NODE_ENV'</span>: <span class="string">'"production"'</span>,</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>使用这俩种方法都会让webpack在代码中将代码中<code>process.env.NODE_ENV</code>替换成<code>production</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// vue/dist/vue.runtime.esm.js</span></div><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> val === <span class="string">'string'</span>) &#123;</div><div class="line">  name = camelize(val);</div><div class="line">  res[name] = &#123; <span class="attr">type</span>: <span class="literal">null</span> &#125;;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span>) &#123;</div><div class="line">  warn(<span class="string">'props must be strings when using array syntax.'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>↓</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// vue/dist/vue.runtime.esm.js</span></div><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> val === <span class="string">'string'</span>) &#123;</div><div class="line">  name = camelize(val);</div><div class="line">  res[name] = &#123; <span class="attr">type</span>: <span class="literal">null</span> &#125;;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"production"</span> !== <span class="string">'production'</span>) &#123;</div><div class="line">  warn(<span class="string">'props must be strings when using array syntax.'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而minifier会删除所有的if分支，因为<code>production!==production</code>总是false，这段代码永远不会执行。</p>
+<h3 id="使用ES模块"><a href="#使用ES模块" class="headerlink" title="使用ES模块"></a>使用ES模块</h3><p>ES模块就是ES6引入的export和import模块。</p>
+<p>当你使用ES modules的时候，webpack可以使用tree-shaking。tree-shaking可以让打包出来的文件在遍历依赖树的时候，移除没有使用的模块。</p>
+<ol>
+<li>只用导出模块的其中之一的时候：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// comments.js</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> render = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">return</span> <span class="string">'Rendered!'</span>; &#125;;</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> commentRestEndpoint = <span class="string">'/rest/comments'</span>;</div><div class="line"></div><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'./comments.js'</span>;</div><div class="line">render();</div></pre></td></tr></table></figure>
+<ol>
+<li>webpack明白commentRestEndpoint没有使用，同时不生成导出模块语句</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bundle.js (part that corresponds to comments.js)</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">module, __webpack_exports__, __webpack_require__</span>) </span>&#123;</div><div class="line"><span class="meta">  "use strict"</span>;</div><div class="line">  <span class="keyword">const</span> render = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">return</span> <span class="string">'Rendered!'</span>; &#125;;</div><div class="line">  <span class="comment">/* harmony export (immutable) */</span> __webpack_exports__[<span class="string">"a"</span>] = render;</div><div class="line"></div><div class="line">  <span class="keyword">const</span> commentRestEndpoint = <span class="string">'/rest/comments'</span>;</div><div class="line">  <span class="comment">/* unused harmony export commentRestEndpoint */</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ol>
+<li>​minifier会移除不需要的变量</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bundle.js (part that corresponds to comments.js)</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">n,e</span>)</span>&#123;<span class="string">"use strict"</span>;<span class="keyword">var</span> r=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span><span class="string">"Rendered!"</span>&#125;;e.b=r&#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Warning:不要不经意将ES modules 编译为 CommonJS 模式</p>
+<p>如果用了babel-preset-env或者babel-preset-es2015，请检查presets设置。一半来说ES的import和export会转换为CommonJS的require和module.exports。传入<code>{modules:false}</code>来制止这个行为。</p>
+<p>【译者注】如果需要兼容不支持ES6的浏览器还是不能使用这个特性吧。</p>
+</blockquote>
+<h3 id="优化图片"><a href="#优化图片" class="headerlink" title="优化图片"></a>优化图片</h3><p>使用<code>url-lodaer</code>,<code>svg-url-loader</code>和<code>image-webpack-loader</code>优化图片资源。</p>
+<p>url-loader的好处是能将根据你配置的小于某个大小的图片，使用Base64 data url的形式将图片嵌入javascript。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">rules</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.(jpe?g|png|gif)$/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'url-loader'</span>,</div><div class="line">        <span class="attr">options</span>: &#123;</div><div class="line">          <span class="comment">// Inline files smaller than 10 kB (10240 bytes)</span></div><div class="line">          limit: <span class="number">10</span> * <span class="number">1024</span>,</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    ],</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">import</span> imageUrl <span class="keyword">from</span> <span class="string">'./image.png'</span>;</div><div class="line"><span class="comment">// → If image.png is smaller than 10 kB, `imageUrl` will include</span></div><div class="line"><span class="comment">// the encoded image: 'data:image/png;base64,iVBORw0KGg…'</span></div><div class="line"><span class="comment">//如果图片小于10kb，imageUrl会包含编码后的图片...</span></div><div class="line"></div><div class="line"><span class="comment">// → If image.png is larger than 10 kB, the loader will create a new file,</span></div><div class="line"><span class="comment">// and `imageUrl` will include its url: `/2fcd56a1920be.png`</span></div><div class="line"><span class="comment">//如果图片大于10kb，loader会创建一个新的文件</span></div></pre></td></tr></table></figure>
+<p>svg-url-loader和url-loader功能差不多，不过它将文件编码为URL encoding而不是Base64。这点对于SVG图片是比较好的，并且更高效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">rules</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.svg$/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'svg-url-loader'</span>,</div><div class="line">        <span class="attr">options</span>: &#123;</div><div class="line">          <span class="comment">// Inline files smaller than 10 kB (10240 bytes)</span></div><div class="line">          limit: <span class="number">10</span> * <span class="number">1024</span>,</div><div class="line">          <span class="comment">// Remove the quotes from the url</span></div><div class="line">          <span class="comment">// (they’re unnecessary in most cases)</span></div><div class="line">          noquotes: <span class="literal">true</span>,</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    ],</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>svg-webpack-loader针对IE浏览器呦iesafe:true的选项</p>
+</blockquote>
+<h3 id="优化依赖"><a href="#优化依赖" class="headerlink" title="优化依赖"></a>优化依赖</h3><p>JavaScript的有些依赖包的大小比较大，但是我们往往只需要其中的一部分功能。</p>
+<p>比如Lodash大概72KB，但是我们只用到了其中的20个方法的话，可能有65KB的代码是浪费的。</p>
+<p>另一个例子是Moment.js，它223KB的文件中有大约170KB的文件是多语言本地化库，如果你不需要支持那么多语言的话，那么就需要减负。</p>
+<p>优化这些库的方法Google在github开了一个项目，点<a href="https://github.com/GoogleChromeLabs/webpack-libs-optimizations" target="_blank" rel="external">这里</a>查看。</p>
+<h3 id="使用module-concatenation（模块连接）"><a href="#使用module-concatenation（模块连接）" class="headerlink" title="使用module concatenation（模块连接）"></a>使用module concatenation（模块连接）</h3><p>当你打包代码的时候，webpack将import和export的代码包裹在不同函数中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">import</span> &#123;render&#125; <span class="keyword">from</span> <span class="string">'./comments.js'</span>;</div><div class="line">render();</div><div class="line"></div><div class="line"><span class="comment">// comments.js</span></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">data, target</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Rendered!'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>↓</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bundle.js (part  of)</span></div><div class="line"><span class="comment">/* 0 */</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">module, __webpack_exports__, __webpack_require__</span>) </span>&#123;</div><div class="line"><span class="meta"></span></div><div class="line">  "use strict";</div><div class="line">  <span class="built_in">Object</span>.defineProperty(__webpack_exports__, <span class="string">"__esModule"</span>, &#123; <span class="attr">value</span>: <span class="literal">true</span> &#125;);</div><div class="line">  <span class="keyword">var</span> __WEBPACK_IMPORTED_MODULE_0__comments_js__ = __webpack_require__(<span class="number">1</span>);</div><div class="line">  <span class="built_in">Object</span>(__WEBPACK_IMPORTED_MODULE_0__comments_js__[<span class="string">"a"</span> <span class="comment">/* render */</span>])();</div><div class="line"></div><div class="line">&#125;),</div><div class="line"><span class="comment">/* 1 */</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">module, __webpack_exports__, __webpack_require__</span>) </span>&#123;</div><div class="line"><span class="meta"></span></div><div class="line">  "use strict";</div><div class="line">  __webpack_exports__[<span class="string">"a"</span>] = render;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">data, target</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Rendered!'</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>以往是需要从中分离出CommonJS／AMD模块的，但是这个加入了一些多余的代码。</p>
+<p>Webpack2加入了ES模块系统，而webpack3使用了module concatenation，看看它是怎么减少代码的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">import</span> &#123;render&#125; <span class="keyword">from</span> <span class="string">'./comments.js'</span>;</div><div class="line">render();</div><div class="line"></div><div class="line"><span class="comment">// comments.js</span></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">data, target</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Rendered!'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>↓</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Unlike the previous snippet, this bundle has only one module</span></div><div class="line"><span class="comment">// which includes the code from both files</span></div><div class="line"></div><div class="line"><span class="comment">// bundle.js (part of; compiled with ModuleConcatenationPlugin)</span></div><div class="line"><span class="comment">/* 0 */</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">module, __webpack_exports__, __webpack_require__</span>) </span>&#123;</div><div class="line"><span class="meta"></span></div><div class="line">  "use strict";</div><div class="line">  <span class="built_in">Object</span>.defineProperty(__webpack_exports__, <span class="string">"__esModule"</span>, &#123; <span class="attr">value</span>: <span class="literal">true</span> &#125;);</div><div class="line"></div><div class="line">  <span class="comment">// CONCATENATED MODULE: ./comments.js</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">data, target</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Rendered!'</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// CONCATENATED MODULE: ./index.js</span></div><div class="line">  render();</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>可以看到导出的模块提升到了引入的部分之前，这样之前代码的1部分被移除了。</p>
+<p>在webpack4中，我们可以通过<code>optimization.concatenateModules</code>选项：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js (for webpack 4)</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">optimization</span>: &#123;</div><div class="line">    <span class="attr">concatenateModules</span>: <span class="literal">true</span>,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在webpack3中，使用ModuleConcatenationPlugin：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js (for webpack 3)</span></div><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.ModuleConcatenationPlugin(),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：这个方法虽然好但是没有设置为默认是有原因的，它会增加打包时间并且破坏热更新机制，所以它只能在production模式中使用。</p>
+</blockquote>
+<h3 id="使用externals如果你同时使用webpack和non-webpack的代码"><a href="#使用externals如果你同时使用webpack和non-webpack的代码" class="headerlink" title="使用externals如果你同时使用webpack和non-webpack的代码"></a>使用externals如果你同时使用webpack和non-webpack的代码</h3><p>如果项目比较大的话，可能有些代码使用webpack编译而有些没有。比如视频播放页面，视频组件由webpack编译，而别的没有。</p>
+<p>这时，如果两部分代码都使用了某个依赖的话，你可以使用externals属性，将webpack编译的代码中这些依赖移除，而使用非webpack部分代码所用依赖。</p>
+<h4 id="依赖在window（全局）可用"><a href="#依赖在window（全局）可用" class="headerlink" title="依赖在window（全局）可用"></a>依赖在window（全局）可用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">externals</span>: &#123;</div><div class="line">    <span class="string">'react'</span>: <span class="string">'React'</span>,</div><div class="line">    <span class="string">'react-dom'</span>: <span class="string">'ReactDOM'</span>,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bundle.js (part of)</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">module, exports</span>) </span>&#123;</div><div class="line">  <span class="comment">// A module that exports `window.React`. Without `externals`,</span></div><div class="line">  <span class="comment">// this module would include the whole React bundle</span></div><div class="line">  <span class="built_in">module</span>.exports = React;</div><div class="line">&#125;),</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">module, exports</span>) </span>&#123;</div><div class="line">  <span class="comment">// A module that exports `window.ReactDOM`. Without `externals`,</span></div><div class="line">  <span class="comment">// this module would include the whole ReactDOM bundle</span></div><div class="line">  <span class="built_in">module</span>.exports = ReactDOM;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="依赖使用AMD模式引入"><a href="#依赖使用AMD模式引入" class="headerlink" title="依赖使用AMD模式引入"></a>依赖使用AMD模式引入</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">output</span>: &#123; <span class="attr">libraryTarget</span>: <span class="string">'amd'</span> &#125;,</div><div class="line"></div><div class="line">  <span class="attr">externals</span>: &#123;</div><div class="line">    <span class="string">'react'</span>: &#123; <span class="attr">amd</span>: <span class="string">'/libraries/react.min.js'</span> &#125;,</div><div class="line">    <span class="string">'react-dom'</span>: &#123; <span class="attr">amd</span>: <span class="string">'/libraries/react-dom.min.js'</span> &#125;,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bundle.js (beginning)</span></div><div class="line">define([<span class="string">"/libraries/react.min.js"</span>, <span class="string">"/libraries/react-dom.min.js"</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; … &#125;);</div></pre></td></tr></table></figure>
+<h2 id="善用缓存"><a href="#善用缓存" class="headerlink" title="善用缓存"></a>善用缓存</h2><p>另一个提升应用性能的方式是使用缓存，缓存可以将部分数据保存在本地，避免重复下载。</p>
+<h3 id="使用版本号和缓存http头"><a href="#使用版本号和缓存http头" class="headerlink" title="使用版本号和缓存http头"></a>使用版本号和缓存http头</h3><p>1.浏览器对文件采用很长时间的缓存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Server header</div><div class="line">Cache-Control: max-age=31536000</div></pre></td></tr></table></figure>
+<p>如果你不熟悉Cache-Control的话，可以看看<a href="https://jakearchibald.com/2016/caching-best-practices/" target="_blank" rel="external">这篇文章</a></p>
+<p>2.通过改变文件名（新的版本号）的方式进行重新加载</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Before the change --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./index-v15.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- After the change --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./index-v16.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>通过webpack，你可以使用<code>[chunkhash]</code>来改变文件名。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./index.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.[chunkhash].js'</span>,</div><div class="line">        <span class="comment">// → bundle.8e0d62a03.js</span></div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>为了在客户端能找到文件名改变了的文件，可以使用<code>HtmlWebpackPlugin</code>或者<code>WebpackManifestPlugin</code>。</p>
+<p><code>HtmlWebpackPlugin</code>用起来比较简单，但是缺乏灵活性。它生成一个包含所有资源的HTML。如果你的服务端逻辑不复杂的话，用它就够了：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.html --&gt;</span></div><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="comment">&lt;!-- ... --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.8e0d62a03.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>WebpackManifestPlugin</code>是一个更灵活的方法，在构建过程中它生成一个映射有hash和没hash文件的JSON。可以通过这个JSON文件在服务端找到相应资源。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// manifest.json</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"bundle.js"</span>: <span class="string">"bundle.8e0d62a03.js"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Extract-dependencies-and-runtime-into-a-separate-file（依赖和运行时代码分开）"><a href="#Extract-dependencies-and-runtime-into-a-separate-file（依赖和运行时代码分开）" class="headerlink" title="Extract dependencies and runtime into a separate file（依赖和运行时代码分开）"></a>Extract dependencies and runtime into a separate file（依赖和运行时代码分开）</h3><h3 id="针对依赖"><a href="#针对依赖" class="headerlink" title="针对依赖"></a>针对依赖</h3><p>应用的依赖通常相较于业务代码改变的频率更低。如果你将它们分开到不同的文件，浏览器会分别对它们进行缓存，这样可以避免每次更新不变的依赖。</p>
+<blockquote>
+<p>在webpack术语中，从应用中分离出的文件称为chunks（块）</p>
+</blockquote>
+<p>1.替换输出文件为<code>[name].[chunkname].js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="comment">// Before</span></div><div class="line">    filename: <span class="string">'bundle.[chunkhash].js'</span>,</div><div class="line">    <span class="comment">// After</span></div><div class="line">    filename: <span class="string">'[name].[chunkhash].js'</span>,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>2.将entry替换为对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// Before</span></div><div class="line">  entry: <span class="string">'./index.js'</span>,</div><div class="line">  <span class="comment">// After</span></div><div class="line">  entry: &#123;</div><div class="line">    <span class="attr">main</span>: <span class="string">'./index.js'</span>,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>3.在webpack中，增加<code>optimization.splitChunks.chunks:&#39;all&#39;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js (for webpack 4)</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">optimization</span>: &#123;</div><div class="line">    <span class="attr">splitChunks</span>: &#123;</div><div class="line">      <span class="attr">chunks</span>: <span class="string">'all'</span>,</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在webpack3中，使用<code>CommonsChunkPlugin</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js (for webpack 3)</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">      <span class="comment">// A name of the chunk that will include the dependencies.</span></div><div class="line">      <span class="comment">// This name is substituted in place of [name] from step 1</span></div><div class="line">      name: <span class="string">'vendor'</span>,</div><div class="line"></div><div class="line">      <span class="comment">// A function that determines which modules to include into this chunk</span></div><div class="line">      minChunks: <span class="function"><span class="params">module</span> =&gt;</span> <span class="built_in">module</span>.context &amp;&amp;</div><div class="line">        <span class="built_in">module</span>.context.includes(<span class="string">'node_modules'</span>),</div><div class="line">    &#125;),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这个变量将所有来自于node_modules文件夹的文件打包到<code>vendor.[chunkhash].js</code>中。</p>
+<h4 id="Webpack-runtime-code"><a href="#Webpack-runtime-code" class="headerlink" title="Webpack runtime code"></a>Webpack runtime code</h4><p>只把vendor代码提出来是不够的，如果在业务代码中改变内容，vendor文件的hash仍然会改变。</p>
+<p>这种情况的出现主要是在vendor代码中，有一小块的代码包含了chunk ids和相关文件的映射，这部分代码会改变。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// vendor.e6ea4504d61a1cc1c60b.js</span></div><div class="line">script.src = __webpack_require__.p + chunkId + <span class="string">"."</span> + &#123;</div><div class="line">  <span class="string">"0"</span>: <span class="string">"2f2269c7f0a55a5c1871"</span></div><div class="line">&#125;[chunkId] + <span class="string">".js"</span>;</div></pre></td></tr></table></figure>
+<p>webpack将这部分运行环境代码放在最后生成的chunk中，在我们的例子里就是vendor，造成了vendor变化。</p>
+<blockquote>
+<p>【译者注】我在vue-cli生成的配置文件里看到了它的解决方案。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;     <span class="comment">// extract webpack runtime and module manifest to its own file in order to</span></div><div class="line">&gt;     <span class="comment">// prevent vendor hash from being updated whenever app bundle is updated</span></div><div class="line">&gt;     <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">&gt;       name: <span class="string">'manifest'</span>,</div><div class="line">&gt;       minChunks: <span class="literal">Infinity</span></div><div class="line">&gt;     &#125;),</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+</blockquote>
+<p>在webpack4中，可以用<code>optimization.runtimeChunk</code>选项：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js (for webpack 4)</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">optimization</span>: &#123;</div><div class="line">    <span class="attr">runtimeChunk</span>: <span class="literal">true</span>,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在webpack中，增加一个空的chunk就可以。（这也是vue-cli的做法）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js (for webpack 3)</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">      <span class="attr">name</span>: <span class="string">'vendor'</span>,</div><div class="line"></div><div class="line">      <span class="attr">minChunks</span>: <span class="function"><span class="params">module</span> =&gt;</span> <span class="built_in">module</span>.context &amp;&amp;</div><div class="line">        <span class="built_in">module</span>.context.includes(<span class="string">'node_modules'</span>),</div><div class="line">    &#125;),</div><div class="line"></div><div class="line">    <span class="comment">// This plugin must come after the vendor one (because webpack</span></div><div class="line">    <span class="comment">// includes runtime into the last chunk)</span></div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">      <span class="attr">name</span>: <span class="string">'runtime'</span>,</div><div class="line"></div><div class="line">      <span class="comment">// minChunks: Infinity means that no app modules</span></div><div class="line">      <span class="comment">// will be included into this chunk</span></div><div class="line">      minChunks: <span class="literal">Infinity</span>,</div><div class="line">    &#125;),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="将webpack执行环境放在html中减少额外HTTP请求"><a href="#将webpack执行环境放在html中减少额外HTTP请求" class="headerlink" title="将webpack执行环境放在html中减少额外HTTP请求"></a>将webpack执行环境放在html中减少额外HTTP请求</h3><p>因为执行环境（runtime）代码很小，将它放在html中可以节省HTTP请求。</p>
+<p>将：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./runtime.79f17c27b335abc7aaf4.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>替换为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">!<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="function"><span class="keyword">function</span> <span class="title">n</span>(<span class="params">r</span>)</span>&#123;<span class="keyword">if</span>(t[r])<span class="keyword">return</span> t[r].exports;…&#125;&#125; ([]);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>如果你使用HtmlWebpackPlugin生成HTML模版</li>
+</ul>
+<p>使用<code>InlineSourcePlugin</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</div><div class="line"><span class="keyword">const</span> InlineSourcePlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-inline-source-plugin'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">      <span class="comment">// Inline all files which names start with “runtime~” and end with “.js”.</span></div><div class="line">      <span class="comment">// That’s the default naming of runtime chunks</span></div><div class="line">      inlineSource: <span class="string">'runtime~.+\\.js'</span>,</div><div class="line">    &#125;),</div><div class="line">    <span class="comment">// This plugin enables the “inlineSource” option</span></div><div class="line">    <span class="keyword">new</span> InlineSourcePlugin(),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>如果使用服务端逻辑生成HTML模版</li>
+</ul>
+<p>在webpck4中：</p>
+<ol>
+<li><p>增加</p>
+<p><code>WebpackManifestPlugin</code></p>
+<p>得到生成的文件名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js (for webpack 4)</span></div><div class="line"><span class="keyword">const</span> ManifestPlugin = <span class="built_in">require</span>(<span class="string">'webpack-manifest-plugin'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> ManifestPlugin(),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这个插件会生成一个这样的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// manifest.json</div><div class="line">&#123;</div><div class="line">  &quot;runtime~main.js&quot;: &quot;runtime~main.8e0d62a03.js&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>将代码加入HTML中，比如 Node和Express中:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">const</span> manifest = <span class="built_in">require</span>(<span class="string">'./manifest.json'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> runtimeContent = fs.readFileSync(manifest[<span class="string">'runtime~main.js'</span>], <span class="string">'utf-8'</span>);</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.send(<span class="string">`</span></div><div class="line">    …</div><div class="line">    &lt;script&gt;<span class="subst">$&#123;runtimeContent&#125;</span>&lt;/script&gt;</div><div class="line">    …</div><div class="line">  `);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>或者Webpack3:</p>
+<ol>
+<li><p>将环境代码的文件名固定:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js (for webpack 3)</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">      <span class="attr">name</span>: <span class="string">'runtime'</span>,</div><div class="line">      <span class="attr">minChunks</span>: <span class="literal">Infinity</span>,</div><div class="line">      <span class="attr">filename</span>: <span class="string">'runtime.js'</span>,</div><div class="line">        <span class="comment">// → Now the runtime file will be called</span></div><div class="line">        <span class="comment">// “runtime.js”, not “runtime.79f17c27b335abc7aaf4.js”</span></div><div class="line">    &#125;),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在服务端中放入内容:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server.js</span></div><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">const</span> runtimeContent = fs.readFileSync(<span class="string">'./runtime.js'</span>, <span class="string">'utf-8'</span>);</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.send(<span class="string">`</span></div><div class="line">    …</div><div class="line">    &lt;script&gt;<span class="subst">$&#123;runtimeContent&#125;</span>&lt;/script&gt;</div><div class="line">    …</div><div class="line">  `);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h3><p>通过<code>import()</code>和<code>code-solitting</code>实现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// videoPlayer.js</span></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">renderVideoPlayer</span>(<span class="params"></span>) </span>&#123; … &#125;</div><div class="line"></div><div class="line"><span class="comment">// comments.js</span></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">renderComments</span>(<span class="params"></span>) </span>&#123; … &#125;</div><div class="line"></div><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">import</span> &#123;renderVideoPlayer&#125; <span class="keyword">from</span> <span class="string">'./videoPlayer'</span>;</div><div class="line">renderVideoPlayer();</div><div class="line"></div><div class="line"><span class="comment">// …Custom event listener</span></div><div class="line">onShowCommentsClick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">import</span>(<span class="string">'./comments'</span>).then(<span class="function">(<span class="params">comments</span>) =&gt;</span> &#123;</div><div class="line">    comments.renderComments();</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>通过import()引入的文件，webpack会将它分离成chunk，当使用到的时候才会加载。</p>
+<blockquote>
+<p>如果使用了Babel，可能会遇上语法错误，你需要使用<code>syntax-dynamic-import</code>插件</p>
+</blockquote>
+<h3 id="通过router分割代码"><a href="#通过router分割代码" class="headerlink" title="通过router分割代码"></a>通过router分割代码</h3><p>这块现代框架已经做的比较好了，可以参考：</p>
+<ul>
+<li>react-router的<a href="https://reacttraining.com/react-router/web/guides/code-splitting" target="_blank" rel="external">code splitting</a></li>
+<li>vue-router的<a href="https://router.vuejs.org/en/advanced/lazy-loading.html" target="_blank" rel="external">lazy-loading</a></li>
+</ul>
+<h2 id="监控并分析应用"><a href="#监控并分析应用" class="headerlink" title="监控并分析应用"></a>监控并分析应用</h2><p>上几章讲了如何优化，这章主要讲了如何分析应用到底有哪部分过于臃肿，追踪webpack的打包过程。</p>
+<h3 id="追踪打包大小"><a href="#追踪打包大小" class="headerlink" title="追踪打包大小"></a>追踪打包大小</h3><p>监控应用大小，你可以使用 <a href="https://github.com/FormidableLabs/webpack-dashboard/" target="_blank" rel="external">webpack-dashboard</a> 在开发过程 和 <a href="https://github.com/siddharthkp/bundlesize" target="_blank" rel="external">bundlesize</a> 在CI中。</p>
+<h3 id="分析为什么bundle过大"><a href="#分析为什么bundle过大" class="headerlink" title="分析为什么bundle过大"></a>分析为什么bundle过大</h3><p>你可以用 <a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank" rel="external">webpack-bundle-analyzer</a>这个工具分析。</p>
+<p><em>这篇可以在<a href="https://developers.google.com/web/fundamentals/performance/webpack/monitor-and-analyze" target="_blank" rel="external">原文</a>中看，这里就不作为重点描述了</em></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/13/【译文】ES6-集合：使用Using-Map，Set，WeakMap，WeakSet/" rel="next" title="【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet">
+                <i class="fa fa-chevron-left"></i> 【译文】ES6 集合：使用Using Map，Set，WeakMap，WeakSet
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/04/19/【译文】使用webpack提高网页性能优化/"
+           data-title="【译文】使用webpack提高网页性能优化" data-url="http://yoursite.com/2018/04/19/【译文】使用webpack提高网页性能优化/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://img.135q.com/2015-05/05/14307837440001.jpg"
+               alt="zhx111" />
+          <p class="site-author-name" itemprop="name">zhx111</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhx111" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【译文】使用webpack提高网页性能优化"><span class="nav-number">1.</span> <span class="nav-text">【译文】使用webpack提高网页性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#减小前端资源大小"><span class="nav-number">1.1.</span> <span class="nav-text">减小前端资源大小</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Production-mode（webpack4限定）"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用Production mode（webpack4限定）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩资源（webpack3）"><span class="nav-number">1.1.2.</span> <span class="nav-text">压缩资源（webpack3）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义NODE-ENV-production"><span class="nav-number">1.1.3.</span> <span class="nav-text">定义NODE_ENV=production</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ES模块"><span class="nav-number">1.1.4.</span> <span class="nav-text">使用ES模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化图片"><span class="nav-number">1.1.5.</span> <span class="nav-text">优化图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化依赖"><span class="nav-number">1.1.6.</span> <span class="nav-text">优化依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用module-concatenation（模块连接）"><span class="nav-number">1.1.7.</span> <span class="nav-text">使用module concatenation（模块连接）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用externals如果你同时使用webpack和non-webpack的代码"><span class="nav-number">1.1.8.</span> <span class="nav-text">使用externals如果你同时使用webpack和non-webpack的代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖在window（全局）可用"><span class="nav-number">1.1.8.1.</span> <span class="nav-text">依赖在window（全局）可用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖使用AMD模式引入"><span class="nav-number">1.1.8.2.</span> <span class="nav-text">依赖使用AMD模式引入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#善用缓存"><span class="nav-number">1.2.</span> <span class="nav-text">善用缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用版本号和缓存http头"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用版本号和缓存http头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extract-dependencies-and-runtime-into-a-separate-file（依赖和运行时代码分开）"><span class="nav-number">1.2.2.</span> <span class="nav-text">Extract dependencies and runtime into a separate file（依赖和运行时代码分开）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对依赖"><span class="nav-number">1.2.3.</span> <span class="nav-text">针对依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Webpack-runtime-code"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Webpack runtime code</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将webpack执行环境放在html中减少额外HTTP请求"><span class="nav-number">1.2.4.</span> <span class="nav-text">将webpack执行环境放在html中减少额外HTTP请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#懒加载"><span class="nav-number">1.2.5.</span> <span class="nav-text">懒加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过router分割代码"><span class="nav-number">1.2.6.</span> <span class="nav-text">通过router分割代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监控并分析应用"><span class="nav-number">1.3.</span> <span class="nav-text">监控并分析应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#追踪打包大小"><span class="nav-number">1.3.1.</span> <span class="nav-text">追踪打包大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析为什么bundle过大"><span class="nav-number">1.3.2.</span> <span class="nav-text">分析为什么bundle过大</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhx111</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhx111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

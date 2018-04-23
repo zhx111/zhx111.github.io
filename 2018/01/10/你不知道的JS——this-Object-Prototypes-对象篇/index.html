@@ -84,16 +84,52 @@
 
 
 
-<meta name="description" content="this&amp;amp;Object PrototypesChapter3:Object">
+<meta name="description" content="this&amp;amp;Object PrototypesChapter3:Object语法对象的两种形式：声明（字面）形式和构造形式。
+大多数情况下都使用字面形式。
+类型对象是JS六种主要类型中的一种：
+
+string
+number
+boolean
+null
+undefined
+object
+
+除了object是简单几本类型，它们自身不是object。
+null有时会被当成一个对象类型，但是这是由于t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你不知道的JS——this-Object-Prototypes(对象篇)">
 <meta property="og:url" content="http://yoursite.com/2018/01/10/你不知道的JS——this-Object-Prototypes-对象篇/index.html">
 <meta property="og:site_name" content="Zhx's blog">
-<meta property="og:description" content="this&amp;amp;Object PrototypesChapter3:Object">
-<meta property="og:updated_time" content="2018-01-10T11:21:43.000Z">
+<meta property="og:description" content="this&amp;amp;Object PrototypesChapter3:Object语法对象的两种形式：声明（字面）形式和构造形式。
+大多数情况下都使用字面形式。
+类型对象是JS六种主要类型中的一种：
+
+string
+number
+boolean
+null
+undefined
+object
+
+除了object是简单几本类型，它们自身不是object。
+null有时会被当成一个对象类型，但是这是由于t">
+<meta property="og:updated_time" content="2018-04-23T07:51:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你不知道的JS——this-Object-Prototypes(对象篇)">
-<meta name="twitter:description" content="this&amp;amp;Object PrototypesChapter3:Object">
+<meta name="twitter:description" content="this&amp;amp;Object PrototypesChapter3:Object语法对象的两种形式：声明（字面）形式和构造形式。
+大多数情况下都使用字面形式。
+类型对象是JS六种主要类型中的一种：
+
+string
+number
+boolean
+null
+undefined
+object
+
+除了object是简单几本类型，它们自身不是object。
+null有时会被当成一个对象类型，但是这是由于t">
 
 
 
@@ -335,7 +371,109 @@
       
 
       
-        <h1 id="this-amp-Object-Prototypes"><a href="#this-amp-Object-Prototypes" class="headerlink" title="this&amp;Object Prototypes"></a>this&amp;Object Prototypes</h1><h2 id="Chapter3-Object"><a href="#Chapter3-Object" class="headerlink" title="Chapter3:Object"></a>Chapter3:Object</h2>
+        <h1 id="this-amp-Object-Prototypes"><a href="#this-amp-Object-Prototypes" class="headerlink" title="this&amp;Object Prototypes"></a>this&amp;Object Prototypes</h1><h2 id="Chapter3-Object"><a href="#Chapter3-Object" class="headerlink" title="Chapter3:Object"></a>Chapter3:Object</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>对象的两种形式：声明（字面）形式和构造形式。</p>
+<p>大多数情况下都使用字面形式。</p>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>对象是JS六种主要类型中的一种：</p>
+<ul>
+<li><code>string</code></li>
+<li><code>number</code></li>
+<li><code>boolean</code></li>
+<li><code>null</code></li>
+<li><code>undefined</code></li>
+<li><code>object</code></li>
+</ul>
+<p>除了object是简单几本类型，它们自身不是object。</p>
+<p>null有时会被当成一个对象类型，但是这是由于typeof null返回object造成的，这是个bug。null是它自己的几本类型。</p>
+<a id="more"></a>
+<h4 id="内建对象"><a href="#内建对象" class="headerlink" title="内建对象"></a>内建对象</h4><ul>
+<li><code>String</code></li>
+<li><code>Number</code></li>
+<li><code>Object</code></li>
+<li><code>Function</code></li>
+<li><code>Array</code></li>
+<li><code>Date</code></li>
+<li><code>RegExp</code></li>
+<li><code>Error</code></li>
+</ul>
+<p>在JS中，它们实际上仅仅是内建的函数。这些内建函数的每一个都可以被用作构造器。</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> strPrimitive = <span class="string">"I am a string"</span>;</div><div class="line"><span class="keyword">typeof</span> strPrimitive;							<span class="comment">// "string"</span></div><div class="line">strPrimitive <span class="keyword">instanceof</span> <span class="built_in">String</span>;					<span class="comment">// false</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> strObject = <span class="keyword">new</span> <span class="built_in">String</span>( <span class="string">"I am a string"</span> );</div><div class="line"><span class="keyword">typeof</span> strObject; 								<span class="comment">// "object"</span></div><div class="line">strObject <span class="keyword">instanceof</span> <span class="built_in">String</span>;					<span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// 考察 object 子类型</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call( strObject );	<span class="comment">// [object String]</span></div></pre></td></tr></table></figure>
+<p>在必要的时候，语言会自动将string类型强制转位String对象类型（比如调用字符串的方法），所以JS社区绝大部分人强烈推荐尽可能使用字面形式的值。</p>
+<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><p>对象的内容由存储在特定命名的位置上的（任意类型的）值组成，这些值称为属性。</p>
+<p>这些内容在实现上并不存储在对象内部。对象中实际存储的是值的引用(reference)</p>
+<p>在对象中，属性名<strong>总是</strong>字符串。使用其它值会被转位字符串。</p>
+<h4 id="计算型属性名"><a href="#计算型属性名" class="headerlink" title="计算型属性名"></a>计算型属性名</h4><p>ES6加入了计算属性名，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> prefix = <span class="string">"foo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> myObject = &#123;</div><div class="line">	[prefix + <span class="string">"bar"</span>]: <span class="string">"hello"</span>,</div><div class="line">	[prefix + <span class="string">"baz"</span>]: <span class="string">"world"</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">myObject[<span class="string">"foobar"</span>]; <span class="comment">// hello</span></div><div class="line">myObject[<span class="string">"foobaz"</span>]; <span class="comment">// world</span></div></pre></td></tr></table></figure>
+<h3 id="复制对象"><a href="#复制对象" class="headerlink" title="复制对象"></a>复制对象</h3><p>复制对象在JS中是一件比较麻烦的事情，考虑这个对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">anotherFunction</span>(<span class="params"></span>) </span>&#123; <span class="comment">/*..*/</span> &#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> anotherObject = &#123;</div><div class="line">	<span class="attr">c</span>: <span class="literal">true</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> anotherArray = [];</div><div class="line"></div><div class="line"><span class="keyword">var</span> myObject = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span>,</div><div class="line">	<span class="attr">b</span>: anotherObject,	<span class="comment">// 引用，不是拷贝!</span></div><div class="line">	c: anotherArray,	<span class="comment">// 又一个引用!</span></div><div class="line">	d: anotherFunction</div><div class="line">&#125;;</div><div class="line"></div><div class="line">anotherArray.push( anotherObject, myObject );</div></pre></td></tr></table></figure>
+<p>对于myObject来说，采用浅拷贝的话，得到一个新对象，它的a是值2的拷贝，而b、c、d属性仅仅是引用。</p>
+<p>采用深拷贝将不仅复制myObject，还会复制anotherArray和anotherObject。由于我们让anotherArray用了了anotherObject和myObject的引用，所以这些也会被复制，这样就会造成无限循环的情况。</p>
+<p>一个解决方案是，JSON安全的对象可以简单地复制：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> newObj = <span class="built_in">JSON</span>.parse( <span class="built_in">JSON</span>.stringify( someObj ) );</div></pre></td></tr></table></figure>
+<p>浅拷贝ES6定义了Object.assign(…)。</p>
+<p>【注意】在Object.assign(…)中发生的复制是单纯的<code>=</code>式赋值，所以任何在源对象属性的特殊性质(writable)在目标对象上都不会保留。</p>
+<h3 id="属性描述符-Property-Descriptors"><a href="#属性描述符-Property-Descriptors" class="headerlink" title="属性描述符(Property Descriptors)"></a>属性描述符(Property Descriptors)</h3><p>ES5中，所有属性都用属性描述符来描述。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myObject = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.getOwnPropertyDescriptor( myObject, <span class="string">"a"</span> );</div><div class="line"><span class="comment">// &#123;</span></div><div class="line"><span class="comment">//    value: 2,</span></div><div class="line"><span class="comment">//    writable: true,</span></div><div class="line"><span class="comment">//    enumerable: true,</span></div><div class="line"><span class="comment">//    configurable: true</span></div><div class="line"><span class="comment">// &#125;</span></div></pre></td></tr></table></figure>
+<p>我们可以通过<code>Object.defineProperty(...)</code>来添加新属性。</p>
+<h4 id="可写性（Writable）"><a href="#可写性（Writable）" class="headerlink" title="可写性（Writable）"></a>可写性（Writable）</h4><p>这个属性控制你改变属性值的能力。</p>
+<p>在非严格模式下会修改失败，严格模式下会抛出错误。</p>
+<h4 id="可配置性（Configurable）"><a href="#可配置性（Configurable）" class="headerlink" title="可配置性（Configurable）"></a>可配置性（Configurable）</h4><p>只要属性当前是可配置的，我们就可以使用相同的 <code>defineProperty(..)</code> 工具，修改它的描述符定义。</p>
+<p><code>configurable:false</code> 阻止的另外一个事情是使用 <code>delete</code> 操作符移除既存属性的能力。</p>
+<h4 id="可枚举性（Enumerable）"><a href="#可枚举性（Enumerable）" class="headerlink" title="可枚举性（Enumerable）"></a>可枚举性（Enumerable）</h4><p>这个性质控制一个属性是否能在特定的对象-属性枚举操作中出现。</p>
+<h3 id="不可变性"><a href="#不可变性" class="headerlink" title="不可变性"></a>不可变性</h3><h4 id="对象常量"><a href="#对象常量" class="headerlink" title="对象常量"></a>对象常量</h4><p>通过将<code>writable:false</code> 与 <code>configurable:false</code> 组合，你创造了一个不能改变重定义或删除的变量。</p>
+<h4 id="防止扩展"><a href="#防止扩展" class="headerlink" title="防止扩展"></a>防止扩展</h4><p>如果你想防止一个对象被添加新的属性，但同时需要保留其它既存的对象属性，可以调用<code>Object.preventExtensions(..)</code></p>
+<h4 id="封印-Seal"><a href="#封印-Seal" class="headerlink" title="封印(Seal)"></a>封印(Seal)</h4><p>在当前对象上调用<code>Object.preventExtensions(..)</code>，并且将它所有的既存属性标记为<code>configurable:false</code>。</p>
+<h4 id="冻结-Freeze"><a href="#冻结-Freeze" class="headerlink" title="冻结(Freeze)"></a>冻结(Freeze)</h4><p><code>Object.freeze()</code>创建一个冻结对象。</p>
+<p>它意味着在当前对象上调用<code>Object.seal</code>，同时将所用数据访问属性设置为 <code>writable:false</code>。</p>
+<h3 id="Get"><a href="#Get" class="headerlink" title="[[Get]]"></a>[[Get]]</h3><p><code>object.a</code>这种属性访问，并不是像看上去那么简单。</p>
+<p>根据语言规范，上面的代码实际上在<code>object</code> 上执行了一个 <code>[[Get]]</code> 操作。</p>
+<p>它会检查对象寻找请求名称的属性，如果找到返回值，找不到的话会遍历<code>[[Prototype]]</code>链。</p>
+<h3 id="Put"><a href="#Put" class="headerlink" title="[[Put]]"></a>[[Put]]</h3><p>[[Put]]是和[[Get]]相对应的操作，用于给属性赋值：</p>
+<p>如果属性存在，该操作会检查：</p>
+<p>1、这个属性是访问器描述符吗？如果是，而且是setter，就调用setter。</p>
+<p>2、这个属性是<code>writable</code> 为 <code>false</code> 数据描述符吗？<strong>如果是，在非 strict mode 下无声地失败，或者在 strict mode 下抛出 TypeError。</strong></p>
+<p>3、否则，像平常一样设置既存属性的值。</p>
+<h3 id="Getters与Setters"><a href="#Getters与Setters" class="headerlink" title="Getters与Setters"></a>Getters与Setters</h3><p>ES5引入了一个方法来覆盖这些默认操作的一部分，但不是在对象级别而是针对每个属性，就是通过getters和setters。</p>
+<p>当你将一个属性定义为拥有getter或setter或两者兼备，那么它的定义就成为了“访问器描述符”（与数据描述符相对）。对于访问器描述符，它的<code>value</code>和<code>writable</code>性质因为没有意义而被忽略。</p>
+<p>考虑如下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myObject = &#123;</div><div class="line">	<span class="comment">// 为 `a` 定义一个 getter</span></div><div class="line">	get a() &#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty(</div><div class="line">	myObject,	<span class="comment">// 目标对象</span></div><div class="line">	<span class="string">"b"</span>,		<span class="comment">// 属性名</span></div><div class="line">	&#123;			<span class="comment">// 描述符</span></div><div class="line">		<span class="comment">// 为 `b` 定义 getter</span></div><div class="line">		get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.a * <span class="number">2</span> &#125;,</div><div class="line"></div><div class="line">		<span class="comment">// 确保 `b` 作为对象属性出现</span></div><div class="line">		enumerable: <span class="literal">true</span></div><div class="line">	&#125;</div><div class="line">);</div><div class="line"></div><div class="line">myObject.a; <span class="comment">// 2</span></div><div class="line"></div><div class="line">myObject.b; <span class="comment">// 4</span></div></pre></td></tr></table></figure>
+<p>我们通过两种方法创建了一个没有实际持有值的属性，访问它们会自动地对getter函数进行隐藏的函数调用。</p>
+<p>同时声明getter和setter：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myObject = &#123;</div><div class="line">	<span class="comment">// 为 `a` 定义 getter</span></div><div class="line">	get a() &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>._a_;</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// 为 `a` 定义 setter</span></div><div class="line">	set a(val) &#123;</div><div class="line">		<span class="keyword">this</span>._a_ = val * <span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">myObject.a = <span class="number">2</span>;</div><div class="line"></div><div class="line">myObject.a; <span class="comment">// 4</span></div></pre></td></tr></table></figure>
+<h3 id="存在性"><a href="#存在性" class="headerlink" title="存在性"></a>存在性</h3><ul>
+<li><code>in</code>操作符会检查属性是否存在于对象中，或者是否存在于<code>[[Prototype]]</code>链对象遍历的更高层中。</li>
+<li><code>hasOwnProperty(...)</code>仅仅检查对象是否拥有属性，不查询<code>[[Prototype]]</code>链。</li>
+<li>通过 <code>Object.create(null)</code> 可以创建出不链接到Object.prototype的对象。这种情况，<code>myobject.hasOwnProperty</code>这样的调用会失败</li>
+<li>针对这种情况，使用 <code>Object.prototype.hasOwnProperty.call(myObject,&quot;a&quot;)</code>，更加健壮。</li>
+</ul>
+<h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><p><code>Object.keys(..)</code> 返回一个所有可枚举属性的数组，而 <code>Object.getOwnPropertyNames(..)</code> 返回一个 <em>所有</em> 属性的数组，不论能不能枚举。</p>
+<h3 id="迭代（Iteration）"><a href="#迭代（Iteration）" class="headerlink" title="迭代（Iteration）"></a>迭代（Iteration）</h3><p><code>for...in</code>迭代对象（包括它的 <code>[[Prototype]]</code> 链）所有可迭代属性。</p>
+<p>ES6加入了一个有用的<code>for...of</code>，用来迭代数组（和对象，如果这个对象有定义的迭代器）。</p>
+<p>数组拥有内建的<code>@@iteration</code>，我们可以通过内建的<code>@@iteration</code>来手动迭代一个数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myArray = [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ];</div><div class="line"><span class="keyword">var</span> it = myArray[<span class="built_in">Symbol</span>.iterator]();</div><div class="line"></div><div class="line">it.next(); <span class="comment">// &#123; value:1, done:false &#125;</span></div><div class="line">it.next(); <span class="comment">// &#123; value:2, done:false &#125;</span></div><div class="line">it.next(); <span class="comment">// &#123; value:3, done:false &#125;</span></div><div class="line">it.next(); <span class="comment">// &#123; done:true &#125;</span></div></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 我们使用一个 ES6 的 <code>Symbol</code>：<code>Symbol.iterator</code> 来取得一个对象的 <code>@@iterator</code> <em>内部属性</em>。</p>
+<p> <code>@@iterator</code> 本身 <strong>不是迭代器对象</strong>， 而是一个返回迭代器对象的 <strong>方法</strong></p>
+<p>虽然数组可以在 <code>for..of</code> 循环中自动迭代，但普通的对象 <strong>没有内建的 @@iterator</strong>。</p>
+<p>可以为想要迭代的对象定义自己默认的<code>@@iterator</code>，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myObject = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span>,</div><div class="line">	<span class="attr">b</span>: <span class="number">3</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty( myObject, <span class="built_in">Symbol</span>.iterator, &#123;</div><div class="line">	<span class="attr">enumerable</span>: <span class="literal">false</span>,</div><div class="line">	<span class="attr">writable</span>: <span class="literal">false</span>,</div><div class="line">	<span class="attr">configurable</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">value</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">var</span> o = <span class="keyword">this</span>;</div><div class="line">		<span class="keyword">var</span> idx = <span class="number">0</span>;</div><div class="line">		<span class="keyword">var</span> ks = <span class="built_in">Object</span>.keys( o );</div><div class="line">		<span class="keyword">return</span> &#123;</div><div class="line">			<span class="attr">next</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">				<span class="keyword">return</span> &#123;</div><div class="line">					<span class="attr">value</span>: o[ks[idx++]],</div><div class="line">					<span class="attr">done</span>: (idx &gt; ks.length)</div><div class="line">				&#125;;</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line">&#125; );</div><div class="line"></div><div class="line"><span class="comment">// 手动迭代 `myObject`</span></div><div class="line"><span class="keyword">var</span> it = myObject[<span class="built_in">Symbol</span>.iterator]();</div><div class="line">it.next(); <span class="comment">// &#123; value:2, done:false &#125;</span></div><div class="line">it.next(); <span class="comment">// &#123; value:3, done:false &#125;</span></div><div class="line">it.next(); <span class="comment">// &#123; value:undefined, done:true &#125;</span></div><div class="line"></div><div class="line"><span class="comment">// 用 `for..of` 迭代 `myObject`</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> v <span class="keyword">of</span> myObject) &#123;</div><div class="line">	<span class="built_in">console</span>.log( v );</div><div class="line">&#125;</div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="comment">// 3</span></div></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 我们使用了 <code>Object.defineProperty(..)</code> 来自定义我们的 <code>@@iterator</code>（很大程度上是因为我们可以将它指定为不可枚举的），但是通过将 <code>Symbol</code> 作为一个 <em>计算型属性名</em>（在本章前面的部分讨论过），我们也可以直接声明它，比如 <code>var myObject = { a:2, b:3, [Symbol.iterator]: function(){ /* .. */ } }</code>。</p>
+<h2 id="第五章：原型"><a href="#第五章：原型" class="headerlink" title="第五章：原型"></a>第五章：原型</h2><h3 id="Prototype"><a href="#Prototype" class="headerlink" title="[[Prototype]]"></a><code>[[Prototype]]</code></h3><p>JavaScript中的对象有一个内部属性，在语言规范中称为 <code>[[Prototype]]</code>，它只是一个其他对象的引用。几乎所有的对象在被创建时，它的这个属性都被赋予了一个非 <code>null</code> 值。</p>
+<p>在之前提到的<code>[[Get]]</code>操作中，如果查找的某个属性在对象上不存在的话，就会从<code>[[Prototype]]</code>链上继续处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> anotherObject = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 创建一个链接到 `anotherObject` 的对象</span></div><div class="line"><span class="keyword">var</span> myObject = <span class="built_in">Object</span>.create( anotherObject );</div><div class="line"></div><div class="line">myObject.a; <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<p>这种查找会遍历对象的整个原型链。</p>
+<h4 id="object-prototype"><a href="#object-prototype" class="headerlink" title="object.prototype"></a><code>object.prototype</code></h4><p>每个普通原型链的最顶端，是内建的<code>object.prototype</code></p>
+<h4 id="设置与遮蔽属性"><a href="#设置与遮蔽属性" class="headerlink" title="设置与遮蔽属性"></a>设置与遮蔽属性</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">myObject.foo = <span class="string">"bar"</span>;</div></pre></td></tr></table></figure>
+<p>观察以上代码，如果属性名foo同时存在于myObject本身和从myObject开始的原型链的更高层，这样的情况称为<em>遮蔽</em>。直接存在于myObject上的foo属性会遮蔽任何出现在链条高层的foo属性。</p>
+<p>当 <code>foo</code> <strong>不直接存在</strong> 于 <code>myObject</code>，但 <strong>存在</strong> 于 <code>myObject</code> 的 <code>[[Prototype]]</code> 链的更高层时：</p>
+<ol>
+<li>如果一个普通的名为 <code>foo</code> 的数据访问属性在 <code>[[Prototype]]</code> 链的高层某处被找到，<strong>而且没有被标记为只读</strong>，那么一个名为 <code>foo</code> 的新属性就直接添加到 <code>myObject</code> 上，形成一个 <strong>遮蔽属性</strong>。</li>
+<li>如果一个 <code>foo</code> 在 <code>[[Prototype]]</code> 链的高层某处被找到，但是它被标记为 <strong>只读（writable:false）</strong> ，那么设置既存属性和在 <code>myObject</code> 上创建遮蔽属性都是 <strong>不允许</strong> 的。如果代码运行在 <code>strict mode</code> 下，一个错误会被抛出。否则，这个设置属性值的操作会被无声地忽略。不论怎样，<strong>没有发生遮蔽</strong>。</li>
+<li>如果一个 <code>foo</code> 在 <code>[[Prototype]]</code> 链的高层某处被找到，而且它是一个 setter（见第三章），那么这个 setter 总是被调用。没有 <code>foo</code> 会被添加到（也就是遮蔽在）<code>myObject</code> 上，这个 <code>foo</code> setter 也不会被重定义。</li>
+</ol>
+<p>如果你想在第二和第三种情况中遮蔽 <code>foo</code>，那你就不能使用 <code>=</code> 赋值，而必须使用 <code>Object.defineProperty(..)</code>将 <code>foo</code> 添加到 <code>myObject</code>。</p>
+<p>有的时候会有隐式遮蔽的情况出现，比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> anotherObject = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> myObject = <span class="built_in">Object</span>.create( anotherObject );</div><div class="line"></div><div class="line">anotherObject.a; <span class="comment">// 2</span></div><div class="line">myObject.a; <span class="comment">// 2</span></div><div class="line"></div><div class="line">anotherObject.hasOwnProperty( <span class="string">"a"</span> ); <span class="comment">// true</span></div><div class="line">myObject.hasOwnProperty( <span class="string">"a"</span> ); <span class="comment">// false</span></div><div class="line"></div><div class="line">myObject.a++; <span class="comment">// 噢，隐式遮蔽！</span></div><div class="line"></div><div class="line">anotherObject.a; <span class="comment">// 2</span></div><div class="line">myObject.a; <span class="comment">// 3</span></div><div class="line"></div><div class="line">myObject.hasOwnProperty( <span class="string">"a"</span> ); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<h3 id="“Class”"><a href="#“Class”" class="headerlink" title="“Class”"></a>“Class”</h3>
       
     </div>
 
@@ -453,7 +591,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -471,7 +609,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -517,7 +655,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#this-amp-Object-Prototypes"><span class="nav-number">1.</span> <span class="nav-text">this&Object Prototypes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter3-Object"><span class="nav-number">1.1.</span> <span class="nav-text">Chapter3:Object</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#this-amp-Object-Prototypes"><span class="nav-number">1.</span> <span class="nav-text">this&Object Prototypes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter3-Object"><span class="nav-number">1.1.</span> <span class="nav-text">Chapter3:Object</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型"><span class="nav-number">1.1.2.</span> <span class="nav-text">类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内建对象"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">内建对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容"><span class="nav-number">1.1.3.</span> <span class="nav-text">内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#计算型属性名"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">计算型属性名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制对象"><span class="nav-number">1.1.4.</span> <span class="nav-text">复制对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性描述符-Property-Descriptors"><span class="nav-number">1.1.5.</span> <span class="nav-text">属性描述符(Property Descriptors)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可写性（Writable）"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">可写性（Writable）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可配置性（Configurable）"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">可配置性（Configurable）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可枚举性（Enumerable）"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">可枚举性（Enumerable）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可变性"><span class="nav-number">1.1.6.</span> <span class="nav-text">不可变性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象常量"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">对象常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#防止扩展"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">防止扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#封印-Seal"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">封印(Seal)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#冻结-Freeze"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">冻结(Freeze)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get"><span class="nav-number">1.1.7.</span> <span class="nav-text">[[Get]]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Put"><span class="nav-number">1.1.8.</span> <span class="nav-text">[[Put]]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Getters与Setters"><span class="nav-number">1.1.9.</span> <span class="nav-text">Getters与Setters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存在性"><span class="nav-number">1.1.10.</span> <span class="nav-text">存在性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#枚举"><span class="nav-number">1.1.10.1.</span> <span class="nav-text">枚举</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代（Iteration）"><span class="nav-number">1.1.11.</span> <span class="nav-text">迭代（Iteration）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章：原型"><span class="nav-number">1.2.</span> <span class="nav-text">第五章：原型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prototype"><span class="nav-number">1.2.1.</span> <span class="nav-text">[[Prototype]]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#object-prototype"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">object.prototype</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置与遮蔽属性"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">设置与遮蔽属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“Class”"><span class="nav-number">1.2.2.</span> <span class="nav-text">“Class”</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
